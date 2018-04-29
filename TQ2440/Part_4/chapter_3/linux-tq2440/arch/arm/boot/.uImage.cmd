@@ -1,0 +1,1 @@
+cmd_arch/arm/boot/uImage := /bin/bash /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/scripts/mkuboot.sh -A arm -O linux -T kernel -C none -a 0x30008000 -e 0x30008000 -n 'Linux-2.6.30.4-EmbedSky' -d arch/arm/boot/zImage arch/arm/boot/uImage

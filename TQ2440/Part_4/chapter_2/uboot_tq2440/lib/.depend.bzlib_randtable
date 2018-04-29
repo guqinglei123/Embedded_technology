@@ -1,0 +1,17 @@
+bzlib_randtable.o: bzlib_randtable.c \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_cmd_defaults.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_defaults.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/configs/TQ2440.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_cmd_default.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/config.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_fallbacks.h \
+  bzlib_private.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/malloc.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/stddef.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/types.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/config.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/posix_types.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/posix_types.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/types.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/bzlib.h

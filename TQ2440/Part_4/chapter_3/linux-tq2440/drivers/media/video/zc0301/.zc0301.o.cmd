@@ -1,0 +1,1 @@
+cmd_drivers/media/video/zc0301/zc0301.o := arm-linux-ld -EL    -r -o drivers/media/video/zc0301/zc0301.o drivers/media/video/zc0301/zc0301_core.o drivers/media/video/zc0301/zc0301_pb0330.o drivers/media/video/zc0301/zc0301_pas202bcb.o 

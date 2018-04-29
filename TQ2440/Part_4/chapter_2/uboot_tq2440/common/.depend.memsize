@@ -1,0 +1,8 @@
+memsize.o: memsize.c \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_cmd_defaults.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_defaults.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/configs/TQ2440.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_cmd_default.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/config.h \
+  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/config_fallbacks.h
