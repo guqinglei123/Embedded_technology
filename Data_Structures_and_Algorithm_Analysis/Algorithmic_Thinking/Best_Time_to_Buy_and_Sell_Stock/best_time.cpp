@@ -1,78 +1,78 @@
 /***************************************************************************************************
-ÎÊÌâÒ»£º£¨ÂòÂô¹ÉÆ±µÄ×î¼ÑÊ±»ú£©¸ø¶¨Ò»¸öÊý×é£¬ËüµÄµÚ i ¸öÔªËØÊÇÒ»Ö§¸ø¶¨¹ÉÆ±µÚ i ÌìµÄ¼Û¸ñ¡£
-Èç¹ûÄã×î¶àÖ»ÔÊÐíÍê³ÉÒ»±Ê½»Ò×£¨¼´ÂòÈëºÍÂô³öÒ»Ö§¹ÉÆ±£©£¬Éè¼ÆÒ»¸öËã·¨À´¼ÆËãÄãËùÄÜ»ñÈ¡µÄ×î´óÀûÈó¡£
-×¢ÒâÄã²»ÄÜÔÚÂòÈë¹ÉÆ±Ç°Âô³ö¹ÉÆ±¡£
-ËµÃ÷£º
-    ÊäÈë: [7,1,5,3,6,4]
-    Êä³ö: 5
-    ½âÊÍ: ÔÚµÚ 2 Ìì£¨¹ÉÆ±¼Û¸ñ = 1£©µÄÊ±ºòÂòÈë£¬ÔÚµÚ 5 Ìì£¨¹ÉÆ±¼Û¸ñ = 6£©µÄÊ±ºòÂô³ö£¬×î´óÀûÈó = 6-1 = 5 ¡£
-        ×¢ÒâÀûÈó²»ÄÜÊÇ 7-1 = 6, ÒòÎªÂô³ö¼Û¸ñÐèÒª´óÓÚÂòÈë¼Û¸ñ¡£
-    ÊäÈë: [7,6,4,3,1]
-    Êä³ö: 0
-    ½âÊÍ: ÔÚÕâÖÖÇé¿öÏÂ, Ã»ÓÐ½»Ò×Íê³É, ËùÒÔ×î´óÀûÈóÎª 0¡£
-²Î¿¼Á´½Ó£ºhttps://blog.csdn.net/zaqwsx20/article/details/51082686
+é—®é¢˜ä¸€ï¼šï¼ˆä¹°å–è‚¡ç¥¨çš„æœ€ä½³æ—¶æœºï¼‰ç»™å®šä¸€ä¸ªæ•°ç»„ï¼Œå®ƒçš„ç¬¬ i ä¸ªå…ƒç´ æ˜¯ä¸€æ”¯ç»™å®šè‚¡ç¥¨ç¬¬ i å¤©çš„ä»·æ ¼ã€‚
+å¦‚æžœä½ æœ€å¤šåªå…è®¸å®Œæˆä¸€ç¬”äº¤æ˜“ï¼ˆå³ä¹°å…¥å’Œå–å‡ºä¸€æ”¯è‚¡ç¥¨ï¼‰ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•æ¥è®¡ç®—ä½ æ‰€èƒ½èŽ·å–çš„æœ€å¤§åˆ©æ¶¦ã€‚
+æ³¨æ„ä½ ä¸èƒ½åœ¨ä¹°å…¥è‚¡ç¥¨å‰å–å‡ºè‚¡ç¥¨ã€‚
+è¯´æ˜Žï¼š
+    è¾“å…¥: [7,1,5,3,6,4]
+    è¾“å‡º: 5
+    è§£é‡Š: åœ¨ç¬¬ 2 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 1ï¼‰çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 5 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 6ï¼‰çš„æ—¶å€™å–å‡ºï¼Œæœ€å¤§åˆ©æ¶¦ = 6-1 = 5 ã€‚
+        æ³¨æ„åˆ©æ¶¦ä¸èƒ½æ˜¯ 7-1 = 6, å› ä¸ºå–å‡ºä»·æ ¼éœ€è¦å¤§äºŽä¹°å…¥ä»·æ ¼ã€‚
+    è¾“å…¥: [7,6,4,3,1]
+    è¾“å‡º: 0
+    è§£é‡Š: åœ¨è¿™ç§æƒ…å†µä¸‹, æ²¡æœ‰äº¤æ˜“å®Œæˆ, æ‰€ä»¥æœ€å¤§åˆ©æ¶¦ä¸º 0ã€‚
+å‚è€ƒé“¾æŽ¥ï¼šhttps://blog.csdn.net/zaqwsx20/article/details/51082686
     https://blog.csdn.net/linhuanmars/article/details/23162793
 
-ÎÊÌâ¶þ£º£¨ÂòÂô¹ÉÆ±µÄ×î¼ÑÊ±»ú 2£©¸ø¶¨Ò»¸öÊý×é£¬ËüµÄµÚ i ¸öÔªËØÊÇÒ»Ö§¸ø¶¨¹ÉÆ±µÚ i ÌìµÄ¼Û¸ñ¡£
-Éè¼ÆÒ»¸öËã·¨À´¼ÆËãÄãËùÄÜ»ñÈ¡µÄ×î´óÀûÈó¡£Äã¿ÉÒÔ¾¡¿ÉÄÜµØÍê³É¸ü¶àµÄ½»Ò×£¨¶à´ÎÂòÂôÒ»Ö§¹ÉÆ±£©¡£
-×¢ÒâÄã²»ÄÜÔÚÂòÈë¹ÉÆ±Ç°Âô³ö¹ÉÆ±¡£
-ËµÃ÷£º
-    ÊäÈë:[7,1,5,3,6,4]
-    Êä³ö: 7
-    ½âÊÍ: ÔÚµÚ 2 Ìì£¨¹ÉÆ±¼Û¸ñ = 1£©µÄÊ±ºòÂòÈë£¬ÔÚµÚ 3 Ìì£¨¹ÉÆ±¼Û¸ñ = 5£©µÄÊ±ºòÂô³ö, Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 5-1 = 4 ¡£
-        Ëæºó£¬ÔÚµÚ 4 Ìì£¨¹ÉÆ±¼Û¸ñ = 3£©µÄÊ±ºòÂòÈë£¬ÔÚµÚ 5 Ìì£¨¹ÉÆ±¼Û¸ñ = 6£©µÄÊ±ºòÂô³ö, Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 6-3 = 3 ¡£
-    ÊäÈë: [1,2,3,4,5]
-    Êä³ö: 4
-    ½âÊÍ: ÔÚµÚ 1 Ìì£¨¹ÉÆ±¼Û¸ñ = 1£©µÄÊ±ºòÂòÈë£¬ÔÚµÚ 5 Ìì £¨¹ÉÆ±¼Û¸ñ = 5£©µÄÊ±ºòÂô³ö, Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 5-1 = 4 ¡£
-        ×¢ÒâÄã²»ÄÜÔÚµÚ 1 ÌìºÍµÚ 2 Ìì½ÓÁ¬¹ºÂò¹ÉÆ±£¬Ö®ºóÔÙ½«ËüÃÇÂô³ö¡£
-        ÒòÎªÕâÑùÊôÓÚÍ¬Ê±²ÎÓëÁË¶à±Ê½»Ò×£¬Äã±ØÐëÔÚÔÙ´Î¹ºÂòÇ°³öÊÛµôÖ®Ç°µÄ¹ÉÆ±¡£
-    ÊäÈë: [7,6,4,3,1]
-    Êä³ö: 0
-    ½âÊÍ: ÔÚÕâÖÖÇé¿öÏÂ, Ã»ÓÐ½»Ò×Íê³É, ËùÒÔ×î´óÀûÈóÎª 0¡£
-²Î¿¼Á´½Ó£ºhttps://blog.csdn.net/zaqwsx20/article/details/51082686
+é—®é¢˜äºŒï¼šï¼ˆä¹°å–è‚¡ç¥¨çš„æœ€ä½³æ—¶æœº 2ï¼‰ç»™å®šä¸€ä¸ªæ•°ç»„ï¼Œå®ƒçš„ç¬¬ i ä¸ªå…ƒç´ æ˜¯ä¸€æ”¯ç»™å®šè‚¡ç¥¨ç¬¬ i å¤©çš„ä»·æ ¼ã€‚
+è®¾è®¡ä¸€ä¸ªç®—æ³•æ¥è®¡ç®—ä½ æ‰€èƒ½èŽ·å–çš„æœ€å¤§åˆ©æ¶¦ã€‚ä½ å¯ä»¥å°½å¯èƒ½åœ°å®Œæˆæ›´å¤šçš„äº¤æ˜“ï¼ˆå¤šæ¬¡ä¹°å–ä¸€æ”¯è‚¡ç¥¨ï¼‰ã€‚
+æ³¨æ„ä½ ä¸èƒ½åœ¨ä¹°å…¥è‚¡ç¥¨å‰å–å‡ºè‚¡ç¥¨ã€‚
+è¯´æ˜Žï¼š
+    è¾“å…¥:[7,1,5,3,6,4]
+    è¾“å‡º: 7
+    è§£é‡Š: åœ¨ç¬¬ 2 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 1ï¼‰çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 3 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 5ï¼‰çš„æ—¶å€™å–å‡º, è¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 5-1 = 4 ã€‚
+        éšåŽï¼Œåœ¨ç¬¬ 4 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 3ï¼‰çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 5 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 6ï¼‰çš„æ—¶å€™å–å‡º, è¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 6-3 = 3 ã€‚
+    è¾“å…¥: [1,2,3,4,5]
+    è¾“å‡º: 4
+    è§£é‡Š: åœ¨ç¬¬ 1 å¤©ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 1ï¼‰çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 5 å¤© ï¼ˆè‚¡ç¥¨ä»·æ ¼ = 5ï¼‰çš„æ—¶å€™å–å‡º, è¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 5-1 = 4 ã€‚
+        æ³¨æ„ä½ ä¸èƒ½åœ¨ç¬¬ 1 å¤©å’Œç¬¬ 2 å¤©æŽ¥è¿žè´­ä¹°è‚¡ç¥¨ï¼Œä¹‹åŽå†å°†å®ƒä»¬å–å‡ºã€‚
+        å› ä¸ºè¿™æ ·å±žäºŽåŒæ—¶å‚ä¸Žäº†å¤šç¬”äº¤æ˜“ï¼Œä½ å¿…é¡»åœ¨å†æ¬¡è´­ä¹°å‰å‡ºå”®æŽ‰ä¹‹å‰çš„è‚¡ç¥¨ã€‚
+    è¾“å…¥: [7,6,4,3,1]
+    è¾“å‡º: 0
+    è§£é‡Š: åœ¨è¿™ç§æƒ…å†µä¸‹, æ²¡æœ‰äº¤æ˜“å®Œæˆ, æ‰€ä»¥æœ€å¤§åˆ©æ¶¦ä¸º 0ã€‚
+å‚è€ƒé“¾æŽ¥ï¼šhttps://blog.csdn.net/zaqwsx20/article/details/51082686
 
-ÎÊÌâÈý£º£¨ÂòÂô¹ÉÆ±µÄ×î¼ÑÊ±»ú 3/4£©¸ø¶¨Ò»¸öÊý×é£¬ËüµÄµÚ i ¸öÔªËØÊÇÒ»Ö§¸ø¶¨¹ÉÆ±µÚ i ÌìµÄ¼Û¸ñ¡£
-¸ø¶¨Ò»¸öÊý×é£¬ËüµÄµÚ i ¸öÔªËØÊÇÒ»Ö§¸ø¶¨µÄ¹ÉÆ±ÔÚµÚ i ÌìµÄ¼Û¸ñ¡£
-Éè¼ÆÒ»¸öËã·¨À´¼ÆËãÄãËùÄÜ»ñÈ¡µÄ×î´óÀûÈó¡£Äã×î¶à¿ÉÒÔÍê³É k ±Ê½»Ò×£¨µ±k=2Ê±£¬ÎªÂòÂô¹ÉÆ±µÄ×î¼ÑÊ±»ú3£©¡£
-×¢Òâ: Äã²»ÄÜÍ¬Ê±²ÎÓë¶à±Ê½»Ò×£¨Äã±ØÐëÔÚÔÙ´Î¹ºÂòÇ°³öÊÛµôÖ®Ç°µÄ¹ÉÆ±£©
-ËµÃ÷£º
-    ÊäÈë: [2,4,1], k = 2
-    Êä³ö: 2
-    ½âÊÍ: ÔÚµÚ 1 Ìì (¹ÉÆ±¼Û¸ñ = 2) µÄÊ±ºòÂòÈë£¬ÔÚµÚ 2 Ìì (¹ÉÆ±¼Û¸ñ = 4) µÄÊ±ºòÂô³ö£¬Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 4-2 = 2 ¡£
-    ÊäÈë: [3,2,6,5,0,3], k = 2
-    Êä³ö: 7
-    ½âÊÍ: ÔÚµÚ 2 Ìì (¹ÉÆ±¼Û¸ñ = 2) µÄÊ±ºòÂòÈë£¬ÔÚµÚ 3 Ìì (¹ÉÆ±¼Û¸ñ = 6) µÄÊ±ºòÂô³ö, Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 6-2 = 4 ¡£
-        Ëæºó£¬ÔÚµÚ 5 Ìì (¹ÉÆ±¼Û¸ñ = 0) µÄÊ±ºòÂòÈë£¬ÔÚµÚ 6 Ìì (¹ÉÆ±¼Û¸ñ = 3) µÄÊ±ºòÂô³ö, Õâ±Ê½»Ò×ËùÄÜ»ñµÃÀûÈó = 3-0 = 3 ¡£
-²Î¿¼Á´½Ó£ºhttps://blog.csdn.net/zaqwsx20/article/details/51082686
+é—®é¢˜ä¸‰ï¼šï¼ˆä¹°å–è‚¡ç¥¨çš„æœ€ä½³æ—¶æœº 3/4ï¼‰ç»™å®šä¸€ä¸ªæ•°ç»„ï¼Œå®ƒçš„ç¬¬ i ä¸ªå…ƒç´ æ˜¯ä¸€æ”¯ç»™å®šè‚¡ç¥¨ç¬¬ i å¤©çš„ä»·æ ¼ã€‚
+ç»™å®šä¸€ä¸ªæ•°ç»„ï¼Œå®ƒçš„ç¬¬ i ä¸ªå…ƒç´ æ˜¯ä¸€æ”¯ç»™å®šçš„è‚¡ç¥¨åœ¨ç¬¬ i å¤©çš„ä»·æ ¼ã€‚
+è®¾è®¡ä¸€ä¸ªç®—æ³•æ¥è®¡ç®—ä½ æ‰€èƒ½èŽ·å–çš„æœ€å¤§åˆ©æ¶¦ã€‚ä½ æœ€å¤šå¯ä»¥å®Œæˆ k ç¬”äº¤æ˜“ï¼ˆå½“k=2æ—¶ï¼Œä¸ºä¹°å–è‚¡ç¥¨çš„æœ€ä½³æ—¶æœº3ï¼‰ã€‚
+æ³¨æ„: ä½ ä¸èƒ½åŒæ—¶å‚ä¸Žå¤šç¬”äº¤æ˜“ï¼ˆä½ å¿…é¡»åœ¨å†æ¬¡è´­ä¹°å‰å‡ºå”®æŽ‰ä¹‹å‰çš„è‚¡ç¥¨ï¼‰
+è¯´æ˜Žï¼š
+    è¾“å…¥: [2,4,1], k = 2
+    è¾“å‡º: 2
+    è§£é‡Š: åœ¨ç¬¬ 1 å¤© (è‚¡ç¥¨ä»·æ ¼ = 2) çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 2 å¤© (è‚¡ç¥¨ä»·æ ¼ = 4) çš„æ—¶å€™å–å‡ºï¼Œè¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 4-2 = 2 ã€‚
+    è¾“å…¥: [3,2,6,5,0,3], k = 2
+    è¾“å‡º: 7
+    è§£é‡Š: åœ¨ç¬¬ 2 å¤© (è‚¡ç¥¨ä»·æ ¼ = 2) çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 3 å¤© (è‚¡ç¥¨ä»·æ ¼ = 6) çš„æ—¶å€™å–å‡º, è¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 6-2 = 4 ã€‚
+        éšåŽï¼Œåœ¨ç¬¬ 5 å¤© (è‚¡ç¥¨ä»·æ ¼ = 0) çš„æ—¶å€™ä¹°å…¥ï¼Œåœ¨ç¬¬ 6 å¤© (è‚¡ç¥¨ä»·æ ¼ = 3) çš„æ—¶å€™å–å‡º, è¿™ç¬”äº¤æ˜“æ‰€èƒ½èŽ·å¾—åˆ©æ¶¦ = 3-0 = 3 ã€‚
+å‚è€ƒé“¾æŽ¥ï¼šhttps://blog.csdn.net/zaqwsx20/article/details/51082686
     http://www.cnblogs.com/grandyang/p/4281975.html
     http://www.cnblogs.com/grandyang/p/4295761.html
     http://blog.csdn.net/linhuanmars/article/details/23236995
 
-ÎÊÌâËÄ£º(×î¼ÑÂòÂô¹ÉÆ±Ê±»úº¬Àä¶³ÆÚ)Éè¼ÆÒ»¸öËã·¨¼ÆËã³ö×î´óÀûÈó¡£ÔÚÂú×ãÒÔÏÂÔ¼ÊøÌõ¼þÏÂ£¬Äã¿ÉÒÔ¾¡¿ÉÄÜµØÍê³É¸ü¶àµÄ½»Ò×£¨¶à´ÎÂòÂôÒ»Ö§¹ÉÆ±£©:
-        Äã²»ÄÜÍ¬Ê±²ÎÓë¶à±Ê½»Ò×£¨Äã±ØÐëÔÚÔÙ´Î¹ºÂòÇ°³öÊÛµôÖ®Ç°µÄ¹ÉÆ±£©¡£
-        Âô³ö¹ÉÆ±ºó£¬ÄãÎÞ·¨ÔÚµÚ¶þÌìÂòÈë¹ÉÆ± (¼´Àä¶³ÆÚÎª 1 Ìì)¡£
-ËµÃ÷£º
+é—®é¢˜å››ï¼š(æœ€ä½³ä¹°å–è‚¡ç¥¨æ—¶æœºå«å†·å†»æœŸ)è®¾è®¡ä¸€ä¸ªç®—æ³•è®¡ç®—å‡ºæœ€å¤§åˆ©æ¶¦ã€‚åœ¨æ»¡è¶³ä»¥ä¸‹çº¦æŸæ¡ä»¶ä¸‹ï¼Œä½ å¯ä»¥å°½å¯èƒ½åœ°å®Œæˆæ›´å¤šçš„äº¤æ˜“ï¼ˆå¤šæ¬¡ä¹°å–ä¸€æ”¯è‚¡ç¥¨ï¼‰:
+        ä½ ä¸èƒ½åŒæ—¶å‚ä¸Žå¤šç¬”äº¤æ˜“ï¼ˆä½ å¿…é¡»åœ¨å†æ¬¡è´­ä¹°å‰å‡ºå”®æŽ‰ä¹‹å‰çš„è‚¡ç¥¨ï¼‰ã€‚
+        å–å‡ºè‚¡ç¥¨åŽï¼Œä½ æ— æ³•åœ¨ç¬¬äºŒå¤©ä¹°å…¥è‚¡ç¥¨ (å³å†·å†»æœŸä¸º 1 å¤©)ã€‚
+è¯´æ˜Žï¼š
     prices = [1, 2, 3, 0, 2]
     maxProfit = 3
     transactions = [buy, sell, cooldown, buy, sell]
-²Î¿¼Á´½Ó£ºhttp://www.cnblogs.com/grandyang/p/4997417.html
+å‚è€ƒé“¾æŽ¥ï¼šhttp://www.cnblogs.com/grandyang/p/4997417.html
 
-ÎÊÌâÎå:(ÂòÂô¹ÉÆ±µÄ×î¼ÑÊ±»úº¬ÊÖÐø·Ñ)¸ø¶¨Ò»¸öÕûÊýÊý×é prices£¬ÆäÖÐµÚ i ¸öÔªËØ´ú±íÁËµÚ i ÌìµÄ¹ÉÆ±¼Û¸ñ £»·Ç¸ºÕûÊý fee ´ú±íÁË½»Ò×¹ÉÆ±µÄÊÖÐø·ÑÓÃ¡£
-Äã¿ÉÒÔÎÞÏÞ´ÎµØÍê³É½»Ò×£¬µ«ÊÇÄãÃ¿´Î½»Ò×¶¼ÐèÒª¸¶ÊÖÐø·Ñ¡£Èç¹ûÄãÒÑ¾­¹ºÂòÁËÒ»¸ö¹ÉÆ±£¬ÔÚÂô³öËüÖ®Ç°Äã¾Í²»ÄÜÔÙ¼ÌÐø¹ºÂò¹ÉÆ±ÁË¡£
-·µ»Ø»ñµÃÀûÈóµÄ×î´óÖµ¡£
-ËµÃ÷:
-    ÊäÈë: prices = [1, 3, 2, 8, 4, 9], fee = 2
-Êä³ö: 8
-½âÊÍ: ÄÜ¹»´ïµ½µÄ×î´óÀûÈó:  
-    ÔÚ´Ë´¦ÂòÈë prices[0] = 1
-    ÔÚ´Ë´¦Âô³ö prices[3] = 8
-    ÔÚ´Ë´¦ÂòÈë prices[4] = 4
-    ÔÚ´Ë´¦Âô³ö prices[5] = 9
-    ×ÜÀûÈó: ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+é—®é¢˜äº”:(ä¹°å–è‚¡ç¥¨çš„æœ€ä½³æ—¶æœºå«æ‰‹ç»­è´¹)ç»™å®šä¸€ä¸ªæ•´æ•°æ•°ç»„ pricesï¼Œå…¶ä¸­ç¬¬ i ä¸ªå…ƒç´ ä»£è¡¨äº†ç¬¬ i å¤©çš„è‚¡ç¥¨ä»·æ ¼ ï¼›éžè´Ÿæ•´æ•° fee ä»£è¡¨äº†äº¤æ˜“è‚¡ç¥¨çš„æ‰‹ç»­è´¹ç”¨ã€‚
+ä½ å¯ä»¥æ— é™æ¬¡åœ°å®Œæˆäº¤æ˜“ï¼Œä½†æ˜¯ä½ æ¯æ¬¡äº¤æ˜“éƒ½éœ€è¦ä»˜æ‰‹ç»­è´¹ã€‚å¦‚æžœä½ å·²ç»è´­ä¹°äº†ä¸€ä¸ªè‚¡ç¥¨ï¼Œåœ¨å–å‡ºå®ƒä¹‹å‰ä½ å°±ä¸èƒ½å†ç»§ç»­è´­ä¹°è‚¡ç¥¨äº†ã€‚
+è¿”å›žèŽ·å¾—åˆ©æ¶¦çš„æœ€å¤§å€¼ã€‚
+è¯´æ˜Ž:
+    è¾“å…¥: prices = [1, 3, 2, 8, 4, 9], fee = 2
+è¾“å‡º: 8
+è§£é‡Š: èƒ½å¤Ÿè¾¾åˆ°çš„æœ€å¤§åˆ©æ¶¦:  
+    åœ¨æ­¤å¤„ä¹°å…¥ prices[0] = 1
+    åœ¨æ­¤å¤„å–å‡º prices[3] = 8
+    åœ¨æ­¤å¤„ä¹°å…¥ prices[4] = 4
+    åœ¨æ­¤å¤„å–å‡º prices[5] = 9
+    æ€»åˆ©æ¶¦: ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
     0 < prices.length <= 50000.
     0 < prices[i] < 50000.
     0 <= fee < 50000.
-²Î¿¼Á´½Ó£º
+å‚è€ƒé“¾æŽ¥ï¼š
 
  * ********************************************************************************************/
 
@@ -86,7 +86,7 @@ using namespace std;
 class Solution
 {
   public:
-    //ÎÊÌâÒ»
+    //é—®é¢˜ä¸€
     int maxProfit(vector<int> &prices)
     {
         int res = 0;
@@ -99,7 +99,7 @@ class Solution
             {
                 buy_time = prices[i];
             }
-            else if ((prices[i] - buy_time) > res) //ÐÞ¸ÄÎª Ìõ¼þÔËËã·ûÀ´±í´ï¿ÉÒÔÌá¸ßÔËÐÐÊ±¼ä
+            else if ((prices[i] - buy_time) > res) //ä¿®æ”¹ä¸º æ¡ä»¶è¿ç®—ç¬¦æ¥è¡¨è¾¾å¯ä»¥æé«˜è¿è¡Œæ—¶é—´
             {
                 res = prices[i] - buy_time;
             }
@@ -114,12 +114,12 @@ class Solution
         int global = 0;
         for (int i = 0; i < prices.size() - 1; i++)
         {
-            local = max(local + prices[i + 1] - prices[i], 0);//¾Ö²¿×îÓÅ
-            global = max(local, global);//È«¾Ö×îÓÅ
+            local = max(local + prices[i + 1] - prices[i], 0);//å±€éƒ¨æœ€ä¼˜
+            global = max(local, global);//å…¨å±€æœ€ä¼˜
         }
         return global;
     }
-    //ÎÊÌâ¶þ
+    //é—®é¢˜äºŒ
     int maxProfit2(vector<int> &prices)
     {
         int res = 0;
@@ -155,7 +155,7 @@ class Solution
         int i, d;
         int max = 0;
         for (i = 1; i < prices.size(); ++i)
-        { //Ö»ÒªÓÐÇ®×¬¾ÍÂòÂô
+        { //åªè¦æœ‰é’±èµšå°±ä¹°å–
             d = prices[i] - prices[i - 1];
             if (d > 0)
             {
@@ -164,9 +164,9 @@ class Solution
         }
         return max;
     }
-    //ÎÊÌâÈý
+    //é—®é¢˜ä¸‰
     struct Sub
-    { //ÂòÂôÇø¼ä
+    { //ä¹°å–åŒºé—´
         int begin;
         int end;
         bool fill;
@@ -178,7 +178,7 @@ class Solution
             this->fill = fill;
         }
     };
-    //Õý·½ÏòËÑË÷
+    //æ­£æ–¹å‘æœç´¢
     int maxProfit_p(vector<int> &prices, int indiex_min, int indiex_max, Sub &sub)
     {
         int res = 0;
@@ -208,7 +208,7 @@ class Solution
         }
         return res;
     }
-    //·´·½ÏòËÑË÷
+    //åæ–¹å‘æœç´¢
     int maxProfit_r(vector<int> &prices, int indiex_min, int indiex_max, Sub &sub)
     {
         int res = 0;
@@ -246,7 +246,7 @@ class Solution
         subArr.push_back(Sub(0, prices.size() - 1, false));
         while (k--)
         {
-            //Ñ°ÕÒÒ»´Î×îÓÐÀûµÄÇÐ·Ö
+            //å¯»æ‰¾ä¸€æ¬¡æœ€æœ‰åˆ©çš„åˆ‡åˆ†
             int maxCount = 0;
             int maxIndex = -1;
             Sub maxSub;
@@ -255,32 +255,32 @@ class Solution
             {
                 int tmp;
                 if (subArr[i].fill)
-                { //ÔÚÊµÐÄÇø¼äÉÏÍÚÏÂÒ»¸ö×îÐ¡Öµ
+                { //åœ¨å®žå¿ƒåŒºé—´ä¸ŠæŒ–ä¸‹ä¸€ä¸ªæœ€å°å€¼
                     tmp = maxProfit_r(prices, subArr[i].begin, subArr[i].end, tmpSub);
                 }
                 else
-                { //ÔÚ¿ÕÐÄÇø¼äÉÏÕÒ×î´óÀûÈóÇø¼ä
+                { //åœ¨ç©ºå¿ƒåŒºé—´ä¸Šæ‰¾æœ€å¤§åˆ©æ¶¦åŒºé—´
                     tmp = maxProfit_p(prices, subArr[i].begin, subArr[i].end, tmpSub);
                 }
                 if (tmp > maxCount)
-                { //¼ÇÂ¼ÏÂµ±Ç°×î¼Ñ»®·Ö·½Ê½ºÍÆä´øÀ´µÄÀûÈó
+                { //è®°å½•ä¸‹å½“å‰æœ€ä½³åˆ’åˆ†æ–¹å¼å’Œå…¶å¸¦æ¥çš„åˆ©æ¶¦
                     maxCount = tmp;
                     maxIndex = i;
                     maxSub = tmpSub;
                 }
             }
 
-            //¼ÆËãÇÐ·ÖÖ®ºóµÄÇø¼ä×´Ì¬
+            //è®¡ç®—åˆ‡åˆ†ä¹‹åŽçš„åŒºé—´çŠ¶æ€
             if (maxIndex >= 0)
             {
                 Sub sub = subArr[maxIndex];
-                if (sub.fill) //·´ÏòÇó½âÖ®ºó£¬»®·ÖµÄÇó½â¡£
+                if (sub.fill) //åå‘æ±‚è§£ä¹‹åŽï¼Œåˆ’åˆ†çš„æ±‚è§£ã€‚
                 {
                     subArr.push_back(Sub(sub.begin, maxSub.begin, true));
                     subArr.push_back(Sub(maxSub.end, sub.end, true));
                     maxSub.begin += 1;
                     maxSub.end -= 1;
-                    subArr[maxIndex] = maxSub; //Ä¬ÈÏÎªture
+                    subArr[maxIndex] = maxSub; //é»˜è®¤ä¸ºture
                 }
                 else
                 {
@@ -288,37 +288,39 @@ class Solution
                     subArr.push_back(Sub(maxSub.end + 1, sub.end, false));
                     subArr[maxIndex] = maxSub;
                 }
-                //¼ÆËã´Ë´ÎÇÐ·ÖÖ®ºóµÄ×î´óÀûÈó
+                //è®¡ç®—æ­¤æ¬¡åˆ‡åˆ†ä¹‹åŽçš„æœ€å¤§åˆ©æ¶¦
                 max += maxCount;
             }
             else
-            { //ÈôÎÞ·¨ÔÙÇÐ·ÖÔòÍË³öÑ­»·
+            { //è‹¥æ— æ³•å†åˆ‡åˆ†åˆ™é€€å‡ºå¾ªçŽ¯
                 break;
             }
         }
         return max;
     }
-    //Ê¹ÓÃ¶¯Ì¬¹æ»®Ëã·¨~
-    //Èç¹ûkµÄÖµÔ¶´óÓÚpricesµÄÌìÊý£¬±ÈÈçkÊÇºÃ¼¸°ÙÍò£¬¶øpricesµÄÌìÊý¾ÍÎªÈô¸ÉÌìµÄ»°£¬Ê¹ÓÃDP½â·¨¾Í·Ç³£µÄÃ»ÓÐÐ§ÂÊ
-    //ÕâÊ±ºò¿ÉÒÔÑ¡ÔñÎÊÌâ¶þµÄÌ°ÐÄ½â·¨
-    int maxProfit3_dp(int k, vector<int> &prices)
+    //ä½¿ç”¨åŠ¨æ€è§„åˆ’ç®—æ³•~
+    //å¦‚æžœkçš„å€¼è¿œå¤§äºŽpricesçš„å¤©æ•°ï¼Œæ¯”å¦‚kæ˜¯å¥½å‡ ç™¾ä¸‡ï¼Œè€Œpricesçš„å¤©æ•°å°±ä¸ºè‹¥å¹²å¤©çš„è¯ï¼Œä½¿ç”¨DPè§£æ³•å°±éžå¸¸çš„æ²¡æœ‰æ•ˆçŽ‡
+    //è¿™æ—¶å€™å¯ä»¥é€‰æ‹©é—®é¢˜äºŒçš„è´ªå¿ƒè§£æ³•
+    int maxProfit3_2dp(vector<int> &prices)
     {
         if (prices.empty())
             return 0;
-        int n = prices.size(), g[n][3] = {0}, l[n][3] = {0};
+        int n = prices.size();
+        int g[n][3], l[n][3] ;
+
         for (int i = 1; i < prices.size(); ++i)
         {
             int diff = prices[i] - prices[i - 1];
-            for (int j = 1; j <= k; ++j)
+            for (int j = 1; j <= 2; ++j)
             {
                 l[i][j] = max(g[i - 1][j - 1] + max(diff, 0), l[i - 1][j] + diff);
                 g[i][j] = max(l[i][j], g[i - 1][j]);
             }
         }
-        return g[n - 1][k];
+        return g[n - 1][2];
     }
-    //¿Õ¼äÓÅ»¯
-    int maxProfit3_dp2(int k, vector<int> &prices)
+        //ç©ºé—´ä¼˜åŒ–
+    int maxProfit3_2dp2(vector<int> &prices)
     {
         if (prices.empty())
             return 0;
@@ -327,14 +329,43 @@ class Solution
         for (int i = 0; i < prices.size() - 1; ++i)
         {
             int diff = prices[i + 1] - prices[i];
-            for (int j = k; j >= 1; --j)
+            for (int j = 2; j >= 1; --j)
             {
                 l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff);
                 g[j] = max(l[j], g[j]);
             }
         }
+        return g[2];
+    }
+
+    int maxProfit3_dp2k(int k, vector<int> &prices) 
+    {
+        if (prices.empty()) return 0;
+        if (k >= prices.size()) return solveMaxProfit(prices);
+        int g[k + 1];
+        int l[k + 1];
+        for (int i = 0; i < prices.size() - 1; ++i) {
+            int diff = prices[i + 1] - prices[i];
+            for (int j = k; j >= 1; --j) {
+                l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff);
+                g[j] = max(g[j], l[j]);
+            }
+        }
         return g[k];
     }
+
+    int solveMaxProfit(vector<int> &prices) {
+        int res = 0;
+        for (int i = 1; i < prices.size(); ++i) {
+            if (prices[i] - prices[i - 1] > 0) {
+                res += prices[i] - prices[i - 1];
+            }
+        }
+        return res;
+    }
+
+
+
     int maxProfit4(vector<int> &prices)
     {
 
@@ -350,27 +381,29 @@ int main(void)
     vector<int> prices;
     // prices = {7, 1, 5, 3, 6, 4};
     // prices = {7, 6, 4, 3, 1};
-    // prices = {1, 2, 3, 4, 5};
+    prices = {1, 2, 3, 4, 5};
     // prices = {7,6,4,3,1};
-    prices = {3, 3, 5, 0, 0, 3, 1, 4};
+    // prices = {3, 3, 5, 0, 0, 3, 1, 4};
     // prices = {1, 2, 4, 2, 5, 7, 2, 4, 9, 0}; //13
     // prices = {2, 4, 1};
     // prices = {3, 2, 6, 5, 0, 3};
 
     Solution Sol;
     int max_price = Sol.maxProfit(prices);
-    cout << "ÎÊÌâÒ»µÄ½â£º" << max_price << endl;
+    cout << "é—®é¢˜ä¸€çš„è§£ï¼š" << max_price << endl;
     max_price = Sol.maxProfit_dp(prices);
-    cout << "ÎÊÌâÒ»µÄ¶¯Ì¬¹æ»®½â·¨£º" << max_price << endl;
+    cout << "é—®é¢˜ä¸€çš„åŠ¨æ€è§„åˆ’è§£æ³•ï¼š" << max_price << endl;
     max_price = Sol.maxProfit2(prices);
-    cout << "ÎÊÌâ¶þµÄ½â£º" << max_price << endl;
+    cout << "é—®é¢˜äºŒçš„è§£ï¼š" << max_price << endl;
     max_price = Sol.maxProfit2_Greed(prices);
-    cout << "ÎÊÌâ¶þµÄÌ°ÐÄ½â·¨£º" << max_price << endl;
+    cout << "é—®é¢˜äºŒçš„è´ªå¿ƒè§£æ³•ï¼š" << max_price << endl;
     max_price = Sol.maxProfit3(2, prices);
-    cout << "ÎÊÌâÈýµÄ½â£º" << max_price << endl;
-    max_price = Sol.maxProfit3_dp(2, prices);
-    cout << "ÎÊÌâÈýµÄ¶¯Ì¬¹æ»®½â·¨£º" << max_price << endl;
-    max_price = Sol.maxProfit3_dp2(2, prices);
-    cout << "ÎÊÌâÈýµÄÓÅ»¯ºó¶¯Ì¬¹æ»®½â·¨£º" << max_price << endl;
+    cout << "é—®é¢˜ä¸‰çš„è§£ï¼š" << max_price << endl;
+    max_price = Sol.maxProfit3_2dp(prices);
+    cout << "é—®é¢˜ä¸‰(k=2)çš„åŠ¨æ€è§„åˆ’è§£æ³•ï¼š" << max_price << endl;//è¿˜æœ‰é—®é¢˜
+    max_price = Sol.maxProfit3_2dp2(prices);
+    cout << "é—®é¢˜ä¸‰(k=2)çš„ä¼˜åŒ–åŽåŠ¨æ€è§„åˆ’è§£æ³•ï¼š" << max_price << endl;
+    max_price = Sol.maxProfit3_dp2k(2,prices);
+    cout << "é—®é¢˜ä¸‰çš„ä¼˜åŒ–åŽåŠ¨æ€è§„åˆ’è§£æ³•ï¼š" << max_price << endl;//è¿˜æœ‰é—®é¢˜
     return 0;
 }
