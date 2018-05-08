@@ -192,7 +192,12 @@ class BackPack_Greed
         else
             return 1;
     }
-
+    //这里考虑的是选取单位重量价值最大的物品，但是也存在不适合的情况。比如
+    // W=30
+    // 物品：A B C
+    // 重量：28 20 10
+    // 价值：28 20 10
+    // 根据策略，三种物品单位重量价值一样，程序无法依据现有策略作出判断，如果选择A，则答案错误。
     void Greedy() //贪心算法
     {
         // sort(G, G + goods_num*sizeof(Goods), cmp);//sort by ValPerWei

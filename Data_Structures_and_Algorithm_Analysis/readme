@@ -1,7 +1,7 @@
 0 算法设计：
-0.1 分治算法：Hanoi_ToWer
-0.2 动态规划：Word_Break BackPack Fibonacci
-0.3 贪心算法：BackPack
+0.1 分治算法：Hanoi_ToWer Maximum_Subarray
+0.2 动态规划：Word_Break BackPack Fibonacci Best_Time_to_Buy_and_Sell_Stock Maximum_Subarray
+0.3 贪心算法：BackPack Best_Time_to_Buy_and_Sell_Stock(问题2)  Jump_game
 0.4 回溯算法：
 0.5 分支限界：
 
