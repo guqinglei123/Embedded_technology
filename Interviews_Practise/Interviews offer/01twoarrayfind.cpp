@@ -19,7 +19,7 @@ public:
         {
              if(array[0][i] < target)
                 break;
-             i++;
+             i--;
         }
         while(j < rowsNum)
         {
@@ -39,6 +39,9 @@ public:
 int main(int argc, char const *argv[])
 {
     /* code */
-    int matrix[4][4] = { { 1, 2, 8, 9 }, { 2, 4, 9, 12 }, { 4, 7, 10, 13 }, { 6, 8, 11, 15 } };
+    vector<vector<int>> matrix;
+    matrix = { { 1, 2, 8, 9 }, { 2, 4, 9, 12 }, { 4, 7, 10, 13 }};
+    Solution Sol;
+    int res=Sol.Find(9,matrix);
     return 0;
 }
