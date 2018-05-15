@@ -31,6 +31,7 @@ public:
         int kk= str_vect.size();
         if(length < str_vect.size()-1)
             return;
+        str[str_vect.size()]='\0';
         for(int j = str_vect.size()-1;j>=0;j--)
         {
             str[j]=str_vect[j];
@@ -41,7 +42,8 @@ public:
 int main(int argc, char const *argv[])
 {
     /* code */
-    char aa[30]="We Are Happy";
+    // char aa[30]="We Are Happy";
+    char aa[30]=" helloworld";
     Solution Sol;
     Sol.replaceSpace(aa,30);
     return 0;

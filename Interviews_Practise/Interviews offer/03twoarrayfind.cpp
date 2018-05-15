@@ -10,28 +10,25 @@ using namespace std;
 class Solution {
 public:
     bool Find(int target, vector<vector<int> > array) {
-        int i,j;
+        if(array.empty())
+            return false;
         int rowsNum = array.size();//行的数量
         int colsNum = array[0].size();//列的数量
-        i=colsNum-1;
-        j=0;
-        while(i >= 0)
-        {
-             if(array[0][i] < target)
-                break;
-             i--;
-        }
-        while(j < rowsNum)
-        {
-            if(array[j][i] == target)
-                return true;
-            else if(array[j][i] > target)
-                return false;
-            j++;
-        }
+        int rows=rowsNum-1;
+        int cols=0;
+         if(rowsNum !=0 &&  colsNum!=0)
+         {
+            while(rows >=0 && cols < rowsNum)
+            {
+               if(array[rows][cols] == target)
+                    return true;
+                else if(array[rows][cols] > target)
+                    rows--;
+                else if(array[rows][cols] < target)
+                    cols++;
+            }
+         }
         return false;
-                
-        
     }
 };
 
