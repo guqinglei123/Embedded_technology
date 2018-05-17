@@ -18,6 +18,7 @@ struct ListNode
 };
 class Solution {
 public:
+//方法一：通过stack来实现
     vector<int> printListFromTailToHead(ListNode* head) {
         ListNode* list_p=head;
         vector<int> vect;
@@ -36,6 +37,7 @@ public:
 
         return vect;
     }
+//方法二：通过递归来实现
 };
 int main(int argc, char const *argv[])
 {

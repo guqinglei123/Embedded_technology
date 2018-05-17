@@ -9,6 +9,7 @@
 using namespace std;
 class Solution {
 public:
+    //情况一，该方法需要保证有额外的内存空间。
 	void replaceSpace(char *str,int length) {
         if(length <=0)
             return;
@@ -38,6 +39,9 @@ public:
         }
 
 	}
+    //情况二，没有额外的空间
+    //方法一，直接两个循环。一个循环查找空格，遇到空格则在通过一个循环将后面的数组都向后移动相应位数。
+    //方法二，先计算空格的个数。通过双指针的方式实现(重点)。
 };
 int main(int argc, char const *argv[])
 {
