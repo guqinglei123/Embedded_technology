@@ -1,7 +1,7 @@
 {
     "version": "0.1.0",
     "command": "g++",
-    "args": ["-g","${fileDirname}/18deleteDuplication.cpp","-std=c++11","-o","${fileDirname}/a.out"],
+    "args": ["-g","${fileDirname}/13robotmove.cpp","-std=c++11","-o","${fileDirname}/a.out"],
     "problemMatcher": {
         "owner": "cpp",
         "fileLocation": ["relative", "${workspaceRoot}"],
