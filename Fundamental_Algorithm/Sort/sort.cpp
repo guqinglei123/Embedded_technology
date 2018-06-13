@@ -1,5 +1,5 @@
 /*****************************************************************************************************
-参考链接：https://www.cnblogs.com/onepixel/articles/7674659.html
+虏脦驴录脕麓陆脫拢潞https://www.cnblogs.com/onepixel/articles/7674659.html
  * *******************************************************************************************/
 #include <vector>
 #include <list>
@@ -22,7 +22,7 @@ class Sort
         vect[m] = vect[n];
         vect[n] = temp;
     }
-    //冒泡，比较相临两个，交换位置
+    //脙掳脜脻拢卢卤脠陆脧脧脿脕脵脕陆赂枚拢卢陆禄禄禄脦禄脰脙
     void bubbleSort(vector<int> &vect, int index_begin, int index_end)
     {
         int temp;
@@ -41,7 +41,7 @@ class Sort
             }
         }
     }
-    //选择，选择未排序队列中最小的元素。插入在排列好的数据的最后。
+    //脩隆脭帽拢卢脩隆脭帽脦麓脜脜脨貌露脫脕脨脰脨脳卯脨隆碌脛脭陋脣脴隆拢虏氓脠毛脭脷脜脜脕脨潞脙碌脛脢媒戮脻碌脛脳卯潞贸隆拢
     void selectSort(vector<int> &vect, int index_begin, int index_end)
     {
         int temp;
@@ -61,7 +61,7 @@ class Sort
             vect[min_index] = temp;
         }
     }
-    //插入,将未排序的数据与排序好的数据比较，依次插入排序好的数据中
+    //虏氓脠毛,陆芦脦麓脜脜脨貌碌脛脢媒戮脻脫毛脜脜脨貌潞脙碌脛脢媒戮脻卤脠陆脧拢卢脪脌麓脦虏氓脠毛脜脜脨貌潞脙碌脛脢媒戮脻脰脨
     void insertSort(vector<int> &vect, int index_begin, int index_end)
     {
         int temp;
@@ -78,7 +78,7 @@ class Sort
         }
     }
     //shell
-    void Sedgewick(int length, vector<int> &vect_Sedgewick) //Sedgewick序列
+    void Sedgewick(int length, vector<int> &vect_Sedgewick) //Sedgewick脨貌脕脨
     {
         int i = 0, j = 0;
         int temp;
@@ -123,7 +123,7 @@ class Sort
                     vect[pre + index] = temp;
                 }
             }
-            // cout << "调试：";
+            // cout << "碌梅脢脭拢潞";
             // for (int g = 0; g < vect.size(); g++)
             // {
             //     cout << vect[g] << ' ';
@@ -131,8 +131,8 @@ class Sort
             // cout << endl;
         }
     }
-    //归并
-    //如何合并是核心。
+    //鹿茅虏垄
+    //脠莽潞脦潞脧虏垄脢脟潞脣脨脛隆拢
     void merger(vector<int> &vect, int index_begin, int index_mid, int index_end, int temp_sort[])
     {
         int i = index_begin, j = index_mid + 1;
@@ -167,14 +167,14 @@ class Sort
     }
     void mergerSort(vector<int> &vect, int index_begin, int index_end)
     {
-        int *p = new int[index_end - index_begin]; //放在外面比上在里面好一些
+        int *p = new int[index_end - index_begin]; //路脜脭脷脥芒脙忙卤脠脡脧脭脷脌茂脙忙潞脙脪禄脨漏
         mergersort(vect, index_begin, index_end, p);
     }
 
-    //快速排序
-    int partition(vector<int> &vect, int index_begin, int index_end) //划分中间点是核心。
+    //驴矛脣脵脜脜脨貌
+    int partition(vector<int> &vect, int index_begin, int index_end) //禄庐路脰脰脨录盲碌茫脢脟潞脣脨脛隆拢
     {
-        int pivot = index_begin;
+        int pivot = index_begin;//杞寸偣
         int index = index_begin + 1;
         for (int i = index; i < index_end; i++)
         {
@@ -195,7 +195,7 @@ class Sort
         quickSort(vect, index_begin, index_mid);
         quickSort(vect, index_mid + 1, index_end);
     }
-    //堆排序
+    //露脩脜脜脨貌
     int len;
     void buildMaxHeap(vector<int> &vect, int index_begin, int index_end)
     {
@@ -203,13 +203,13 @@ class Sort
         for (int i = floor(len / 2); i >= 0; i--)
             heapify(vect, i);
     }
-    void heapify(vector<int> &arr, int index_begin) //如何建立大顶堆的
+    void heapify(vector<int> &arr, int index_begin) //脠莽潞脦陆篓脕垄麓贸露楼露脩碌脛
     {
-        int left = 2 * index_begin + 1; //largest,right,left构成了一个三角堆，判断其中最大值作为堆顶
+        int left = 2 * index_begin + 1; //largest,right,left鹿鹿鲁脡脕脣脪禄赂枚脠媒陆脟露脩拢卢脜脨露脧脝盲脰脨脳卯麓贸脰碌脳梅脦陋露脩露楼
         int right = 2 * index_begin + 2;
         int largest = index_begin;
 
-        if (left < len && arr[left] > arr[largest]) //注意这里需要判断是否超过len
+        if (left < len && arr[left] > arr[largest]) //脳垄脪芒脮芒脌茂脨猫脪陋脜脨露脧脢脟路帽鲁卢鹿媒len
         {
             largest = left;
         }
@@ -232,13 +232,13 @@ class Sort
         {
             sort_swap(vect, index_begin, i);
             len--;
-            heapify(vect, index_begin); //更换堆顶之后，开始调整
+            heapify(vect, index_begin); //赂眉禄禄露脩露楼脰庐潞贸拢卢驴陋脢录碌梅脮没
         }
     }
-    //计数排序
+    //录脝脢媒脜脜脨貌
     void countSort(vector<int> &vect, int index_begin, int index_end)
     {
-        int max_value = *max_element(vect.begin() + index_begin, vect.begin() + index_end); //不要省略 “*” 求最大值
+        int max_value = *max_element(vect.begin() + index_begin, vect.begin() + index_end); //虏禄脪陋脢隆脗脭 隆掳*隆卤 脟贸脳卯麓贸脰碌
         vector<int> bucket_vect(max_value + 1, 0);
         // int kk=bucket_vect.size();
         for (int i = index_begin; i < index_end; i++)
@@ -259,13 +259,13 @@ class Sort
             }
         }
     }
-    //桶排序
+    //脥掳脜脜脨貌
     void bucketSort(vector<int> &vect, int index_begin, int index_end)
     {
         int max_value = *max_element(vect.begin() + index_begin, vect.begin() + index_end);
         int min_value = *min_element(vect.begin() + index_begin, vect.begin() + index_end);
-        int buckeSize = 10;                                             //每一个桶最长的长度
-        int bucketcount = floor(max_value - min_value) / buckeSize + 1; //桶的个数
+        int buckeSize = 10;                                             //脙驴脪禄赂枚脥掳脳卯鲁陇碌脛鲁陇露脠
+        int bucketcount = floor(max_value - min_value) / buckeSize + 1; //脥掳碌脛赂枚脢媒
         vector<vector<int>> bucket_vect(bucketcount);
         for (int i = index_begin; i < index_end; i++)
         {
@@ -282,7 +282,7 @@ class Sort
             }
         }
     }
-    //基数排序
+    //禄霉脢媒脜脜脨貌
     void radixSort(vector<int> &vect, int index_begin, int index_end)
     {
         int max_value = *max_element(vect.begin() + index_begin, vect.begin() + index_end);
@@ -296,7 +296,7 @@ class Sort
         int mod = 10, dev = 1;
         for (int i = 0; i < count; i++, dev *= 10, mod *= 10)
         {
-            vector<vector<int>> radix_vect(10); //0~9个数字,基数
+            vector<vector<int>> radix_vect(10); //0~9赂枚脢媒脳脰,禄霉脢媒
             for (int j = index_begin; j < index_end; j++)
             {
                 int radix = (vect[j] % mod) / dev;
@@ -311,7 +311,7 @@ class Sort
                     vect[index++] = radix_vect[k][g];
                 }
             }
-            // cout << "调试：";
+            // cout << "碌梅脢脭拢潞";
             // for (int g = 0; g < vect.size(); g++)
             // {
             //     cout << vect[g] << ' ';
@@ -325,21 +325,21 @@ class Sort
 int main(int argc, char const *argv[])
 {
     /* code */
-    //生成随机数
+    //脡煤鲁脡脣忙禄煤脢媒
     Sort Sol;
     int N = 500;
     vector<int> vect;
     int pos, value;
-    srand((unsigned int)time(NULL)); //设置随机种子
+    srand((unsigned int)time(NULL)); //脡猫脰脙脣忙禄煤脰脰脳脫
     vector<int>::iterator it;
-    for (int i = 0; i < N; i++) //在[0, 3n)中选择n个数，随机插入向量
+    for (int i = 0; i < N; i++) //脭脷[0, 3n)脰脨脩隆脭帽n赂枚脢媒拢卢脣忙禄煤虏氓脠毛脧貌脕驴
     {
         pos = rand() % (i + 1);
         it = vect.begin() + pos;
         value = rand() % (3 * N);
         vect.insert(it, value);
     }
-    cout << "初始数据："; //为什么第一个输出有问题
+    cout << "鲁玫脢录脢媒戮脻拢潞"; //脦陋脢虏脙麓碌脷脪禄赂枚脢盲鲁枚脫脨脦脢脤芒
     for (int i = 0; i < vect.size(); i++)
     {
 
@@ -349,10 +349,10 @@ int main(int argc, char const *argv[])
 
     vector<int> vect_sort(vect);
 
-    //冒泡排序
+    //脙掳脜脻脜脜脨貌
     vect_sort = vect;
-    Sol.bubbleSort(vect_sort, 0, vect.size());//排序区间都是左闭右开
-    cout << "冒泡排序：";
+    Sol.bubbleSort(vect_sort, 0, vect.size());//脜脜脨貌脟酶录盲露录脢脟脳贸卤脮脫脪驴陋
+    cout << "脙掳脜脻脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -360,11 +360,11 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //插入排序
+    //虏氓脠毛脜脜脨貌
     // vector<int> vect_sort(vect);
     vect_sort = vect;
     Sol.insertSort(vect_sort, 0, vect.size());
-    cout << "插入排序：";
+    cout << "虏氓脠毛脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -372,11 +372,11 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //选择排序
+    //脩隆脭帽脜脜脨貌
     // vector<int> vect_sort(vect);
     vect_sort = vect;
     Sol.selectSort(vect_sort, 0, vect.size());
-    cout << "选择排序：";
+    cout << "脩隆脭帽脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -387,7 +387,7 @@ int main(int argc, char const *argv[])
     //shell
     vect_sort = vect;
     Sol.shellSort(vect_sort, 0, vect.size());
-    cout << "希尔排序：";
+    cout << "脧拢露没脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -395,10 +395,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //归并
+    //鹿茅虏垄
     vect_sort = vect;
-    Sol.mergerSort(vect_sort, 0, vect.size() - 1);//排序区间都是左闭右闭
-    cout << "归并排序：";
+    Sol.mergerSort(vect_sort, 0, vect.size() - 1);//脜脜脨貌脟酶录盲露录脢脟脳贸卤脮脫脪卤脮
+    cout << "鹿茅虏垄脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -406,10 +406,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //快速
+    //驴矛脣脵
     vect_sort = vect;
     Sol.quickSort(vect_sort, 0, vect.size());
-    cout << "快速排序：";
+    cout << "驴矛脣脵脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -417,10 +417,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //堆排序
+    //露脩脜脜脨貌
     vect_sort = vect;
     Sol.heapSort(vect_sort, 0, vect.size());
-    cout << "堆排序  ：";
+    cout << "露脩脜脜脨貌  拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -428,10 +428,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //计数排序
+    //录脝脢媒脜脜脨貌
     vect_sort = vect;
     Sol.countSort(vect_sort, 0, vect.size());
-    cout << "计数排序：";
+    cout << "录脝脢媒脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -439,10 +439,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //桶排序
+    //脥掳脜脜脨貌
     vect_sort = vect;
     Sol.bucketSort(vect_sort, 0, vect.size());
-    cout << "桶排序  ：";
+    cout << "脥掳脜脜脨貌  拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {
@@ -450,10 +450,10 @@ int main(int argc, char const *argv[])
     }
     cout << endl;
 
-    //基数排序
+    //禄霉脢媒脜脜脨貌
     vect_sort = vect;
     Sol.radixSort(vect_sort, 0, vect.size());
-    cout << "基数排序：";
+    cout << "禄霉脢媒脜脜脨貌拢潞";
     // cout << endl;
     for (int i = 0; i < vect_sort.size(); i++)
     {

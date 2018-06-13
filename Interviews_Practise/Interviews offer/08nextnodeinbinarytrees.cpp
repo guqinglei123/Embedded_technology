@@ -19,7 +19,7 @@ class Solution
 
         TreeLinkNode *tree_res = new TreeLinkNode(0);
         TreeLinkNode *tree_temp = NULL;
-        if ((pNode->right != NULL)) //根节点
+        if ((pNode->right != NULL)) //???
         {
             tree_temp = pNode->right;
             while (tree_temp->left != NULL)
@@ -39,7 +39,7 @@ class Solution
             {
                 if ((pNode->next)->left == pNode)
                     tree_res = pNode->next;
-                else if ((pNode->next)->right == pNode)
+                else if ((pNode->next)->right == pNode)//?????????????
                 {
                     if ((pNode->next->next)->right == pNode->next)
                         return NULL;

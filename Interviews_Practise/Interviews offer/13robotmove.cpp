@@ -15,56 +15,60 @@ class Solution
   public:
     int movingCount(int threshold, int rows, int cols)
     {
-        if(threshold <0 || rows <=0 ||cols <= 0)
+        if (threshold < 0 || rows <= 0 || cols <= 0)
             return 0;
         vector<bool> visited(rows * cols, 0);
         int sum = recursive_help(threshold, rows, cols, 0, visited);
+        cout << sum << endl;
         return sum;
     }
     int recursive_help(int threshold, int rows, int cols, int index, vector<bool> &visited)
     {
         vector<int> vect;
+
         visited[index] = 1;
-        int count =0;
+        int count = 1;
         if ((index + 1) < (((index / cols) + 1) * cols))
-            if ((sumpoint(index + 1,cols) < threshold) && (visited[index + 1] == 0))
+            if ((sumpoint(index + 1, cols) <= threshold) && (visited[index + 1] == 0))
                 vect.push_back(index + 1);
         if ((index - 1) >= (((index / cols)) * cols))
-            if ((sumpoint(index - 1,cols) < threshold)&& (visited[index - 1] == 0))
+            if ((sumpoint(index - 1, cols) <= threshold) && (visited[index - 1] == 0))
                 vect.push_back(index - 1);
         if ((index + cols) < rows * cols)
-            if ((sumpoint(index + cols,cols) < threshold) && (visited[index + cols] == 0))
+            if ((sumpoint(index + cols, cols) <= threshold) && (visited[index + cols] == 0))
                 vect.push_back(index + cols);
         if ((index - cols) >= 0)
-            if ((sumpoint(index - cols,cols) < threshold) && (visited[index - cols] == 0))
+            if ((sumpoint(index - cols, cols) <= threshold) && (visited[index - cols] == 0))
                 vect.push_back(index - cols);
 
         int index_v = 0;
-        while (index_v < vect.size())//vect为空的时候为递归基
+        while (index_v < vect.size()) //vect为空的时候为递归基
         {
-            count =1+recursive_help(threshold, rows, cols, vect[index_v], visited);
+            if (visited[vect[index_v]] != 1)//注意这里要先判断是否访问过，然后迭代加
+                count =count + recursive_help(threshold, rows, cols, vect[index_v], visited);
             index_v++;
         }
         return count;
     }
 
-    int sumpoint(int index,int cols)
+    int sumpoint(int index, int cols)
     {
-        int rows_start = index/cols;
-        int cols_start = index-rows_start*cols;
+        int rows_start = index / cols;
+        int cols_start = index - rows_start * cols;
+        int sum_debug = gitdigitsum(rows_start) + gitdigitsum(cols_start);
         return (gitdigitsum(rows_start) + gitdigitsum(cols_start));
     }
 
-     int gitdigitsum(int num)
-     {
-         int sum =0;
-         while(num)
-         {
-             sum += num %10;
-             num /=10;
-         }
-         return sum;
-     }
+    int gitdigitsum(int num)
+    {
+        int sum = 0;
+        while (num)
+        {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
 };
 class Test_Solution
 {

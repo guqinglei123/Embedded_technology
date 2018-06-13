@@ -1,8 +1,15 @@
 常用命令和快捷键：
-Linux常用命令：
-find
-xarg
 
+Linux常用命令：
+	find
+	xarg
+	tar 
+	ls
+	cd
+	du
+	df
+	ntfsfix
+	chmod
 
 
 Ubuntu和终端下常用命令：

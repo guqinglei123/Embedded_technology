@@ -54,7 +54,8 @@ class Solution
 
         vector<int> vect;
         bool hasPath = false;
-        visited[index] = 1;
+        visited[index] = 1;//更新当前状态
+        //构造下一步可能性
         if ((index + 1) < (((index / cols) + 1) * cols))
             if ((matrix[index + 1] == str[index_s]) && (visited[index + 1] == 0))
                 vect.push_back(index + 1);
@@ -67,14 +68,14 @@ class Solution
         if ((index - cols) >= 0)
             if ((matrix[index - cols] == str[index_s]) && (visited[index - cols] == 0))
                 vect.push_back(index - cols);
-
+        //满足寻找条件
         if (str[index_s + 1] == '\0') //递归基
             if (!vect.empty())
             {
                 hasPath = true;
                 return true;
             }
-
+        //处理每一个可能性
         int index_v = 0;
         while (index_v < vect.size())
         {
@@ -83,7 +84,7 @@ class Solution
             index_v++;
             if (!hasPath)
             {
-                visited[vect[index_v-1]] = 0;
+                visited[vect[index_v-1]] = 0;//撤销当前状态
             }
         }
         return false;

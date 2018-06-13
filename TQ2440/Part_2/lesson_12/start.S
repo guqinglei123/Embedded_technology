@@ -35,10 +35,7 @@ not_used:
 	nop
 
 irq:
-	sub lr, lr, #4
-	stmfd sp!, {r0-r12, lr}	    /* 保护现场 */
-	bl handle_int
-	ldmfd sp!, {r0-r12, pc}^   /* 恢复现场，^表示把spsr恢复到cpsr */ 
+	nop
 
 fiq:	
 	nop
@@ -140,10 +137,7 @@ copy_loop:
 	mov pc, lr
 
 init_stack:
-    msr cpsr_c, #0xd2
-	ldr sp, =0x33000000  //初始化r13_irq  	
-	msr cpsr_c, #0xd3 
-	ldr sp, =0x34000000  //初始化r13_svc 
+	ldr sp, =0x34000000
 	mov pc,lr
 
 init_bss:

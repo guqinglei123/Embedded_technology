@@ -1,4 +1,4 @@
-objs := mmu.o led.o button.o interrupt.o nand.o uart.o dma.o
+objs := mmu.o led.o button.o interrupt.o nand.o uart.o
 
 all : $(objs)
 	arm-linux-ld -r -o dev.o $^

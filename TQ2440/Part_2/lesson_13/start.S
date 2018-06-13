@@ -50,9 +50,8 @@ reset:
 	bl disable_mmu
 	bl clock_init
 	bl init_sdram
-	bl init_stack
-	bl nand_init
 	bl copy_to_ram
+	bl init_stack
 	bl init_bss
 	ldr pc, =gboot_main
 @	bl light_led
@@ -86,7 +85,7 @@ disable_mmu:
 	mov pc, lr
 
 #define CLKDIVN 0x4C000014
-#define MPLLCON 0x4C000004
+#define MPLLCON 0x4C000008
 #define MPLL_405MHZ (127<<12)|(2<<4)|(1)
 clock_init:
 	ldr r0,=CLKDIVN
@@ -130,17 +129,7 @@ mem_data:
 	.long 0x00000030
 
 copy_to_ram:
-	mov r0,#0;
-	ldr r1,=_start
-	ldr r2,=bss_end
-	sub r2, r2, r1
-
-	mov ip,lr
-	bl  nand_to_ram
-	mov lr,ip
-	mov pc,lr
-
-/*	ldr r0, =0x00000000
+	ldr r0, =0x00000000
 	ldr r1, =0x30008000
 	add r3, r0,#1024*4
 copy_loop:
@@ -148,7 +137,7 @@ copy_loop:
 	str r2, [r1], #4
 	cmp r0, r3
 	bne copy_loop
-	mov pc, lr */
+	mov pc, lr
 
 init_stack:
     msr cpsr_c, #0xd2
