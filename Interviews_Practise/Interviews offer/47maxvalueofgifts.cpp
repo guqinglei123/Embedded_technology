@@ -70,7 +70,7 @@ class Test_Solution
 
     void Test1()
     {
-        // ÃˆÃ½Ã�Ã�ÃˆÃ½Ã�Ã�
+        // 脙藛脙陆脙锟矫冿拷脙藛脙陆脙锟矫冿拷
         int values[][3] = {
             {1, 2, 3},
             {4, 5, 6},
@@ -81,7 +81,7 @@ class Test_Solution
 
     void Test2()
     {
-        //Ã‹Ã„Ã�Ã�Ã‹Ã„Ã�Ã�
+        //脙鈥姑冣€灻冿拷脙锟矫冣€姑冣€灻冿拷脙锟�
         int values[][4] = {
             {1, 10, 3, 8},
             {12, 2, 9, 6},
@@ -93,7 +93,7 @@ class Test_Solution
 
     void Test3()
     {
-        // Ã’Â»Ã�Ã�Ã‹Ã„Ã�Ã�
+        // 脙鈥櫭偮幻冿拷脙锟矫冣€姑冣€灻冿拷脙锟�
         int values[][4] = {
             {1, 10, 3, 8}};
         int expected = 22;
@@ -113,7 +113,7 @@ class Test_Solution
 
     void Test5()
     {
-        // Ã’Â»Ã�Ã�Ã’Â»Ã�Ã�
+        // 脙鈥櫭偮幻冿拷脙锟矫冣€櫭偮幻冿拷脙锟�
         int values[][1] = {
             {3}};
         int expected = 3;
@@ -122,7 +122,7 @@ class Test_Solution
 
     void Test6()
     {
-        // Â¿Ã•Ã–Â¸Ã•Ã«
+        // 脗驴脙鈥⒚冣€撁偮该冣€⒚兟�
         int expected = 0;
         test("test6", nullptr, 0, 0, expected);
     }
