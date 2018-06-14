@@ -1,16 +1,18 @@
 常用命令和快捷键：
+命名习惯：
+行为		 		windows习惯				Linux-C习惯		
+宏定义  		   全部大写		 				全部大写
+变量名   	   第一单词全部小写，其他单词第一个字母大写		小写，下划线连接
+函数名		   全部单词第一字母大写，其他小写			小写，下划线连接
+类名		   全部单词第一字母大写，其他小写	
+其他：对于结构体，if/for/while/switch {不另起一行；对函数则另起一行
 
-Linux常用命令：
-	find
-	xarg
-	tar 
-	ls
-	cd
-	du
-	df
-	ntfsfix
-	chmod
-
+Linux常用命令：	 	 								
+	ls 	touch	more	less	cat 	cp 	mv	find	whitch	rm
+	mkdir	pwd	cd 	tar 	fdisk	ntfsfix	du	df 	chmod	free	
+	sudo	lsusb	lsmod	lshw 	grep	uname	route	xarg	env	ps
+	kill 	reboot	history	date	mount/umount	passwd	useradd/groupadd
+	ifconfig/ifdown/ifup	apt-get install/remove和dpkg	/etc/init.d/服务名 restart 
 
 Ubuntu和终端下常用命令：
 	ctrl+atl+T 新建 

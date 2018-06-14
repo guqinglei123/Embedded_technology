@@ -13,11 +13,16 @@
 #include <math.h>
 #include <cstring>
 using namespace std;
-using namespace std;
 class Solution
 {
+  public:
+    bool g_InvalidInput = false;
     int FindGreatestSumOfSubArray(vector<int> nums)
     {
+        g_InvalidInput = true;
+        if(nums.empty())
+            return  0;
+        g_InvalidInput = false;
         if (nums.size() <= 1)
             return nums[0];
 
@@ -34,13 +39,18 @@ class Solution
 
 class Test_Solution
 {
+  public:
+    Solution Sol;
     void Test(char *testName, int *pData, int nLength, int expected, bool expectedFlag)
     {
         if (testName != nullptr)
             printf("%s begins: \n", testName);
+        vector<int> pData_vec;
+        for (int i = 0; i < nLength; i++)
+            pData_vec.push_back(pData[i]);
 
-        int result = FindGreatestSumOfSubArray(pData, nLength);
-        if (result == expected && expectedFlag == g_InvalidInput)
+        int result = Sol.FindGreatestSumOfSubArray(pData_vec);
+        if (result == expected && expectedFlag == Sol.g_InvalidInput)
             printf("Passed.\n");
         else
             printf("Failed.\n");
@@ -79,6 +89,10 @@ class Test_Solution
 int main(int argc, char const *argv[])
 {
     /* code */
-    
+    Test_Solution test;
+    test.Test1();
+    test.Test2();
+    test.Test3();
+    test.Test4();
     return 0;
 }
