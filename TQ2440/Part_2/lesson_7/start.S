@@ -77,7 +77,7 @@ disable_mmu:
 	mov pc, lr
 
 #define CLKDIVN 0x4C000014
-#define MPLLCON 0x4C000008
+#define MPLLCON 0x4C000004
 #define MPLL_405MHZ (127<<12)|(2<<4)|(1)
 clock_init:
 	ldr r0,=CLKDIVN

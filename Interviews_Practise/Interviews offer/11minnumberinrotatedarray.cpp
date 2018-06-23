@@ -33,7 +33,7 @@ class Solution
         //     return helper(mid + 1,right , rotateArray);
         // return 0;
         if((rotateArray[mid] == rotateArray[left])&&(rotateArray[mid] == rotateArray[right]))
-            return mininorder(left,right,rotateArray);//特殊情况的处理
+            return mininorder(left,right,rotateArray);//特殊情况的处理，即21222
         else if ((rotateArray[mid] >= rotateArray[left]))
             return helper(mid , right, rotateArray);
         else if ((rotateArray[mid] <= rotateArray[right]))

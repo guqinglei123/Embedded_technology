@@ -19,31 +19,31 @@ class Solution
 
         TreeLinkNode *tree_res = new TreeLinkNode(0);
         TreeLinkNode *tree_temp = NULL;
-        if ((pNode->right != NULL)) //???
+        if ((pNode->right != NULL)) //存在右子树
         {
             tree_temp = pNode->right;
             while (tree_temp->left != NULL)
                 tree_temp = tree_temp->left;
             tree_res = tree_temp;
         }
-        else if ((pNode->right == NULL) && (pNode->left != NULL))
+        else if ((pNode->right == NULL) && (pNode->left != NULL))//不存在右子树，但存在左子树
         {
-            tree_res = pNode->next;
+            tree_res = pNode->next;//这个是头节点
         }
-        else if ((pNode->right == NULL) && (pNode->left == NULL))
+        else if ((pNode->right == NULL) && (pNode->left == NULL))//不存在右子树，也不存在左子树
         {
 
             if (pNode->next == NULL)
                 return NULL;
             else
             {
-                if ((pNode->next)->left == pNode)
+                if ((pNode->next)->left == pNode) //该节点是父节点的左节点
                     tree_res = pNode->next;
-                else if ((pNode->next)->right == pNode)//?????????????
+                else if ((pNode->next)->right == pNode)//该节点是父节点的右节点
                 {
-                    if ((pNode->next->next)->right == pNode->next)
+                    if ((pNode->next->next)->right == pNode->next)//父节点为祖父节点的右节点。该节点是最后一个节点
                         return NULL;
-                    else if((pNode->next->next)->left == pNode->next)
+                    else if((pNode->next->next)->left == pNode->next)//父节点为祖父节点的左节点。
                         tree_res = pNode->next->next;
                 }
             }

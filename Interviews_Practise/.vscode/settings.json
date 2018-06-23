@@ -38,6 +38,7 @@
         "utility": "cpp",
         "stack": "cpp",
         "iostream": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "set": "cpp"
     }
 }

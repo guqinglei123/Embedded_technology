@@ -24,7 +24,7 @@ class Solution
             return pHead1;
         ListNode *mergerlistnode = nullptr;
         ListNode *res_listnode = nullptr;
-        if (pHead1->val > pHead2->val) //得到首节�?
+        if (pHead1->val > pHead2->val) //确定首节点
         {
             res_listnode = pHead2;
             mergerlistnode = res_listnode;
@@ -39,7 +39,7 @@ class Solution
 
         while (((pHead1 != NULL) ||(pHead2 != NULL)))//合并连表
         {
-            if ((pHead1 != NULL) && (pHead2 == NULL))
+            if ((pHead1 != NULL) && (pHead2 == NULL))//处理尾节点
             {
                 mergerlistnode->next = pHead1;
                 break;
@@ -49,7 +49,7 @@ class Solution
                 mergerlistnode->next = pHead2;
                 break;
             }
-            else if (pHead1->val > pHead2->val)
+            else if (pHead1->val > pHead2->val)//正常合并节点
             {
                 mergerlistnode->next = pHead2;
                 mergerlistnode = pHead2;

@@ -2,13 +2,11 @@
 
 int main()
 {
-  int a,b=10,c,d,e;
+  int a, b = 10, c, d, e;
   a++;
   b--;
- c++;
-d++;
-e++;
+  c++;
+  d++;
+  e++;
   return b;
-
-
 }

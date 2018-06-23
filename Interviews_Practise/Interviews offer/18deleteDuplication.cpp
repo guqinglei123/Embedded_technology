@@ -41,20 +41,20 @@ class Solution
             }
             else
             {
-                while (list_p->val == (list_p->next)->val)
+                while (list_p->val == (list_p->next)->val)//寻找下一个非重复节点。
                 {
                     list_p = list_p->next;
-                    if (list_p->next == NULL)//注意最后几个数字相同的情况
+                    if (list_p->next == NULL)//重复节点在尾节点情况。注意最后几个数字相同的情况。
                         break;
                 }
                 if (pre_list_p != NULL)
-                    pre_list_p->next = (list_p->next);//如果前面存在不同的数据，则更新上一个不同node针向的位置
+                    pre_list_p->next = (list_p->next);//重复节点在通常位置情况。则更新上一个不同node针向的位置
                 else
-                    res_list = (list_p->next);//如果前面都相同。则这个是返回的第一个不重复的值即列表头
+                    res_list = (list_p->next);//如果重复节点在头节点。则返回的第一个不重复的值即列表头
                 list_p = list_p->next;
             }
         }
-
+        //首先判断的是链表是不是单节点。如果不是，则判断头节点是否重复？
         return (pHead->next != NULL) ? ((pHead->val != (pHead->next)->val) ? pHead : res_list) : pHead;
     }
 };

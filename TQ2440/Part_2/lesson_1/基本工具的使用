@@ -1,3 +1,9 @@
 参看书籍:
 《嵌入式LINUX开发宝典——基于ARM cortex-A8 处理器》4.3与4.4
 文档——跟我一起写Makefile
+文档——Linux下的lds链接脚本详解
+主要内容：
+1.学习lds文件的书写
+2.学习arm-linux-gcc（预处理，编译，汇编，链接）/ld/readelf/objcopy/objdump的使用——gcc编译的时候记得要有-g才可以用调试
+3.学习makefile的书写（先是gcc 生成.o文件，然后将起使用ld进行链接生成elf文件，在将elf文件转换为bin文件）
+4.反汇编分析

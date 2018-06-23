@@ -14,7 +14,7 @@ using namespace std;
 class Solution
 {
   public:
-    void MirrorRecursively(TreeNode *pRoot)
+    void MirrorRecursively(TreeNode *pRoot)//在前序遍历中不断交换子节点
     {
         if (pRoot == NULL)
             return;
@@ -25,7 +25,7 @@ class Solution
         MirrorRecursively(pRoot->left);
         MirrorRecursively(pRoot->right);
     }
-    void MirrorIteratively(TreeNode *pRoot)
+    void MirrorIteratively(TreeNode *pRoot)//使用栈进行前序遍历
     {
         if (pRoot == NULL)
             return;

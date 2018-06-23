@@ -145,6 +145,13 @@ init_bss:
 	ldr r1, =bss_end
 	cmp r0, r1
 	moveq pc, lr
+	
+clean_loop:
+	mov r2, #0
+	str r2, [r0], #4
+	cmp r0, r1
+	bne clean_loop
+	mov pc, lr
 
 #define GPBCON 0x56000010
 #define GPBDAT 0x56000014
