@@ -1,0 +1,91 @@
+参看书籍:
+<深入理解linux内核>
+<linux内核情景分析>
+http://www.cnblogs.com/zhaoyl/p/3695517.html
+https://blog.csdn.net/hsly_support/article/category/1106522
+https://blog.csdn.net/satanwxd/article/month/2010/03
+https://r00tk1ts.github.io/2017/10/20/Linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E9%A1%B5%E6%A1%86%E7%AE%A1%E7%90%86/
+https://www.cnblogs.com/smartjourneys/category/980154.html
+
+主要内容：
+1.内存布局及映射
+    硬件机制：分段机制和分页机制；
+    lINUX中机制：分段机制和分页机制；
+    
+    虚拟地址空间:用户空间(0~3G，虚拟地址)+内核空间(3~4G，分为：物理内存映射区(内核逻辑地址)＋高端内存映射区（内核虚拟地址，动态映射区域(vmalloc)+永久映射空间+临时映射空间))
+
+    物理地址空间(物理地址):低端内存(0~16M DMA区域，16~896M Normal 区)＋高端内存  
+    
+    物理内存映射区直接映射到低端内存，高端内存映射区映射到高端内存中，用户空间的地址通过系统调用访问物理内存，应该是映射到高端内存区(??)
+
+    　
+２.物理内存管理——对物理内存的管理　　        
+    １)页框管理:
+        基本描述：页框(page　mem_map)，节点(pg_data_t)，区域(zone);
+        分区页框分配器的基本框架：
+            a)高端内存页框的内核映射(永久内核映射：使用address_htable存放物理页框和线性地址的映射关系，同时维持了一个pkmap_page_table的页表，kmap()/kunmap_high；临时内核映射：kmap_atomic？？怎么体现他的是永久与临时)；
+            b)pre-cpu页框高速缓存；
+            c)伙伴系统(rmqueue_bulk()(__rmqueue())　__free_pages_bulk)；
+            d)管理区分配器(alloc_pages()(__alloc_pages())——>buffered_rmqueue()——>rmqueue_bulk())；
+        通过页框分配地址(都是调用alloc_pages())：
+            ａ)返回页框：alloc_page() __get_free_pages()　 __get_dma_page()
+            b)返回线性地址：get_zeroed_page() __get_free_pages() __get_free_page()；这里得到是虚拟地址，这里的虚拟地址有可能是高端内存，也有可能是低端内存。其他返回值都是页框描述符的地址。(这里有一个疑问，在将page转化为虚拟地址的过程中，如果是低端内存地址，则直接通过位置偏移可以得到；如果是高端内存地址则是通过查找address_htable得到，但是这个address_htable是保存了所有虚拟地址和物理地址的对应信息吗？)
+
+    2)内存区管理(slab分配):
+        基本描述：高速缓冲，普通和专用高速缓存区(怎么理解这些高速缓存区??)，slab,本地cpu高速缓冲(??);
+        slab的基本操作：
+            a)创建/销毁高速缓存区（kmem_cache_create()/kmem_cache_destroy());建立高速缓冲区时，没有分配slab及其对象。 
+            b)分配/释放slab(cache_grow()/slab_destroy())；
+            ｃ)分配/释放slab对象（kmem_cache_alloc()/kmem_cache_free()）;
+        通过slab分配地址：kmalloc()——>kmem_cache_alloc()——>如果本地高速缓存有则直接得到，如果没有则调用cache_alloc_refill——>....????——>如果一直找不到slab则调用cache_grow()创建salb——>调用kmem_getpages()给slab分配页框——>调用alloc_pages()；值得注意的是，通过kmalloc()虽然得到是内核虚拟地址，但是该地址对应物理地址以及确定，可以通过相应的函数就确定他的物理地址(如果kmalloc分配的是高端内存，那又是如何处理的？？)。
+        内存池：  
+
+    3)非连续内存区管理:vmalloc(),vmap()
+        分配过程：get_vm_area创建描述符——>通过kmalloc请求一组连续页框——>通过alloc_page()给描述符中每页分配页框(为什么有两次分配？)——>map_vm_area修改页表项
+
+３.虚拟内存管理——对于虚拟内存的管理　　
+    1)基本描述：内存描述符(用户进程，内核进程)；线性区描述符(链表方式，red-black方式)；
+
+    2)线性区的基本操作：
+        查找给定地址的最临区：find_vma(),find_vma_pre(),find_vma_prepare(),find_vma_intersection();
+        查找空闲的地址区间：get_unmapped_area();
+        插入一个线性区：instert_vm_struct();
+        注意：上述查找都是通过红黑树来实现的。
+
+    3)动态内存管理：
+        进程地址空间的管理：
+            创建进程地址空间：copy_mm()(复制进程描述符及初始化(有和无ＣＬＯＮＥ_VM的情况)——>dup_mmap()复制线性区和页表)
+            删除进程地址空间：exit_mm()(mm_realse()——>释放内存描述符及相关数据结构(是否是内核进程)——>mmput())
+
+        用户空间管理线性区：
+            a)用户空间对线性区的操作：
+            　malloc()——>调用mmap()或者brk()分配虚拟地址空间(VＡＭ)
+            　mmap()——>sys_mmap()——>do_mmap_pgoff()(munmap类似)
+            　brk()——>sys_brk()——>do_brk()(扩大堆)
+                            　　——>do_munmap()(缩小堆)
+            ｂ)调用内核对线性区的操作函数：
+                do_mmap()——>do_mmap_pgoff()
+                do_brk()相当与处理匿名线性区的do_mmap()
+
+            ｃ)通过do_mmap_pgoff()的实现对线性区的修改：
+                a)检查参数是是否满足要求。
+                b)通过get_unmapped_area()检查是否存在空闲区间，如果存在则返回地址。
+                c)确定vm_flag
+                d)通过find_vma_prepare()
+                e)......
+            注意：
+                a)malloc()等函数虽然是调节用户的虚拟地址空间，但是该地址空间的管理是内核控制的，故该函数要调用内核中的相关函数实现。
+                b)上述函数都只是分配VAM,没有分配到具体的页框。只有到需要内存访问时，发现如果还未分配物理内存,发生缺页异常——>调用__alloc_pages为进程分配物理页框。
+                c)NORMAL（或DMA）区域的内存也可以映射到用户空间，并且不会和内核发生冲突
+        缺页异常：
+            状态判定——>如果符合则分配页框——>请求调页/写时复制——>调用__alloc_pages()分配地址并且建立页表。
+
+
+４.页框管理
+    分配与回收
+    反向映射
+    PFRA的实现　
+    交换机制　
+    
+            
+进一步：可以通过一些代码来加深这部分的理解
