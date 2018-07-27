@@ -1,2 +1,0 @@
-里面有三uboot的文件：其中uboot_tq2440为国嵌提供，编译OK，使用查看U-boot使用手册；其中u-boot-1.1.6与u-boot-1.1.6_100ask24x0分别为韦山东提供的文件与补丁，打补丁方式为，进入u-boot-1.1.6根目录，运行patch p1 > ../u-boot-1.1.6_100ask24x0.patch,uboot使用为 make 100ask24x0_config,但是make时存在问题； u-boot-1.1.6_20100601为csdn中的文件使用为make EmbedSky_config，同样make有问题。
-

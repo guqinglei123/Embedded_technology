@@ -27,9 +27,10 @@ https://www.cnblogs.com/smartjourneys/category/980154.html
             b)pre-cpu页框高速缓存；
             c)伙伴系统(rmqueue_bulk()(__rmqueue())　__free_pages_bulk)；
             d)管理区分配器(alloc_pages()(__alloc_pages())——>buffered_rmqueue()——>rmqueue_bulk())；
+            
         通过页框分配地址(都是调用alloc_pages())：
             ａ)返回页框：alloc_page() __get_free_pages()　 __get_dma_page()
-            b)返回线性地址：get_zeroed_page() __get_free_pages() __get_free_page()；这里得到是虚拟地址，这里的虚拟地址有可能是高端内存，也有可能是低端内存。其他返回值都是页框描述符的地址。(这里有一个疑问，在将page转化为虚拟地址的过程中，如果是低端内存地址，则直接通过位置偏移可以得到；如果是高端内存地址则是通过查找address_htable得到，但是这个address_htable是保存了所有虚拟地址和物理地址的对应信息吗？)
+            b)返回线性地址：get_zeroed_page() __get_free_pages() __get_free_page()；这里得到是虚拟地址，这里的虚拟地址有可能是高端内存，也有可能是低端内存。其他返回值都是页框描述符的地址。(这里有一个疑问，在将page转化为虚拟地址的过程中，如果是低端内存地址，则直接通过位置偏移可以得到；如果是高端内存地址则是通过查找address_htable得到，但是这个address_htable是保存了所有虚拟地址和物理地址的对应信息吗？这些函数都是在内核中才可以使用)
 
     2)内存区管理(slab分配):
         基本描述：高速缓冲，普通和专用高速缓存区(怎么理解这些高速缓存区??)，slab,本地cpu高速缓冲(??);

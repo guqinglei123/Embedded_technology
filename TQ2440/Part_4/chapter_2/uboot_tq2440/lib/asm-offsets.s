@@ -68,7 +68,7 @@ main:
 .LEFDE0:
 	.text
 .Letext0:
-	.file 2 "/home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/net.h"
+	.file 2 "/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/net.h"
 	.section	.debug_info
 	.4byte	0xbd
 	.2byte	0x2
@@ -322,9 +322,6 @@ main:
 	.ascii	"lib/asm-offsets.c\000"
 .LASF9:
 	.ascii	"char\000"
-.LASF16:
-	.ascii	"/home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq244"
-	.ascii	"0\000"
 .LASF8:
 	.ascii	"long int\000"
 .LASF13:
@@ -345,5 +342,8 @@ main:
 	.ascii	"GNU C 4.3.2\000"
 .LASF4:
 	.ascii	"short int\000"
+.LASF16:
+	.ascii	"/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/"
+	.ascii	"uboot_tq2440\000"
 	.ident	"GCC: (Sourcery G++ Lite 2008q3-72) 4.3.2"
 	.section	.note.GNU-stack,"",%progbits

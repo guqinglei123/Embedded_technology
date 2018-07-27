@@ -1,2 +1,2 @@
 ctype.o: ctype.c \
-  /home/guqinglei/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/ctype.h
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/ctype.h
