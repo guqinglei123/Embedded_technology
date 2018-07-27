@@ -39,11 +39,12 @@ https://blog.csdn.net/coding__madman/article/details/51297127
                 Busybox Settings ->build Options->选中 “Build busybox as a static binary”,->将ross Compiler prefix (静态链接)设置为arm-linux-
 
                 Installation Options->选中 “Don‘t use /usr”(选中该项可以避免busybox 被安装到宿主系统的/usr目录下，破坏宿主系统) ->将Busybox Installation Prefix设为/home/guqinglei/Writing_code/TQ2440/
-                rootfs(表明编译后的busybox的安装位置）
+                rootfs(表明编译后的busybox的安装位置） 
         b)编译、安装busybox
             make
             make install
         通过查看/home/guqinglei/Writing_code/TQ2440/rootfs/bin是否存在内核常用命令，可以判断该步是否成功
+
 ２.挂载文件系统
     １)．创建Initramfs的软链接
         #cd /home/guqinglei/Writing_code/TQ2440/rootfs
