@@ -57,7 +57,7 @@ static const char *const bbconfig_config =
 "# CONFIG_INSTALL_SH_APPLET_SYMLINK is not set\n"
 "# CONFIG_INSTALL_SH_APPLET_HARDLINK is not set\n"
 "# CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER is not set\n"
-"CONFIG_PREFIX=\"/home/guqinglei/TQ2440/Part_4/chatper_4/rootfs\"\n"
+"CONFIG_PREFIX=\"/home/guqinglei/Wring_code/TQ2440/rootf\"\n"
 "CONFIG_PASSWORD_MINLEN=6\n"
 "CONFIG_MD5_SIZE_VS_SPEED=2\n"
 "CONFIG_FEATURE_FAST_TOP=y\n"

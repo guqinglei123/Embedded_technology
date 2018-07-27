@@ -1,4 +1,4 @@
-cmd_arch/arm/plat-s3c/gpio.o := arm-linux-gcc -Wp,-MD,arch/arm/plat-s3c/.gpio.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(gpio)"  -D"KBUILD_MODNAME=KBUILD_STR(gpio)"  -c -o arch/arm/plat-s3c/gpio.o arch/arm/plat-s3c/gpio.c
+cmd_arch/arm/plat-s3c/gpio.o := arm-linux-gcc -Wp,-MD,arch/arm/plat-s3c/.gpio.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(gpio)"  -D"KBUILD_MODNAME=KBUILD_STR(gpio)"  -c -o arch/arm/plat-s3c/gpio.o arch/arm/plat-s3c/gpio.c
 
 deps_arch/arm/plat-s3c/gpio.o := \
   arch/arm/plat-s3c/gpio.c \
@@ -25,23 +25,23 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
   include/linux/stddef.h \
   include/linux/types.h \
     $(wildcard include/config/uid16.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
   include/linux/posix_types.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
   include/linux/bitops.h \
     $(wildcard include/config/generic/find/first/bit.h) \
     $(wildcard include/config/generic/find/last/bit.h) \
     $(wildcard include/config/generic/find/next/bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
     $(wildcard include/config/smp.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/cpu/sa1100.h) \
@@ -54,10 +54,10 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/trace/irqflags/support.h) \
     $(wildcard include/config/x86.h) \
   include/linux/typecheck.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/arm/thumb.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
   include/asm-generic/cmpxchg-local.h \
   include/asm-generic/cmpxchg.h \
   include/asm-generic/bitops/non-atomic.h \
@@ -75,15 +75,15 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/arch/has/ilog2/u64.h) \
   include/linux/ratelimit.h \
   include/linux/param.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
   include/linux/dynamic_debug.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
@@ -97,8 +97,8 @@ deps_arch/arm/plat-s3c/gpio.o := \
   include/linux/io.h \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/has/ioport.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/io.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/io.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/highmem.h) \
     $(wildcard include/config/dram/size.h) \
@@ -108,7 +108,7 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/sparsemem.h) \
   include/linux/const.h \
   arch/arm/mach-s3c2410/include/mach/memory.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
@@ -123,7 +123,7 @@ deps_arch/arm/plat-s3c/gpio.o := \
   arch/arm/plat-s3c24xx/include/plat/map.h \
     $(wildcard include/config/cpu/s3c2413.h) \
     $(wildcard include/config/cpu/s3c2412/only.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -131,7 +131,7 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm710.h) \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
@@ -146,7 +146,7 @@ deps_arch/arm/plat-s3c/gpio.o := \
   include/asm-generic/page.h \
   include/linux/gpio.h \
     $(wildcard include/config/generic/gpio.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/gpio.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/gpio.h \
   arch/arm/mach-s3c2410/include/mach/gpio.h \
     $(wildcard include/config/s3c24xx/gpio/extra.h) \
   include/asm-generic/gpio.h \
@@ -154,7 +154,7 @@ deps_arch/arm/plat-s3c/gpio.o := \
     $(wildcard include/config/gpio/sysfs.h) \
     $(wildcard include/config/have/gpio/lib.h) \
   include/linux/errno.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   arch/arm/mach-s3c2410/include/mach/gpio-nrs.h \

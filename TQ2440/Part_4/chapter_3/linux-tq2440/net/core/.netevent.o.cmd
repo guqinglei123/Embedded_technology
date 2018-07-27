@@ -1,4 +1,4 @@
-cmd_net/core/netevent.o := arm-linux-gcc -Wp,-MD,net/core/.netevent.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(netevent)"  -D"KBUILD_MODNAME=KBUILD_STR(netevent)"  -c -o net/core/netevent.o net/core/netevent.c
+cmd_net/core/netevent.o := arm-linux-gcc -Wp,-MD,net/core/.netevent.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(netevent)"  -D"KBUILD_MODNAME=KBUILD_STR(netevent)"  -c -o net/core/netevent.o net/core/netevent.c
 
 deps_net/core/netevent.o := \
   net/core/netevent.c \
@@ -8,7 +8,7 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/lbd.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
   include/linux/posix_types.h \
   include/linux/stddef.h \
@@ -21,13 +21,13 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
   include/linux/netlink.h \
   include/linux/socket.h \
     $(wildcard include/config/proc/fs.h) \
     $(wildcard include/config/compat.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/socket.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sockios.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/socket.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sockios.h \
   include/linux/sockios.h \
   include/linux/uio.h \
   include/linux/capability.h \
@@ -55,14 +55,14 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/ftrace/mcount/record.h) \
   /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include/stdarg.h \
   include/linux/linkage.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \
     $(wildcard include/config/generic/find/first/bit.h) \
     $(wildcard include/config/generic/find/last/bit.h) \
     $(wildcard include/config/generic/find/next/bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
     $(wildcard include/config/smp.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/cpu/sa1100.h) \
@@ -75,10 +75,10 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/trace/irqflags/support.h) \
     $(wildcard include/config/x86.h) \
   include/linux/typecheck.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/arm/thumb.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
   include/asm-generic/cmpxchg-local.h \
   include/asm-generic/cmpxchg.h \
   include/asm-generic/bitops/non-atomic.h \
@@ -96,15 +96,15 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/arch/has/ilog2/u64.h) \
   include/linux/ratelimit.h \
   include/linux/param.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
   include/linux/dynamic_debug.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
@@ -113,7 +113,7 @@ deps_net/core/netevent.o := \
   include/linux/time.h \
   include/linux/cache.h \
     $(wildcard include/config/arch/has/cache/line/size.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cache.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cache.h \
     $(wildcard include/config/aeabi.h) \
   include/linux/seqlock.h \
   include/linux/spinlock.h \
@@ -125,19 +125,19 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/debug/preempt.h) \
     $(wildcard include/config/preempt/notifiers.h) \
   include/linux/thread_info.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/thread_info.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fpstate.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/domain.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/domain.h \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/mmu.h) \
   include/linux/list.h \
     $(wildcard include/config/debug/list.h) \
   include/linux/poison.h \
   include/linux/prefetch.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/processor.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/processor.h \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
@@ -148,21 +148,21 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/generic/hardirqs.h) \
   include/linux/spinlock_up.h \
   include/linux/spinlock_api_up.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/atomic.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/atomic.h \
   include/asm-generic/atomic.h \
   include/linux/math64.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/div64.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/div64.h \
   include/linux/net.h \
     $(wildcard include/config/sysctl.h) \
   include/linux/random.h \
   include/linux/ioctl.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ioctl.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/linux/irqnr.h \
   include/linux/wait.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/current.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/current.h \
   include/linux/fcntl.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fcntl.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
   include/linux/sysctl.h \
   include/linux/textsearch.h \
@@ -176,7 +176,7 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/sysfs.h) \
   include/linux/stat.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/stat.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/stat.h \
   include/linux/kmod.h \
   include/linux/gfp.h \
     $(wildcard include/config/zone/dma.h) \
@@ -212,12 +212,12 @@ deps_net/core/netevent.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/string.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/string.h \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/bounds.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -225,7 +225,7 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm710.h) \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
@@ -237,13 +237,13 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/cpu/abrt/ev7.h) \
     $(wildcard include/config/cpu/pabrt/ifar.h) \
     $(wildcard include/config/cpu/pabrt/noifar.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
   include/linux/const.h \
   arch/arm/mach-s3c2410/include/mach/memory.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   include/asm-generic/page.h \
@@ -252,7 +252,7 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/memory/hotremove.h) \
   include/linux/notifier.h \
   include/linux/errno.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   include/linux/mutex.h \
@@ -271,12 +271,12 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/topology.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/topology.h \
   include/asm-generic/topology.h \
   include/linux/elf.h \
   include/linux/elf-em.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/elf.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/user.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/elf.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/user.h \
   include/linux/kobject.h \
   include/linux/sysfs.h \
   include/linux/kref.h \
@@ -293,7 +293,7 @@ deps_net/core/netevent.o := \
   include/linux/completion.h \
   include/linux/rcuclassic.h \
     $(wildcard include/config/rcu/cpu/stall/detector.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/local.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/local.h \
   include/asm-generic/local.h \
   include/linux/percpu.h \
     $(wildcard include/config/have/dynamic/per/cpu/area.h) \
@@ -316,22 +316,22 @@ deps_net/core/netevent.o := \
   include/linux/jiffies.h \
   include/linux/timex.h \
     $(wildcard include/config/no/hz.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/timex.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/timex.h \
   arch/arm/plat-s3c/include/mach/timex.h \
   include/linux/debugobjects.h \
     $(wildcard include/config/debug/objects/free.h) \
   include/trace/kmemtrace.h \
   include/linux/pfn.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/percpu.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/percpu-defs.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/module.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
   include/linux/err.h \
   include/net/checksum.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/uaccess.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/checksum.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/uaccess.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/checksum.h \
   include/linux/in6.h \
   include/linux/dmaengine.h \
     $(wildcard include/config/dma/engine.h) \
@@ -343,7 +343,7 @@ deps_net/core/netevent.o := \
   include/linux/pm.h \
     $(wildcard include/config/pm/sleep.h) \
   include/linux/semaphore.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/device.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/device.h \
     $(wildcard include/config/dmabounce.h) \
   include/linux/pm_wakeup.h \
     $(wildcard include/config/pm.h) \
@@ -353,7 +353,7 @@ deps_net/core/netevent.o := \
   include/linux/bug.h \
   include/linux/scatterlist.h \
     $(wildcard include/config/debug/sg.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/scatterlist.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/scatterlist.h \
   include/linux/mm.h \
     $(wildcard include/config/stack/growsup.h) \
     $(wildcard include/config/swap.h) \
@@ -373,15 +373,15 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/mm/owner.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/auxvec.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/auxvec.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/auxvec.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/mmu.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/pgtable.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/pgtable.h \
   include/asm-generic/4level-fixup.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/proc-fns.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/proc-fns.h \
     $(wildcard include/config/cpu/32.h) \
     $(wildcard include/config/cpu/arm7tdmi.h) \
     $(wildcard include/config/cpu/arm720t.h) \
@@ -401,9 +401,9 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/cpu/feroceon.h) \
     $(wildcard include/config/cpu/v6.h) \
     $(wildcard include/config/cpu/v7.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cpu-single.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cpu-single.h \
   arch/arm/plat-s3c/include/mach/vmalloc.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/pgtable-hwdef.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/pgtable-hwdef.h \
   include/asm-generic/pgtable.h \
   include/linux/page-flags.h \
     $(wildcard include/config/pageflags/extended.h) \
@@ -412,7 +412,7 @@ deps_net/core/netevent.o := \
     $(wildcard include/config/s390.h) \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/io.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/io.h \
   arch/arm/mach-s3c2410/include/mach/io.h \
   arch/arm/mach-s3c2410/include/mach/hardware.h \
     $(wildcard include/config/cpu/s3c2400.h) \
@@ -424,7 +424,7 @@ deps_net/core/netevent.o := \
   arch/arm/plat-s3c24xx/include/plat/map.h \
     $(wildcard include/config/cpu/s3c2413.h) \
     $(wildcard include/config/cpu/s3c2412/only.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/dma-mapping.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/dma-mapping.h \
   include/asm-generic/dma-coherent.h \
     $(wildcard include/config/have/generic/dma/coherent.h) \
   include/linux/hrtimer.h \

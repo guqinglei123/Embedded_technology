@@ -1,6 +1,7 @@
 裸机开发环境配置与下载
-参看内容：
+参考书籍：
 《嵌入式LINUX开发宝典——基于ARM cortex-A8 处理器》2.2
+主要过程：
 1.安装Ubuntu14.04操作系统与常软件
 2.安装arm-linux-gcc/ld/objcopy等工具(安装包 arm-linux-gcc-4.3.2.tgz) 
     1）直接解压到相应目录(eg,/usr/local/arm)

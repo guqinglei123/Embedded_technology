@@ -1,4 +1,4 @@
-cmd_kernel/posix-cpu-timers.o := arm-linux-gcc -Wp,-MD,kernel/.posix-cpu-timers.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(posix_cpu_timers)"  -D"KBUILD_MODNAME=KBUILD_STR(posix_cpu_timers)"  -c -o kernel/posix-cpu-timers.o kernel/posix-cpu-timers.c
+cmd_kernel/posix-cpu-timers.o := arm-linux-gcc -Wp,-MD,kernel/.posix-cpu-timers.o.d  -nostdinc -isystem /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include -Iinclude  -I/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(posix_cpu_timers)"  -D"KBUILD_MODNAME=KBUILD_STR(posix_cpu_timers)"  -c -o kernel/posix-cpu-timers.o kernel/posix-cpu-timers.c
 
 deps_kernel/posix-cpu-timers.o := \
   kernel/posix-cpu-timers.c \
@@ -50,7 +50,7 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/preempt.h) \
     $(wildcard include/config/group/sched.h) \
     $(wildcard include/config/mm/owner.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
   include/linux/capability.h \
     $(wildcard include/config/security/file/capabilities.h) \
@@ -59,7 +59,7 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/lbd.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
   include/linux/posix_types.h \
   include/linux/stddef.h \
@@ -72,7 +72,7 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/posix_types.h \
   include/linux/threads.h \
     $(wildcard include/config/nr/cpus.h) \
     $(wildcard include/config/base/small.h) \
@@ -86,13 +86,13 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/ftrace/mcount/record.h) \
   /usr/local/arm/4.3.2/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.2/include/stdarg.h \
   include/linux/linkage.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \
     $(wildcard include/config/generic/find/first/bit.h) \
     $(wildcard include/config/generic/find/last/bit.h) \
     $(wildcard include/config/generic/find/next/bit.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bitops.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/system.h \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/cpu/sa1100.h) \
@@ -104,10 +104,10 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/trace/irqflags/support.h) \
     $(wildcard include/config/x86.h) \
   include/linux/typecheck.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irqflags.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/arm/thumb.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hwcap.h \
   include/asm-generic/cmpxchg-local.h \
   include/asm-generic/cmpxchg.h \
   include/asm-generic/bitops/non-atomic.h \
@@ -126,12 +126,12 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/ratelimit.h \
   include/linux/param.h \
   include/linux/dynamic_debug.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
@@ -141,7 +141,7 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/time.h \
   include/linux/cache.h \
     $(wildcard include/config/arch/has/cache/line/size.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cache.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cache.h \
     $(wildcard include/config/aeabi.h) \
   include/linux/seqlock.h \
   include/linux/spinlock.h \
@@ -151,19 +151,19 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/preempt.h \
     $(wildcard include/config/debug/preempt.h) \
   include/linux/thread_info.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/thread_info.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fpstate.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/domain.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/domain.h \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/mmu.h) \
   include/linux/list.h \
     $(wildcard include/config/debug/list.h) \
   include/linux/poison.h \
   include/linux/prefetch.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/processor.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/processor.h \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
@@ -172,11 +172,11 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/lock/stat.h) \
   include/linux/spinlock_up.h \
   include/linux/spinlock_api_up.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/atomic.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/atomic.h \
   include/asm-generic/atomic.h \
   include/linux/math64.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/div64.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/timex.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/div64.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/timex.h \
   arch/arm/plat-s3c/include/mach/timex.h \
   include/linux/jiffies.h \
   include/linux/rbtree.h \
@@ -187,9 +187,9 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/string.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/string.h \
   include/linux/errno.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   include/linux/nodemask.h \
@@ -202,18 +202,18 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/proc/fs.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/auxvec.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/auxvec.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/auxvec.h \
   include/linux/prio_tree.h \
   include/linux/rwsem.h \
     $(wildcard include/config/rwsem/generic/spinlock.h) \
   include/linux/rwsem-spinlock.h \
   include/linux/completion.h \
   include/linux/wait.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/current.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/current.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -221,7 +221,7 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/glue.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm710.h) \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
@@ -233,7 +233,7 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/cpu/abrt/ev7.h) \
     $(wildcard include/config/cpu/pabrt/ifar.h) \
     $(wildcard include/config/cpu/pabrt/noifar.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
@@ -242,32 +242,32 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/sparsemem.h) \
   include/linux/const.h \
   arch/arm/mach-s3c2410/include/mach/memory.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   include/asm-generic/page.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/mmu.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cputime.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/cputime.h \
   include/asm-generic/cputime.h \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
   include/linux/sem.h \
   include/linux/ipc.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ipcbuf.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/ipcbuf.h \
   include/linux/kref.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sembuf.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sembuf.h \
   include/linux/rcupdate.h \
     $(wildcard include/config/classic/rcu.h) \
     $(wildcard include/config/tree/rcu.h) \
   include/linux/rcuclassic.h \
     $(wildcard include/config/rcu/cpu/stall/detector.h) \
   include/linux/signal.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/signal.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/signal.h \
   include/asm-generic/signal.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sigcontext.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/siginfo.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/sigcontext.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/siginfo.h \
   include/asm-generic/siginfo.h \
   include/linux/path.h \
   include/linux/pid.h \
@@ -313,7 +313,7 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/topology.h \
     $(wildcard include/config/sched/smt.h) \
     $(wildcard include/config/sched/mc.h) \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/topology.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/topology.h \
   include/asm-generic/topology.h \
   include/linux/slub_def.h \
     $(wildcard include/config/slub/stats.h) \
@@ -333,7 +333,7 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/tracepoint.h \
     $(wildcard include/config/tracepoints.h) \
   include/linux/pfn.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/percpu.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/percpu-defs.h \
@@ -346,7 +346,7 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/plist.h \
     $(wildcard include/config/debug/pi/list.h) \
   include/linux/resource.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/resource.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/resource.h \
   include/asm-generic/resource.h \
   include/linux/hrtimer.h \
     $(wildcard include/config/high/res/timers.h) \
@@ -363,9 +363,9 @@ deps_kernel/posix-cpu-timers.o := \
   include/linux/aio_abi.h \
   include/linux/uio.h \
   include/linux/posix-timers.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/uaccess.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/uaccess.h \
   include/linux/kernel_stat.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irq.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irq.h \
   arch/arm/mach-s3c2410/include/mach/irqs.h \
     $(wildcard include/config/cpu/s3c2443.h) \
   include/linux/irq.h \
@@ -380,9 +380,9 @@ deps_kernel/posix-cpu-timers.o := \
     $(wildcard include/config/cpumasks/offstack.h) \
   include/linux/irqreturn.h \
   include/linux/irqnr.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irq_regs.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/irq_regs.h \
   include/asm-generic/irq_regs.h \
-  /home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hw_irq.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include/asm/hw_irq.h \
 
 kernel/posix-cpu-timers.o: $(deps_kernel/posix-cpu-timers.o)
 

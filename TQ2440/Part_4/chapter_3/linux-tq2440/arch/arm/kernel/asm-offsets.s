@@ -13,7 +13,7 @@
 @	compiled by GNU C version 3.4.4, GMP version 4.2.2, MPFR version 2.3.1.
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 @ options passed:  -nostdinc -Iinclude
-@ -I/home/guqinglei/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include
+@ -I/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_3/linux-tq2440/arch/arm/include
 @ -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include
 @ -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include
 @ -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include

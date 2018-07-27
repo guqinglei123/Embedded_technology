@@ -1,15 +1,49 @@
 参看书籍:
 linux的编译见嵌入式linux内核制作.pdf
-
+https://blog.csdn.net/coding__madman/article/details/51291316
 主要内容：
 
 
+
+
 实验过程：
-１.配置linux内核
-２.编译linux内核
+1.x86平台内核配置与移植
+    １)清理配置文件
+        make distclean
+　　 ２)配置linux内核
+        配置方式：make config配置——文本交互；make menuconfig配置——界面交互。
+    ３)编译内核代码
+        make zImage V=1 
+        make bzImage V=1
+        **编译好的内核位于arch/<cpu>/boot/目录下**
+    ４)编译内核模块
+        将编译好的内核模块，从内核源代码目录复制至/lib/modules下**，为打包做好准备
+    ５)编译根文件系统，制作init ramdisk
+        mkinitrd initrd-$version $version 
+    ６）安装内核与文件系统
+        a) cp arch/x86/boot/bzImage　/boot/vmlinuz-$version
+        b) cp initrd-$version /boot/
+        c) 修改/etc/grub.conf               
+２.ＲＡＭ平台内核配置与移植
+    １)清理配置文件
+        make distclean
+    ２)进行配置
+        配置方式：make config配置——文本交互；make menuconfig配置——界面交互。这里两种方式都是为了生成.config配置文件。这里为了方便，直接将配置好的文件config-file拷贝到linux内核代码目录中，并改为.config；在执行make menuconfig ARCH=arm,
+        注意：如果不是通过命令行复制.config,最好重新打开终端。同时注意要将.config中的CONFIG_INITRAMFS_SOURCE改为自己开发板建立根目录地方(/home/guqinglei/Wring_code/TQ2440/rootf)
+    ３)编译RAM内核
+        make uImage ARCH=arm CROSS_COMPILE=arm-linux-
+        生成的文件在arch/arm/boot/uImage
+    4)编译内核模块——后面需要使用
+
+    ５)安装根文件系统——下一节
 ３.安装下载内核
-    1）.进入uboot
-    2）.配置serverip，gateway，ipaddr
-    3）.在开发板上ping电脑地址，使用电脑ping开发板很难ping通
-    3）.tftp 0x31000000 uImage
-    4）.bootm ox31000000
+    1）.将来文件从arch/arm/boot/uImage拷贝到tftp挂载目录("/home/guqinglei/Wring_code/TQ2440/tftpboot")
+    ２).下载内核：tftp 0x31000000 uImage
+    3).测试内核启动：bootm ox31000000
+    4-1).交叉开发时，开机自动通过tftp下载文件：
+        #setenv bootcmd　tftp 0x31000000 uImage \; bootm 0x31000000
+        ＃saveenv
+    4-２).开机自动从nand flash中读取内核：
+        #nand write 0x31000000 400000 500000(内核下载在0x31000000后)
+        #setenv bootcmd　nand read 0x31000000 400000 500000 \; bootm 0x31000000
+        ＃saveenv

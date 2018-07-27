@@ -1,6 +1,7 @@
 参看书籍:
 u-boot-2014.04移植手册(TQ2440)
 uboot-2015的补充：https://www.cnblogs.com/pengdonglin137/p/4264836.html#_label0
+https://blog.csdn.net/coding__madman/article/details/51264924
 《嵌入式LINUX开发宝典——基于ARM cortex-A8 处理器》第15章
 《嵌入式LINUX应用开发手册》 第6章（汇编）
 深度实践嵌入式Linux系统移植
@@ -13,9 +14,9 @@ uboot-2015的补充：https://www.cnblogs.com/pengdonglin137/p/4264836.html#_lab
     常用命令:
 　   help printenv setenv saveenv tftp bootm md mm nand erase/read
     设置从nand flash自动启动:
-    #setenv bootcmdnand read c0008000 400000 500000 \; bootm c0008000
+    #setenv bootcmd　nand read c0008000 400000 500000 \; bootm c0008000
     设置自动下载内核到内存后启动
-    #setenv bootcmdtftp c0008000 uImage \; bootm c0008000
+    #setenv bootcmd　tftp c0008000 uImage \; bootm c0008000
 
 
 实验过程：

@@ -1,4 +1,4 @@
-cmd_applets/usage := gcc -Wp,-MD,applets/.usage.d  -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer      -I/home/guqinglei/TQ2440/Part_4/chatper_4/busybox-1.13.3/include -o applets/usage applets/usage.c  
+cmd_applets/usage := gcc -Wp,-MD,applets/.usage.d  -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer      -I/home/guqinglei/Wring_code/TQ2440/Part_4/chapter_4/busybox-1.13.3/include -o applets/usage applets/usage.c  
 
 deps_applets/usage := \
   applets/usage.c \
@@ -47,7 +47,7 @@ deps_applets/usage := \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/getopt.h \
   /usr/include/x86_64-linux-gnu/bits/unistd.h \
-  /home/guqinglei/TQ2440/Part_4/chatper_4/busybox-1.13.3/include/usage.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_4/busybox-1.13.3/include/usage.h \
     $(wildcard include/config/ture/adduser/to/group.h) \
     $(wildcard include/config/ture/brctl/show.h) \
     $(wildcard include/config/ture/brctl/fancy.h) \
@@ -217,7 +217,7 @@ deps_applets/usage := \
     $(wildcard include/config/ture/xargs/support/confirmation.h) \
     $(wildcard include/config/ture/xargs/support/zero/term.h) \
     $(wildcard include/config/ture/xargs/support/termopt.h) \
-  /home/guqinglei/TQ2440/Part_4/chatper_4/busybox-1.13.3/include/applets.h \
+  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_4/busybox-1.13.3/include/applets.h \
     $(wildcard include/config/feature/verbose/usage.h) \
     $(wildcard include/config/install/no/usr.h) \
     $(wildcard include/config/t.h) \

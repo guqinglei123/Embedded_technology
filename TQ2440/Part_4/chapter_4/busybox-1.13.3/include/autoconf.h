@@ -2,7 +2,7 @@
  * Automatically generated C config: don't edit
  * Busybox version: 1.13.3
  */
-#define AUTOCONF_TIMESTAMP "2017-10-13 10:14:28 CST"
+#define AUTOCONF_TIMESTAMP "2018-07-27 20:52:15 CST"
 
 #define CONFIG_HAVE_DOT_CONFIG 1
 #define ENABLE_HAVE_DOT_CONFIG 1
@@ -212,7 +212,7 @@
 #define ENABLE_INSTALL_SH_APPLET_SCRIPT_WRAPPER 0
 #define USE_INSTALL_SH_APPLET_SCRIPT_WRAPPER(...)
 #define SKIP_INSTALL_SH_APPLET_SCRIPT_WRAPPER(...) __VA_ARGS__
-#define CONFIG_PREFIX "/home/guqinglei/TQ2440/Part_4/chatper_4/rootfs"
+#define CONFIG_PREFIX "/home/guqinglei/Wring_code/TQ2440/rootf"
 #define ENABLE_PREFIX 1
 #define USE_PREFIX(...) __VA_ARGS__
 #define SKIP_PREFIX(...)

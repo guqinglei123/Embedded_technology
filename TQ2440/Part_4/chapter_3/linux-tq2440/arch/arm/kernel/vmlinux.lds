@@ -3,7 +3,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.30.4
- * Fri Oct 13 13:30:52 2017
+ * Fri Jul 27 22:32:11 2018
  */
 /* ld script to make ARM Linux kernel
  * taken from the i386 version by Russell King
@@ -287,10 +287,6 @@ SECTIONS
   __security_initcall_start = .;
    *(.security_initcall.init)
   __security_initcall_end = .;
-  . = ALIGN(32);
-  __initramfs_start = .;
-   usr/built-in.o(.init.ramfs)
-  __initramfs_end = .;
   . = ALIGN(4096);
   __per_cpu_load = .;
   __per_cpu_start = .;

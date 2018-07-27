@@ -1,0 +1,71 @@
+驱动移植开发环境配置与下载
+参考书籍：
+《嵌入式LINUX开发宝典——基于ARM cortex-A8 处理器》2.2
+http://www.cnblogs.com/AP0904225/p/6589085.html
+
+主要内容：
+    FTP、TFTP、NFS的区别
+    ssh的使用
+
+主要过程：
+１．安装TFTP服务器
+    1)安装软件　sudo apt-get install tftp-hpa tftpd-hpa xinetd
+    2)配置TFTP服务器
+        a)修改/etc/default/tftpd-hpa
+            TFTP_USERNAME="tftp"
+            TFTP_DIRECTORY="/home/guqinglei/Wring_code/TQ2440/tftpboot" //挂载目录
+            TFTP_ADDRESS=":69"
+            TFTP_OPTIONS="--secure"
+        b)修改subl /etc/xinetd.d/tftp　　　没有就新建
+            service tftp
+            {
+                socket_type = dgram
+                protocol = udp
+                wait = yes
+                user = root
+                server = /usr/sbin/in.tftpd
+                server_args = -s /home/guqinglei/Wring_code/TQ2440/tftpboot  -c　//挂载目录
+                disable = no
+                per_source = 11
+                cps = 100 2
+                flags =IPv4
+
+            }    
+        c)给共享目录权限
+            sudo chmod 777 /home/guqinglei/Wring_code/TQ2440/tftpboot
+    ３)以此重启相关服务
+        sudo  service  tftpd-hpa  restart
+        sudo /etc/init.d/xinetd  reload
+        sudo  /etc/init.d/xinetd  restart 
+    ４）测试配置是否成功
+        a)测试服务tftp是否启动 
+            执行命令：netstat  -a|grep  tftp;当结果显示 ：　udp  0 0 *:tftp *:* 则启动tftp服务了
+        b)测试tftp
+            在/home/guqinglei/Wring_code/TQ2440/tftpboot下新建一个文件：
+                $ touch test
+                $ echo “tftp test” > test
+            然后在另外一个目录下执行如下命令（192.168.0.119为本机IP地址）：
+                $ tftp 192.168.0.119
+                $ tftp> get test
+                $ tftp> q
+            如果在当前目录下多出了一个test文件，并且test文件的内容跟/tftpboot目录下test文件的内容一致，则tftp可以正常使用。
+2．安装NFS服务器 
+    １)安装ＮＦＳ服务
+        sudo apt-get install nfs-kernel-server portmap
+    2)设置共享文件目录,修改/etc/exports
+        /home/guqinglei/TQ2440/rootf  *(rw,sync,no_root_squash)
+    ３)重启ＮＦＳ服务
+        sudo /etc/init.d/nfs-kernel-server restart
+    4)查看对外共享目录
+        showmount -e
+３．通过tftp下载内核和文件系统
+    1）.通过nand flash,进入uboot(不是下载界面)
+    2）.配置serverip，gatewayip，ipaddr
+        setenv serverip 192.168.0.119(主机ip)
+        setenv gatewayip 192.168.0.1
+        setenv ipaddr 192.168.0.110(开发板ip)
+        saveenv
+        printenv(这个命令之后确定参数是否改变成功)
+    3）.将路由和开发板连接到同一个路由器上，直接使用网线连接没有效果().在开发板上ping电脑地址，使用电脑ping开发板很难ping通
+    ４).将来文件拷贝到tftp挂载目录("/home/guqinglei/Wring_code/TQ2440/tftpboot")
+    5）.在uboot中使用tftp下载文件 

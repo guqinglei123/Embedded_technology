@@ -1,1 +1,1 @@
-cmd_usr/built-in.o :=  arm-linux-ld -EL    -r -o usr/built-in.o usr/initramfs_data.o 
+cmd_usr/built-in.o :=  rm -f usr/built-in.o; arm-linux-ar rcs usr/built-in.o
