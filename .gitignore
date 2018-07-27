@@ -1,6 +1,8 @@
 ##ignore this file##
 /BACKUP/ 
-
+/TQ2440/rootfs
+/TQ2440/tftpboot
+/TQ2440/tools
 .classpath
 .project
 .settings      

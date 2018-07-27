@@ -1,8 +1,0 @@
-crc16.o: crc16.c \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/crc.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/types.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/config.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/posix_types.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/linux/stddef.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/posix_types.h \
-  /home/guqinglei/Wring_code/TQ2440/Part_4/chapter_2/uboot_tq2440/include/asm/types.h

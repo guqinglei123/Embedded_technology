@@ -1,1 +1,0 @@
-cmd_/home/guqinglei/TQ2440/Part_4/chapter_5/helloworld.ko := arm-linux-ld -EL -r   --build-id -o /home/guqinglei/TQ2440/Part_4/chapter_5/helloworld.ko /home/guqinglei/TQ2440/Part_4/chapter_5/helloworld.o /home/guqinglei/TQ2440/Part_4/chapter_5/helloworld.mod.o

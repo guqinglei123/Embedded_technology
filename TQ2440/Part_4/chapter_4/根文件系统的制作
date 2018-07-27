@@ -8,6 +8,8 @@ https://blog.csdn.net/coding__madman/article/details/51297127
     基于norflash有：jffs2
     基于内存有：ramdisk,initramfs
     基于网络有：NFS
+３．根文件系统的制作
+    
 实验过程：
 1.根文件系统的制作
     １)建立根文件系统目录
@@ -25,8 +27,8 @@ https://blog.csdn.net/coding__madman/article/details/51297127
     ４)添加内核模块——安装常用的驱动模块
         ＃cd linux源文件目录
         #make modules ARCH=arm CROSS_COMPILE=arm-linux-
-        #make modules_install ARCH=arm INSTALL_MOD_PATH=根目录所在文件夹(/home/guqinglei/Wring_code/TQ2440/rootf)
-        通过/home/guqinglei/Wring_code/TQ2440/rootf/lib/modules/
+        #make modules_install ARCH=arm INSTALL_MOD_PATH=根目录所在文件夹(/home/guqinglei/Writing_code/TQ2440/rootfs)
+        通过/home/guqinglei/Writing_code/TQ2440/rootfs/lib/modules/
         2.6.30.4-EmbedSky/kernel/drivers可以查看有没有安装驱动可以确定是否安装成功。
     ５)编译/安装busybox——安装系统执行命令
         a)配置busybox
@@ -36,32 +38,32 @@ https://blog.csdn.net/coding__madman/article/details/51297127
             make menuconfig
                 Busybox Settings ->build Options->选中 “Build busybox as a static binary”,->将ross Compiler prefix (静态链接)设置为arm-linux-
 
-                Installation Options->选中 “Don‘t use /usr”(选中该项可以避免busybox 被安装到宿主系统的/usr目录下，破坏宿主系统) ->将Busybox Installation Prefix 设置为/home/guqinglei/Wring_code/TQ2440/rootf
-                (表明编译后的busybox的安装位置）
+                Installation Options->选中 “Don‘t use /usr”(选中该项可以避免busybox 被安装到宿主系统的/usr目录下，破坏宿主系统) ->将Busybox Installation Prefix设为/home/guqinglei/Writing_code/TQ2440/
+                rootfs(表明编译后的busybox的安装位置）
         b)编译、安装busybox
             make
             make install
-        通过查看/home/guqinglei/Wring_code/TQ2440/rootf/bin是否存在内核常用命令，可以判断该步是否成功
+        通过查看/home/guqinglei/Writing_code/TQ2440/rootfs/bin是否存在内核常用命令，可以判断该步是否成功
 ２.挂载文件系统
     １)．创建Initramfs的软链接
-        #cd /home/guqinglei/Wring_code/TQ2440/rootf/
+        #cd /home/guqinglei/Writing_code/TQ2440/rootfs
         #ln –s ./bin/busybox init
         或者：
-        #cd /home/guqinglei/Wring_code/TQ2440/rootf/bin
+        #cd /home/guqinglei/Writing_code/TQ2440/rootfs/bin
         #ln –s busybox ../init
     2-1).使用Initramfs文件系统
         a)编译内核
             ＃cd 进入linux源代码目录
             ＃make clean
             ＃make menuconfig
-                进入general setup->Initial RAM filessystem and RAM disk...填入rtoof路径（/home/guqinglei/Wring_code/TQ2440/rootf/）
+                进入general setup->Initial RAM filessystem and RAM disk...填入rtoof路径（/home/guqinglei/Writing_code/TQ2440/rootfs）
             #make uImage ARCH=arm CROSS_COMPILE=arm-linux-
         b)设置uboot环境变量
             #setenv bootargs noinitrd console=ttySAC0,115200
             ＃saveenv
         备注：不知道为什么还是进不去文件系统
     2-２).使用NFS文件系统
-        a)编译内核
+        a)编译内核　　××××××××
             ＃cd 进入linux源代码目录
             ＃make clean
             ＃make menuconfig
@@ -69,6 +71,6 @@ https://blog.csdn.net/coding__madman/article/details/51297127
                 返回主界面，进入file systems->选择network file systems->选择root file systems on NFS
             #make uImage ARCH=arm CROSS_COMPILE=arm-linux-
          b)设置uboot环境变量
-            ＃setenv bootargs noinitrd console=ttySAC0,115200 init=/init root=/dev/nfs rw nfsroot=192.168.0.119:/home/guqinglei/Wring_code/TQ2440/rootf/,proto=tcp,nfsvers=3 ip=192.168.０.11０:192.168.0.119:192.168.０.1:255.255.255.0::eth0:off
+            ＃setenv bootargs noinitrd console=ttySAC0,115200 init=/init root=/dev/nfs rw nfsroot=192.168.0.119:/home/guqinglei/Writing_code/TQ2440/rootfs,proto=tcp,nfsvers=3 ip=192.168.０.11０:192.168.0.119:192.168.０.1:255.255.255.0::eth0:off　　　　××××××××
             ＃saveenv
     3).将uImage拷贝到tftp挂载目录，下载内核。

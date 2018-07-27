@@ -13,7 +13,7 @@ http://www.cnblogs.com/AP0904225/p/6589085.html
     2)配置TFTP服务器
         a)修改/etc/default/tftpd-hpa
             TFTP_USERNAME="tftp"
-            TFTP_DIRECTORY="/home/guqinglei/Wring_code/TQ2440/tftpboot" //挂载目录
+            TFTP_DIRECTORY="/home/guqinglei/Writing_code/TQ2440/tftpboot" //挂载目录
             TFTP_ADDRESS=":69"
             TFTP_OPTIONS="--secure"
         b)修改subl /etc/xinetd.d/tftp　　　没有就新建
@@ -24,7 +24,7 @@ http://www.cnblogs.com/AP0904225/p/6589085.html
                 wait = yes
                 user = root
                 server = /usr/sbin/in.tftpd
-                server_args = -s /home/guqinglei/Wring_code/TQ2440/tftpboot  -c　//挂载目录
+                server_args = -s /home/guqinglei/Writing_code/TQ2440/tftpboot -c　//挂载目录
                 disable = no
                 per_source = 11
                 cps = 100 2
@@ -32,7 +32,7 @@ http://www.cnblogs.com/AP0904225/p/6589085.html
 
             }    
         c)给共享目录权限
-            sudo chmod 777 /home/guqinglei/Wring_code/TQ2440/tftpboot
+            sudo chmod 777 /home/guqinglei/Writing_code/TQ2440/tftpboot
     ３)以此重启相关服务
         sudo  service  tftpd-hpa  restart
         sudo /etc/init.d/xinetd  reload
@@ -53,7 +53,7 @@ http://www.cnblogs.com/AP0904225/p/6589085.html
     １)安装ＮＦＳ服务
         sudo apt-get install nfs-kernel-server portmap
     2)设置共享文件目录,修改/etc/exports
-        /home/guqinglei/TQ2440/rootf  *(rw,sync,no_root_squash)
+        /home/guqinglei/Writing_code/TQ2440/rootfs  *(rw,sync,no_root_squash)
     ３)重启ＮＦＳ服务
         sudo /etc/init.d/nfs-kernel-server restart
     4)查看对外共享目录
@@ -67,5 +67,5 @@ http://www.cnblogs.com/AP0904225/p/6589085.html
         saveenv
         printenv(这个命令之后确定参数是否改变成功)
     3）.将路由和开发板连接到同一个路由器上，直接使用网线连接没有效果().在开发板上ping电脑地址，使用电脑ping开发板很难ping通
-    ４).将来文件拷贝到tftp挂载目录("/home/guqinglei/Wring_code/TQ2440/tftpboot")
+    ４).将来文件拷贝到tftp挂载目录("/home/guqinglei/Writing_code/TQ2440/tftpboot")
     5）.在uboot中使用tftp下载文件 

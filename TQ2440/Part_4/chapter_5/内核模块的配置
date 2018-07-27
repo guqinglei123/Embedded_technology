@@ -1,0 +1,26 @@
+参看书籍:
+https://blog.csdn.net/coding__madman/article/details/51298180
+<linux设备驱动程序>　第2章
+<linux设备驱动开发——基于最新的linux 4.0内核＞　 第4章
+
+
+主要内容：
+1.内核模块的简述
+    １）.将模块全部编译进内核中导致的问题：内核将变的特别庞大。且不方便增删。
+    ２）.模块特点：模块本身并不被编译进内核文件（zImage或bzImage）,可以根据需求，在内核运行期间动态的安装或卸载。同时，模块一旦被加载就和内核没有什么区别。
+２．模块的结构
+    1）模块加载函数，以__init标记声明，通过module_init()函数指定
+    2）模块卸载函数，以__exit标记声明，通过module_exit()函数指定
+    3）模块参数。通过module_param（ 参数名， 参数类型， 参数读/写权限） ”为模块定义一个参数
+    4）导出符号。导出的符号可以被其他模块使用。使用EXPORT_SYMBOL(符号名）；EXPORT_　SYMBOL_GPL　(符号名)导出
+    5）模块信息。使用MODULE_AUTHOR、 MODULE_DESCRIPTION、MODULE_VERSION、 MODULE_DEVICE_TABLE、 MODULE_ALIAS分别声明模块的作者、 描述、 版本、 设备表和别名
+    ６)模块记数。通过MOD_INC_USE_COUNT、 MOD_DEC_USE_COUNT宏来管理自己被使用的计数
+    备注：绕开ＧＰＬ
+３．模块使用
+    １）编译
+    ２）安装　insmod
+    ３）卸载　rmmod
+    ４）查看　lsmod
+
+主要实验：
+    helloword模块

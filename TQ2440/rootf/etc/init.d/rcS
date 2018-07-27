@@ -1,6 +1,0 @@
-#! /bin/sh
-
-/bin/mount -a
-/bin/mount -t tmpfs mdev /dev
-/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
-mdev -s
