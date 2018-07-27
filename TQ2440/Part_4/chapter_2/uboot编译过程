@@ -1,14 +1,27 @@
 参看书籍:
 u-boot-2014.04移植手册(TQ2440)
 uboot-2015的补充：https://www.cnblogs.com/pengdonglin137/p/4264836.html#_label0
+《嵌入式LINUX开发宝典——基于ARM cortex-A8 处理器》第15章
+《嵌入式LINUX应用开发手册》 第6章（汇编）
+深度实践嵌入式Linux系统移植
 
 主要内容：
-
+1.嵌入式软件层次(ｕ—boot,内核，根文件系统)
+2.分析uboot源码
+３.配置，移植，编译uboot
+４.使用uboot命令
+    常用命令:
+　   help printenv setenv saveenv tftp bootm md mm nand erase/read
+    设置从nand flash自动启动:
+    #setenv bootcmdnand read c0008000 400000 500000 \; bootm c0008000
+    设置自动下载内核到内存后启动
+    #setenv bootcmdtftp c0008000 uImage \; bootm c0008000
 
 
 实验过程：
 1.配置uboot（参看u-boot-2014.04移植手册(TQ2440)）
-2.编译uboot
+２.配置uboot驱动（参看第二部分内容以及）
+３.编译uboot
     １)为了节省时间，直接使用了国嵌提供的uboot_tq2440,并且尝试了网上提供的文件。分别为：
         a)uboot_tq2440:国嵌提供，编译OK，使用查看U-boot使用手册；
         b)jz2440:里面有u-boot-1.1.6与u-boot-1.1.6_100ask24x0；分别为韦山东提供的文件与补丁，打补丁方式为，进入u-boot-1.1.6根目录，运行patch p1 > ../u-boot-1.1.6_100ask24x0.patch,uboot使用为 make 100ask24x0_config,但是make时存在问题； 
@@ -20,5 +33,5 @@ uboot-2015的补充：https://www.cnblogs.com/pengdonglin137/p/4264836.html#_lab
         d)编译uboot. make  
     3)在norflash模式下,把u-boot.bin(该文件就是在uboot_tq2440中)下载到开发板nandflash
         使用sudo dnw u-boot.bin  
-3.在nandflash下，学习uboot的简单命令
-    
+４.在nandflash下，学习uboot的简单命令
+

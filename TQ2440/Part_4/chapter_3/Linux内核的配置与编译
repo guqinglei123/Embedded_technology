@@ -1,0 +1,15 @@
+参看书籍:
+linux的编译见嵌入式linux内核制作.pdf
+
+主要内容：
+
+
+实验过程：
+１.配置linux内核
+２.编译linux内核
+３.安装下载内核
+    1）.进入uboot
+    2）.配置serverip，gateway，ipaddr
+    3）.在开发板上ping电脑地址，使用电脑ping开发板很难ping通
+    3）.tftp 0x31000000 uImage
+    4）.bootm ox31000000
