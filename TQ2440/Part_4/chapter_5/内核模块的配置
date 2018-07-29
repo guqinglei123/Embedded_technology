@@ -21,6 +21,9 @@ https://blog.csdn.net/coding__madman/article/details/51298180
     ２）安装　insmod
     ３）卸载　rmmod
     ４）查看　lsmod
-
+    
 主要实验：
     helloword模块
+注意：１.屏幕中不出现helloword
+    通过　/var/log/kern.log
+    或者切换到tty１～６而不是虚拟控制终端，并且修改sudo echo　８　> /proc/sys/kernel/printf 

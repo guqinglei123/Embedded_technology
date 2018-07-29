@@ -64,14 +64,15 @@ https://blog.csdn.net/coding__madman/article/details/51297127
             ＃saveenv
         备注：不知道为什么还是进不去文件系统
     2-２).使用NFS文件系统
-        a)编译内核　　××××××××
+        a)编译内核　　
             ＃cd 进入linux源代码目录
             ＃make clean
+            ＃编译内核      
             ＃make menuconfig
                 进入general setup->取消Initial RAM filessystem and RAM disk...
                 返回主界面，进入file systems->选择network file systems->选择root file systems on NFS
             #make uImage ARCH=arm CROSS_COMPILE=arm-linux-
-         b)设置uboot环境变量
-            ＃setenv bootargs noinitrd console=ttySAC0,115200 init=/init root=/dev/nfs rw nfsroot=192.168.0.119:/home/guqinglei/Writing_code/TQ2440/rootfs,proto=tcp,nfsvers=3 ip=192.168.０.11０:192.168.0.119:192.168.０.1:255.255.255.0::eth0:off　　　　××××××××
+        b)设置uboot环境变量
+            ＃setenv bootargs noinitrd console=ttySAC0,115200 init=/init root=/dev/nfs rw nfsroot=192.168.0.119:/home/guqinglei/Writing_code/TQ2440/rootfs,proto=tcp,nfsvers=3 ip=192.168.０.11０:192.168.0.119:192.168.０.1:255.255.255.0::eth0:off　　　　
             ＃saveenv
     3).将uImage拷贝到tftp挂载目录，下载内核。

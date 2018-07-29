@@ -1,0 +1,4 @@
+注意一点：宋宝华给的文件系统(vexpress.img)使用nfs会出错，所以在带-network脚本中使用的是虚拟机就是开发板中所带的文件系统(vexpress_nfs.img)
+开发板nfs的配置：
+ifconfig eth0 192.168.111.2 promisc up
+mount -t nfs -o nolock 192.168.111.1:/home/guqinglei/Writing_code/vexpress_cortex-a9/rootfs   /mnt/nfs

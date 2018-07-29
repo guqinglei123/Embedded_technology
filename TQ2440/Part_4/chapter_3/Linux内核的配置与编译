@@ -30,7 +30,7 @@ https://blog.csdn.net/coding__madman/article/details/51291316
 ２.ＲＡＭ平台内核配置与移植
     １)清理配置文件
         make distclean
-    ２)进行配置　　××××××××
+    ２)进行配置　　
         配置方式：make config配置——文本交互；make menuconfig配置——界面交互。这里两种方式都是为了生成.config配置文件。这里为了方便，直接将配置好的文件config-file拷贝到linux内核代码目录中，并改为.config；在执行make menuconfig ARCH=arm,
         注意：如果不是通过命令行复制.config,最好重新打开终端。同时注意要将.config中的CONFIG_INITRAMFS_SOURCE改为空或者为自己开发板建立根目录地方(/home/guqinglei/Writing_code/TQ2440/rootfs)。还要注意把 Device Drivers 选项下的看门狗（Watchdog Timer Support）关掉，否则开发板进入文件系统之后，过一段时间又自动重新启动。
     ３)编译RAM内核

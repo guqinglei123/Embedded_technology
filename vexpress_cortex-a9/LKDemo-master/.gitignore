@@ -1,0 +1,15 @@
+# ignore for qemu
+*.img*
+!vexpress.img
+*.bin
+*.dtb
+zImage
+u-boot
+# ignore for kernel module
+*.o
+*.mod.c
+*.ko
+*.order
+*.symvers
+.*o.cmd
+.temp_*

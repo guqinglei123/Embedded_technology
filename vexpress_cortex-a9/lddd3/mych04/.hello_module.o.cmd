@@ -1,0 +1,1 @@
+cmd_/home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/mych04/hello_module.o := arm-linux-gnueabi-ld -EL    -r -o /home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/mych04/hello_module.o /home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/mych04/hello.o 

@@ -1,0 +1,5 @@
+linux-vexpress_a9  是直接负责宋宝化老师虚拟机中的linux文件。
+uboot-vexpress_a9和LKDemo-master 是按照虚拟机就是开发板中的内容进行搭建的.
+注意：这里如果使用编译TQ2440的arm-linux-gcc会出问题，应该高版本的内核需要编译器更高，这里在安装一个4.7的编译器。
+
+
