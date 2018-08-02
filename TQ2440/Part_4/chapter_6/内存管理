@@ -31,8 +31,8 @@ https://www.cnblogs.com/smartjourneys/category/980154.html
             d)管理区分配器(alloc_pages()(__alloc_pages())——>buffered_rmqueue()——>rmqueue_bulk())；
             
         通过页框分配地址(都是调用alloc_pages())：
-            ａ)返回页框：alloc_page() __get_free_pages()　 __get_dma_page()
-            b)返回线性地址：get_zeroed_page() __get_free_pages() __get_free_page()；这里得到是虚拟地址，这里的虚拟地址有可能是高端内存，也有可能是低端内存。其他返回值都是页框描述符的地址。(这里有一个疑问，在将page转化为虚拟地址的过程中，如果是低端内存地址，则直接通过位置偏移可以得到；如果是高端内存地址则是通过查找address_htable得到，但是这个address_htable是保存了所有虚拟地址和物理地址的对应信息吗？这些函数都是在内核中才可以使用)
+            ａ)返回页框描述符：alloc_page() __get_free_pages()　 __get_dma_page()
+            b)返回线性地址：get_zeroed_page() __get_free_pages() __get_free_page()；这几个函数都在里面实现了将页框通过page_to_pages转换为内核虚拟地址，这里的内核虚拟地址对应的物理地址有可能是高端内存，也有可能是低端内存。(注意，在将page转化为虚拟地址的过程中，如果是低端内存地址，则直接通过位置偏移可以得到；如果是高端内存地址则是通过查找address_htable得到(此时，高端内存肯定已经通过kmap映射到内核虚拟地址的高端映射区，同时kmap中也维护了这个address_htable)。这个address_htable是保存了内核虚拟地址和物理地址的对应信息，注意这些函数都是在内核中使用，其得到的地址应该都是内核虚拟地址)
 
     2)内存区管理(slab分配):
         基本描述：高速缓冲，普通和专用高速缓存区(怎么理解这些高速缓存区??)，slab,本地cpu高速缓冲(??);
@@ -40,7 +40,7 @@ https://www.cnblogs.com/smartjourneys/category/980154.html
             a)创建/销毁高速缓存区（kmem_cache_create()/kmem_cache_destroy());建立高速缓冲区时，没有分配slab及其对象。 
             b)分配/释放slab(cache_grow()/slab_destroy())；
             ｃ)分配/释放slab对象（kmem_cache_alloc()/kmem_cache_free()）;
-        通过slab分配地址：kmalloc()——>kmem_cache_alloc()——>如果本地高速缓存有则直接得到，如果没有则调用cache_alloc_refill——>....????——>如果一直找不到slab则调用cache_grow()创建salb——>调用kmem_getpages()给slab分配页框——>调用alloc_pages()；值得注意的是，通过kmalloc()虽然得到是内核虚拟地址，但是该地址对应物理地址以及确定，可以通过相应的函数就确定他的物理地址(如果kmalloc分配的是高端内存，那又是如何处理的？？)。
+        通过slab分配地址：kmalloc()——>kmem_cache_alloc()——>如果本地高速缓存有则直接得到，如果没有则调用cache_alloc_refill——>....????——>如果一直找不到slab则调用cache_grow()创建salb——>调用kmem_getpages()给slab分配页框——>调用alloc_pages()；值得注意的是，通过kmalloc()虽然得到是内核虚拟地址，但是该地址对应物理地址可以通过相应的函数就确定他的物理地址(如果kmalloc分配的是高端内存，那又是如何处理的？？)。
         内存池：  
 
     3)非连续内存区管理:vmalloc(),vmap()
@@ -69,6 +69,7 @@ https://www.cnblogs.com/smartjourneys/category/980154.html
             ｂ)调用内核对线性区的操作函数：
                 do_mmap()——>do_mmap_pgoff()
                 do_brk()相当与处理匿名线性区的do_mmap()
+                sbrk()
 
             ｃ)通过do_mmap_pgoff()的实现对线性区的修改：
                 a)检查参数是是否满足要求。
@@ -78,17 +79,31 @@ https://www.cnblogs.com/smartjourneys/category/980154.html
                 e)......
             注意：
                 a)malloc()等函数虽然是调节用户的虚拟地址空间，但是该地址空间的管理是内核控制的，故该函数要调用内核中的相关函数实现。
-                b)上述函数都只是分配VAM,没有分配到具体的页框。只有到需要内存访问时，发现如果还未分配物理内存,发生缺页异常——>调用__alloc_pages为进程分配物理页框。
+                b)上述函数都只是分配VAM,没有分配到具体的页框(对于一些驱动文件而已，有可能已经分配页框，但是没有写入数据)。只有到需要内存访问时，发现如果还未分配物理内存,发生缺页异常——>调用__alloc_pages为进程分配物理页框，并将外存数据写入内存中
                 c)NORMAL（或DMA）区域的内存也可以映射到用户空间，并且不会和内核发生冲突
-        缺页异常：
-            状态判定——>如果符合则分配页框——>请求调页/写时复制——>调用__alloc_pages()分配地址并且建立页表。
 
 
 ４.页框管理
-    分配与回收
+    分配——缺页异常(进程会陷入内核态)：
+        触发缺页异常:
+        1.程序设计的不当导致访问了非法的地址
+        2.访问的地址是合法的，但是该地址还未分配物理页框
+
+        触发缺页异常常见情况:
+        1、当MMU中确实没有创建虚拟页物理页映射关系，并且在该虚拟地址之后再没有当前进程的线性区vma的时候，可以肯定这是一个编码错误，这将杀掉该进程；
+        2、当MMU中确实没有创建虚拟页物理页映射关系，并且在该虚拟地址之后存在当前进程的线性区vma的时候，这很可能是缺页异常，并且可能是栈溢出导致的缺页异常；
+        3、当使用malloc/mmap等希望访问物理空间的库函数/系统调用后，由于linux并未真正给新创建的vma映射物理页，此时若先进行写操作，将如上面的2的情况产生缺页异常，若先进行读操作虽也会产生缺页异常，将被映射给默认的零页(zero_pfn)，等再进行写操作时，仍会产生缺页异常，这次必须分配物理页了，进入写时复制的流程；
+        4、当使用fork等系统调用创建子进程时，子进程不论有无自己的vma，“它的”vma都有对于物理页的映射，但它们共同映射的这些物理页属性为只读，即linux并未给子进程真正分配物理页，当父子进程任何一方要写相应物理页时，导致缺页异常的写时复制；   
+
+        缺页异常执行流程：
+        状态判定，检查要访问的虚拟地址是否合法 ——>查找/分配一个页框(调用__alloc_pages()分配地址)——>填充物理页内容，请求调页(文件映射,匿名映射,非线性映射，交换)/写时复制——>并且建立页表,建立映射关系（虚拟地址到物理地址）
+    回收
     反向映射
     PFRA的实现　
     交换机制　
     
             
 进一步：可以通过一些代码来加深这部分的理解
+
+实验过程：
+    查看/home/guqinglei/Writing_code/vexpress_cortex-a9/ldd3中的实验

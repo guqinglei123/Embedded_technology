@@ -1,6 +1,6 @@
 qemu-system-arm \
     -nographic \
-    -sd vexpress.img \
+    -sd vexpress_nfs.img \
     -M vexpress-a9 \
     -m 512M \
     -kernel zImage \

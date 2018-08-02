@@ -5,10 +5,14 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdint.h>
+
+
 
 #define PAGE_SIZE (4*1024)
 #define BUF_SIZE (16*PAGE_SIZE)
 #define OFFSET (0)
+
 
 int main(int argc, const char *argv[])
 {
@@ -26,8 +30,10 @@ int main(int argc, const char *argv[])
 		perror("mmap failed\n");
 		exit(-1);
 	}
-
-	sprintf(addr, "I am %s\n", argv[0]);
+	
+	printf("%s\n","the ouput of user program:");
+    sprintf(addr, "I am %s\n", argv[0]);
+	
 
 	while(1)
 		sleep(1);

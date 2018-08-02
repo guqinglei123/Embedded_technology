@@ -1,0 +1,10 @@
+obj-m := mylist.o
+ 
+KDIR := /home/guqinglei/Writing_code/TQ2440/Part_4/chapter_7
+ 
+all:
+	make -C $(KDIR) M=$(PWD) modules CROSS_COMPILE=arm-linux- ARCH=arm
+	
+clean:
+	rm -f *.o *.ko *.order *.symvers
+ 

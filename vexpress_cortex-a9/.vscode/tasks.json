@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make",
+            "command": "make",
+            "args": [
+                "default"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "make_debug",
+            "command": "make",
+            "args": [
+                "debug"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "make_clean",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "type": "shell"
+        }
+    ]
+}

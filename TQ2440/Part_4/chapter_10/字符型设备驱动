@@ -1,0 +1,49 @@
+参看书籍:
+<linux设备驱动程序>　第3章
+<linux设备驱动开发——基于最新的linux 4.0内核＞　 第6章
+<深入理解linux内核>　第12章
+
+主要内容：
+1.几种重要的数据结构
+    1).与虚拟文件系统相关
+        file结构体：
+        dentry结构体：
+        inode结构体：
+        super_block结构体：
+    2）.与字符设备相关：cdev结构体（设备号：dev_t）
+    3）.file_opertion结构体：建立文件操作与设备的连接
+2.软件框架
+    1）定义相关结构体：
+        a）定义设备结构体：若是字符设备，则里面肯定包含cdev结构体——为cdev分配了空间；也可以不定义该结构体，直接通过cdev_alloc()为cdev分配空间
+        b）定义文件操作结构体file_opertion.
+    2)模块加载与卸载
+        a）加载函数            
+            (1)获取字符设备号：静态分配:register_chrdev_region()；动态分配:alloc_chrdev_region();用函数获取设备编号后，其中的参数name是和该编号范围关联的设备名称，它将出现在/proc/devices和sysfs中。
+            (2)分配和初始化cdev(cdev_init()——关联cdev与file_opertion);
+            (3)注册设备 cdev_add()——通知内核struct cdev的信息;
+        b)模块卸载函数
+            (1)释放字符设备号(unregister_chrdev_region());
+            (2)注销设备 cdev_del();  
+    3）实现文件操作结构体中基本操作
+        a) open操作：如果不实现，则打开必定成功
+            (1)检查设备特定的错误（如设备未就绪或硬件问题）；
+            (2)如果设备是首次打开，则对其进行初始化；
+            (3)如有必要，更新f_op指针；
+            (4)将自己定义的设备结构体的地址填写置于filp->private_data里的数据结构。值得注意的是函数的传入参数只有inode结构体，这时候通过container_of得到自己定义的设备结构体的地址。
+        b)release操作：不是每一次用户空间close操作都会调用release操作，只有到file中计数为0时，才会调用release。
+            （1）释放由open分配的、保存在file->private_data中的所有内容；
+            （2）在最后一次关闭操作时关闭设备。
+        c)read操作：使用函数copy_to_user拷贝数据到应用空间
+        d)write操作：使用函数copy_from_user从应用空间拷贝数据
+            使用copy_to_user和copy_from_user的原因：虽然内核空间可以访问用户空间(用户空间不能访问内核空间)，但是内核代码不能直接引用用户内容，需要进行access_ok()检查。其原因见<linux设备驱动程序>第67页。
+         e)llseek操作：
+3.VFS系统调用的实现：  
+
+
+
+
+
+
+
+实验过程：
+第四节：应用程序中read如何找到驱动程序中的××_read的

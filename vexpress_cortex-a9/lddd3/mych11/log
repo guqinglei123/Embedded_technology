@@ -1,0 +1,364 @@
+通过dmesg 查看内核log可以到，linux的内核虚拟空间布局为：
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+    vmalloc : 0xa0800000 - 0xff000000   (1512 MB)
+    lowmem  : 0x80000000 - 0xa0000000   ( 512 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x805fc604   (6098 kB)
+      .init : 0x805fd000 - 0x8063e000   ( 260 kB)
+      .data : 0x8063e000 - 0x80664f00   ( 156 kB)
+       .bss : 0x80664f00 - 0x80689fb8   ( 149 kB)
+
+驱动为remap_pfn_alloc_pages时：
+    运行user_1有：
+        模块输出：
+        client: user_1 (709)
+        code  section: [0x8000   0x86b4]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76f30000
+        stack section: s: 0x7eb5ae40
+        arg   section: [0x7eb5af2b   0x7eb5af34]
+        env   section: [0x7eb5af34   0x7eb5aff3]
+        phy: 0x7e840000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0x9e840000 to 0x76dac000, size: 0x10000
+
+
+        程序虚拟地址(cat /proc/709/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00010000-00011000 r--p 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00011000-00012000 rw-p 00001000 00:0f 3032362    /liuni/mych11/user_1
+        76dac000-76dbc000 rw-s 00000000 00:06 227        /dev/remap_pfn
+        76dbc000-76ee9000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76ee9000-76ef9000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76ef9000-76efb000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76efb000-76efc000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76efc000-76eff000 rw-p 00000000 00:00 0 
+        76eff000-76f1f000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76f2b000-76f2e000 rw-p 00000000 00:00 0 
+        76f2e000-76f2f000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76f2f000-76f30000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7eb3a000-7eb5b000 rw-p 00000000 00:00 0          [stack]
+        7ecc7000-7ecc8000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+    运行user_2有：
+        模块输出：
+        client: user_2 (711)
+        code  section: [0x8000   0x86a0]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76f88000
+        stack section: s: 0x7eac0e40
+        arg   section: [0x7eac0f2b   0x7eac0f34]
+        env   section: [0x7eac0f34   0x7eac0ff3]
+        phy: 0x7e840000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0x9e840000 to 0x76e04000, size: 0x10000
+        用户程序输出：
+        I am ./user_1
+
+
+        程序虚拟地址(cat /proc/711/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00010000-00011000 r--p 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00011000-00012000 rw-p 00001000 00:0f 3032363    /liuni/mych11/user_2
+        00012000-00034000 rw-p 00000000 00:00 0          [heap]
+        76e04000-76e14000 rw-s 00000000 00:06 227        /dev/remap_pfn
+        76e14000-76f41000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76f41000-76f51000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f51000-76f53000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f53000-76f54000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76f54000-76f57000 rw-p 00000000 00:00 0 
+        76f57000-76f77000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76f83000-76f86000 rw-p 00000000 00:00 0 
+        76f86000-76f87000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76f87000-76f88000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7eaa0000-7eac1000 rw-p 00000000 00:00 0          [stack]
+        7efd6000-7efd7000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+
+驱动为remap_pfn_kmalloc时：
+    运行user_1有：
+        模块输出：
+        client: user_1 (736)
+        code  section: [0x8000   0x86b4]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76fac000
+        stack section: s: 0x7e9dfe40
+        arg   section: [0x7e9dff2b   0x7e9dff34]
+        env   section: [0x7e9dff34   0x7e9dfff3]
+        phy: 0x7e840000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0x9e840000 to 0x76e28000, size: 0x10000
+
+        程序虚拟地址(cat /proc/736/maps)：    
+        00008000-00009000 r-xp 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00010000-00011000 r--p 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00011000-00012000 rw-p 00001000 00:0f 3032362    /liuni/mych11/user_1
+        76e28000-76e38000 rw-s 00000000 00:06 236        /dev/remap_pfn
+        76e38000-76f65000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76f65000-76f75000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f75000-76f77000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f77000-76f78000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76f78000-76f7b000 rw-p 00000000 00:00 0 
+        76f7b000-76f9b000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76fa7000-76faa000 rw-p 00000000 00:00 0 
+        76faa000-76fab000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76fab000-76fac000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7e9bf000-7e9e0000 rw-p 00000000 00:00 0          [stack]
+        7eda8000-7eda9000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+    
+    
+    运行user_2有：
+        模块输出：
+        client: user_2 (739)
+        code  section: [0x8000   0x86a0]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76ff2000
+        stack section: s: 0x7ecefe40
+        arg   section: [0x7eceff2b   0x7eceff34]
+        env   section: [0x7eceff34   0x7ecefff3]
+        phy: 0x7e840000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0x9e840000 to 0x76e6e000, size: 0x10000
+        用户程序输出：
+        I am ./user_1
+
+        程序虚拟地址(cat /proc/739/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00010000-00011000 r--p 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00011000-00012000 rw-p 00001000 00:0f 3032363    /liuni/mych11/user_2
+        00012000-00034000 rw-p 00000000 00:00 0          [heap]
+        76e6e000-76e7e000 rw-s 00000000 00:06 236        /dev/remap_pfn
+        76e7e000-76fab000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76fab000-76fbb000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76fbb000-76fbd000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76fbd000-76fbe000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76fbe000-76fc1000 rw-p 00000000 00:00 0 
+        76fc1000-76fe1000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76fed000-76ff0000 rw-p 00000000 00:00 0 
+        76ff0000-76ff1000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76ff1000-76ff2000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7eccf000-7ecf0000 rw-p 00000000 00:00 0          [stack]
+        7eff4000-7eff5000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+驱动为remap_pfn_vmalloc时：
+    运行user_1有：
+        模块输出：
+        ./user_1
+        client: user_1 (753)
+        code  section: [0x8000   0x86b4]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76f1f000
+        stack section: s: 0x7e973e40
+        arg   section: [0x7e973f2b   0x7e973f34]
+        env   section: [0x7e973f34   0x7e973ff3]
+        phy: 0x7e86e000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0xa0b29000 (0x7e86e000) to 0x76d9b000 , size: 0x1000, number: 1
+        remap_pfn_mmap: map 0xa0b2a000 (0x7e86d000) to 0x76d9c000 , size: 0x1000, number: 2
+        remap_pfn_mmap: map 0xa0b2b000 (0x7e86c000) to 0x76d9d000 , size: 0x1000, number: 3
+        remap_pfn_mmap: map 0xa0b2c000 (0x7e86b000) to 0x76d9e000 , size: 0x1000, number: 4
+        remap_pfn_mmap: map 0xa0b2d000 (0x7e86a000) to 0x76d9f000 , size: 0x1000, number: 5
+        remap_pfn_mmap: map 0xa0b2e000 (0x7f671000) to 0x76da0000 , size: 0x1000, number: 6
+        remap_pfn_mmap: map 0xa0b2f000 (0x7ed50000) to 0x76da1000 , size: 0x1000, number: 7
+        remap_pfn_mmap: map 0xa0b30000 (0x7ed51000) to 0x76da2000 , size: 0x1000, number: 8
+        remap_pfn_mmap: map 0xa0b31000 (0x7f674000) to 0x76da3000 , size: 0x1000, number: 9
+        remap_pfn_mmap: map 0xa0b32000 (0x7ed53000) to 0x76da4000 , size: 0x1000, number: 10
+        remap_pfn_mmap: map 0xa0b33000 (0x7e860000) to 0x76da5000 , size: 0x1000, number: 11
+        remap_pfn_mmap: map 0xa0b34000 (0x7e861000) to 0x76da6000 , size: 0x1000, number: 12
+        remap_pfn_mmap: map 0xa0b35000 (0x7e862000) to 0x76da7000 , size: 0x1000, number: 13
+        remap_pfn_mmap: map 0xa0b36000 (0x7e863000) to 0x76da8000 , size: 0x1000, number: 14
+        remap_pfn_mmap: map 0xa0b37000 (0x7e864000) to 0x76da9000 , size: 0x1000, number: 15
+        remap_pfn_mmap: map 0xa0b38000 (0x7e865000) to 0x76daa000 , size: 0x1000, number: 16
+
+        程序虚拟地址(cat /proc/753/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00010000-00011000 r--p 00000000 00:0f 3032362    /liuni/mych11/user_1
+        00011000-00012000 rw-p 00001000 00:0f 3032362    /liuni/mych11/user_1
+        76dec000-76dfc000 rw-s 00000000 00:06 244        /dev/remap_pfn
+        76dfc000-76f29000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76f29000-76f39000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f39000-76f3b000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76f3b000-76f3c000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76f3c000-76f3f000 rw-p 00000000 00:00 0 
+        76f3f000-76f5f000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76f6b000-76f6e000 rw-p 00000000 00:00 0 
+        76f6e000-76f6f000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76f6f000-76f70000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7ea48000-7ea69000 rw-p 00000000 00:00 0          [stack]
+        7ed7c000-7ed7d000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+    
+    
+    运行user_2有：
+        模块输出：
+        client: user_2 (755)
+        code  section: [0x8000   0x86a0]
+        data  section: [0x10f0c   0x1103c]
+        brk   section: s: 0x12000, c: 0x12000
+        mmap  section: s: 0x76ffc000
+        stack section: s: 0x7e9d5e40
+        arg   section: [0x7e9d5f2b   0x7e9d5f34]
+        env   section: [0x7e9d5f34   0x7e9d5ff3]
+        phy: 0x7e86e000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0xa0b29000 (0x7e86e000) to 0x76e78000 , size: 0x1000, number: 1
+        remap_pfn_mmap: map 0xa0b2a000 (0x7e86d000) to 0x76e79000 , size: 0x1000, number: 2
+        remap_pfn_mmap: map 0xa0b2b000 (0x7e86c000) to 0x76e7a000 , size: 0x1000, number: 3
+        remap_pfn_mmap: map 0xa0b2c000 (0x7e86b000) to 0x76e7b000 , size: 0x1000, number: 4
+        remap_pfn_mmap: map 0xa0b2d000 (0x7e86a000) to 0x76e7c000 , size: 0x1000, number: 5
+        remap_pfn_mmap: map 0xa0b2e000 (0x7f671000) to 0x76e7d000 , size: 0x1000, number: 6
+        remap_pfn_mmap: map 0xa0b2f000 (0x7ed50000) to 0x76e7e000 , size: 0x1000, number: 7
+        remap_pfn_mmap: map 0xa0b30000 (0x7ed51000) to 0x76e7f000 , size: 0x1000, number: 8
+        remap_pfn_mmap: map 0xa0b31000 (0x7f674000) to 0x76e80000 , size: 0x1000, number: 9
+        remap_pfn_mmap: map 0xa0b32000 (0x7ed53000) to 0x76e81000 , size: 0x1000, number: 10
+        remap_pfn_mmap: map 0xa0b33000 (0x7e860000) to 0x76e82000 , size: 0x1000, number: 11
+        remap_pfn_mmap: map 0xa0b34000 (0x7e861000) to 0x76e83000 , size: 0x1000, number: 12
+        remap_pfn_mmap: map 0xa0b35000 (0x7e862000) to 0x76e84000 , size: 0x1000, number: 13
+        remap_pfn_mmap: map 0xa0b36000 (0x7e863000) to 0x76e85000 , size: 0x1000, number: 14
+        remap_pfn_mmap: map 0xa0b37000 (0x7e864000) to 0x76e86000 , size: 0x1000, number: 15
+        remap_pfn_mmap: map 0xa0b38000 (0x7e865000) to 0x76e87000 , size: 0x1000, number: 16
+        用户程序输出：        
+        I am ./user_1
+
+
+        程序虚拟地址(cat /proc/755/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00010000-00011000 r--p 00000000 00:0f 3032363    /liuni/mych11/user_2
+        00011000-00012000 rw-p 00001000 00:0f 3032363    /liuni/mych11/user_2
+        00012000-00034000 rw-p 00000000 00:00 0          [heap]
+        76e78000-76e88000 rw-s 00000000 00:06 244        /dev/remap_pfn
+        76e88000-76fb5000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76fb5000-76fc5000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76fc5000-76fc7000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76fc7000-76fc8000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76fc8000-76fcb000 rw-p 00000000 00:00 0 
+        76fcb000-76feb000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76ff7000-76ffa000 rw-p 00000000 00:00 0 
+        76ffa000-76ffb000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76ffb000-76ffc000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7e9b5000-7e9d6000 rw-p 00000000 00:00 0          [stack]
+        7ec42000-7ec43000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+注意，输出代码中的几点：
+1.运行user_2的时候，在用户程序输出都出现I am ./user_1，说明程序user_2访问到了程序user_1写入的那一片物理地址。这个实现原理（也就是共享内存的实现机理）：在模块中，建立内核虚拟地址与物理地址之间的映射关系，通过在用户空间访问同一个内核虚拟地址，达到访问同一块物理的地址的目的。以模块remap_pfn_alloc_pages模块为例进行说明，通过分析remap_pfn_mmap与phy一行输出可以发现，驱动中通过remap_pfn_range建立内核虚拟地址0x9e840000与物理地址0x7e840000之间的映射(分配了页框，但是没有发生数据拷贝)；同时，通过分析remap_pfn_mmap一行输出还可以发现，用户程序是建立了内核虚拟地址0x9e840000到用户程序虚拟地址(这个虚拟地址在不同应用程序中不同)的映射，通过访问用户程序的虚拟地址达到访问同一个物理地址的目的。这里验证mmap的两个优点：a.可以实现内核和用户程序的高效通讯；b.可以实现不同用户程序之间的高效通讯。如果是有亲缘关系的进程，可以直接通过匿名映射实现之间的高效通讯，这个时候mmap中参数fd将被忽略。
+
+2.注意程序模块输出中remap_pfn_mmap一行。发现前面两种分配方式，驱动模块中映射的内核区都是从lowmem的范围内部，此时，分配到的物理地址和虚拟地址都是连续的(如何去查看分配的是地址是通过lab管理区分配的，还是直接通过页框管理区分配的？)；而第三次则是在vmalloc范围内，并且每一次仅仅建立一页页框(4k)与4k的虚拟地址空间的映射，通过16次调用remap_pfn_mmap建立物理(16*4k页框)与是虚拟地址之间的映射，值得注意的是，虽然对vmalloc连续虚拟地址4k4k建立映射，但每4k建立的物理地址是非连续。
+驱动为remap_pfn_alloc_pages时：
+    运行user_3有：
+        应用程序以及模块输出：
+        pid = 780
+
+        the ouput of malloc(100):
+        before malloc(100):
+        the output of opening remap_pfn drive:
+        client: user_3 (780)
+        code  section: [0x8000   0x8f14]
+        data  section: [0x11f0c   0x12058]
+        brk   section: s: 0x13000, c: 0x35000
+        mmap  section: s: 0x76f06000
+        stack section: s: 0x7ef06e40
+        arg   section: [0x7ef06f2b   0x7ef06f34]
+        env   section: [0x7ef06f34   0x7ef06ff3]
+        after malloc(100):
+        the output of opening remap_pfn drive:
+        client: user_3 (780)
+        code  section: [0x8000   0x8f14]
+        data  section: [0x11f0c   0x12058]
+        brk   section: s: 0x13000, c: 0x35000
+        mmap  section: s: 0x76f06000
+        stack section: s: 0x7ef06e40
+        arg   section: [0x7ef06f2b   0x7ef06f34]
+        env   section: [0x7ef06f34   0x7ef06ff3]
+        the ouput of user program:
+        virtual addr: 14010
+        physical addr: 68172010
+
+        the ouput of malloc(200K):
+        the ouput of user program:
+        virtual addr: 76d5f008
+        physical addr: 681df008
+
+        the ouput of mmap_drive:
+        the output of opening remap_pfn drive:
+        client: user_3 (780)
+        code  section: [0x8000   0x8f14]
+        data  section: [0x11f0c   0x12058]
+        brk   section: s: 0x13000, c: 0x35000
+        mmap  section: s: 0x76f06000
+        stack section: s: 0x7ef06e40
+        arg   section: [0x7ef06f2b   0x7ef06f34]
+        env   section: [0x7ef06f34   0x7ef06ff3]
+        the output of mmaping remap_pfn drive:
+        phy: 0x7e800000, offset: 0x0, size: 0x10000
+        remap_pfn_mmap: map 0x9e800000 to 0x76d4f000, size: 0x10000
+        page present is 0
+        the ouput of user program:
+        virtual addr: 76d4f000
+        physical addr: 0
+        the write data of mmap_address I am ./user_3
+
+        page present is 0
+        physical addr of wirte data: 0
+
+        the ouput of mmap_test:
+        virtual addr: 76d3f000
+        physical addr: 607ad000
+
+
+        the ouput of mmap_test:
+        virtual addr: 76d91000
+        physical addr: 607ad000
+
+
+        程序虚拟地址(cat /proc/779/maps)：
+        00008000-00009000 r-xp 00000000 00:0f 3032349    /liuni/mych11/user_3
+        00011000-00012000 r--p 00001000 00:0f 3032349    /liuni/mych11/user_3
+        00012000-00013000 rw-p 00002000 00:0f 3032349    /liuni/mych11/user_3
+        00013000-00035000 rw-p 00000000 00:00 0          [heap]
+        76d3f000-76d4f000 rw-s 00000000 00:0f 3032355    /liuni/mych11/test
+        76d4f000-76d5f000 rw-s 00000000 00:06 133        /dev/remap_pfn
+        76d5f000-76d92000 rw-p 00000000 00:00 0 
+        76d92000-76ebf000 r-xp 00000000 b3:01 9767       /lib/libc-2.23.so
+        76ebf000-76ecf000 ---p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76ecf000-76ed1000 r--p 0012d000 b3:01 9767       /lib/libc-2.23.so
+        76ed1000-76ed2000 rw-p 0012f000 b3:01 9767       /lib/libc-2.23.so
+        76ed2000-76ed5000 rw-p 00000000 00:00 0 
+        76ed5000-76ef5000 r-xp 00000000 b3:01 9834       /lib/ld-2.23.so
+        76f01000-76f04000 rw-p 00000000 00:00 0 
+        76f04000-76f05000 r--p 0001f000 b3:01 9834       /lib/ld-2.23.so
+        76f05000-76f06000 rw-p 00020000 b3:01 9834       /lib/ld-2.23.so
+        7eee6000-7ef07000 rw-p 00000000 00:00 0          [stack]
+        7efb7000-7efb8000 r-xp 00000000 00:00 0          [sigpage]
+        ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+3.通过用户虚拟地址查看其对应的物理地址(无法验证对应的物理地址是否准确),并且发现malloc分配内存小于128k时，调用brk，改变的是brk_end(通过比较before malloc(100)与after malloc(100)之间的brk)；如果malloc分配内存大于128k时，则调用mmap，通过在heap和stack中插入以一个mmap的线性区实现的(通过其虚拟地址76d5f008在的虚拟地址空间的分布可以确定)。一直想验证用户空间中虚拟地址计算的物理地址和模块中输出物理地址相同，但是一直验证不出来？问题在于程序计算不出来用户空间虚拟地址对应的物理地址，似乎两个之间没有任何关系。若数据写入用户虚拟地址空间，然后数据映射到了模块分配的虚拟地址空间（用户程序的mmap建立了这样用户虚拟地址空间和内核虚拟地址空间的映射），这个如何将数据从模块虚拟地址空间写入到物理内存中呢（模块的remap_pfn_mmap建立了这样内核虚拟地址空间和物理地址空间的映射）？这里是否发生了缺页异常？
+
+4.如何去确定用户程序什么时候是分配虚拟地址，什么时候建立页表(分配了页框)，什么时候将文件内容copy物理内存。
+    分配虚拟地址：用户程序的mmap
+    建立页表：模块中的mmap，通过remap_pfn_mmap实现
+    将文件内容copy到物理空间：发生缺页异常时，进行复制copy
+
+5.模块中mmap使用falut()/nopage()与remap_pfn_mmap的区别。
+
+6.不同变量是否采用了写是交换技术？
+    全局常量：符合写时拷贝技术 
+    局部变量：不符合写时拷贝技术。原因分析，有可能是物理页上的其他数据被改动，导致拷贝出一个新物理页面 
+    局部静态变量：不符合写时拷贝技术。原因分析，有可能是物理页上的其他数据被改动，导致拷贝出一个新物理页面 
+    局部常量：不符合写时拷贝技术。原因分析，有可能是物理页上的其他数据被改动，导致拷贝出一个新物理页面 
+    字符串：符合写时拷贝技术
+    动态内存：符合写时拷贝技术 （子进程不修改动态内存   子进程修改动态内存）
+
+7.IO内存与IO端口实验
+
+
+
+

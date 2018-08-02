@@ -1,65 +1,92 @@
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <unistd.h>
+
+
 #include <stdlib.h>
-#include <string.h>
 
-#define PAGE_SIZE (4*1024)
-#define BUF_SIZE (32*PAGE_SIZE)
-#define OFFSET (0)
 
-extern void *func2(void);
+#include <sys/types.h>
 
-void func(num)
+
+#include <unistd.h>
+
+
+#include <sys/stat.h>
+
+
+#include <fcntl.h>
+
+
+#include <stdint.h>
+
+
+//计算虚拟地址对应的地址，传入虚拟地址vaddr，通过paddr传出物理地址
+void mem_addr(unsigned long vaddr, unsigned long *paddr)
 {
-	char buffer[PAGE_SIZE];
-	printf("%d\n", num);
-	while (1)
-		func(--num);
+    int pageSize = getpagesize();//调用此函数获取系统设定的页面大小
+
+    unsigned long v_pageIndex = vaddr / pageSize;//计算此虚拟地址相对于0x0的经过的页面数
+    unsigned long v_offset = v_pageIndex * sizeof(uint64_t);//计算在/proc/pid/page_map文件中的偏移量
+    unsigned long page_offset = vaddr % pageSize;//计算虚拟地址在页面中的偏移量
+    uint64_t item = 0;//存储对应项的值
+
+    int fd = open("/proc/self/pagemap", O_RDONLY);//以只读方式打开/proc/pid/page_map
+    if(fd == -1)//判断是否打开失败
+    {
+        printf("open /proc/self/pagemap error\n");
+        return;
+    }
+
+    if(lseek(fd, v_offset, SEEK_SET) == -1)//将游标移动到相应位置，即对应项的起始地址且判断是否移动失败
+    {
+        printf("sleek error\n");
+        return; 
+    }
+
+    if(read(fd, &item, sizeof(uint64_t)) != sizeof(uint64_t))//读取对应项的值，并存入item中，且判断读取数据位数是否正确
+    {
+        printf("read item error\n");
+        return;
+    }
+
+    if((((uint64_t)1 << 63) & item) == 0)//判断present是否为0
+    {
+        printf("page present is 0\n");
+        return ;
+    }
+
+    uint64_t phy_pageIndex = (((uint64_t)1 << 55) - 1) & item;//计算物理页号，即取item的bit0-54
+
+    *paddr = (phy_pageIndex * pageSize) + page_offset;//再加上页内偏移量就得到了物理地址
 }
 
-int global_bss[PAGE_SIZE];
-int global_data[PAGE_SIZE] = {5};
+const int a = 100;//全局常量
 
-int main(int argc, const char *argv[])
+int main()
 {
-	int fd;
-	char *addr = NULL;
-	int *brk;
-	char buffer[1024*1024];
-	char *addr2;
+    int b = 100;//局部变量
+    static c = 100;//局部静态变量
+    const int d = 100;//局部常量
+    char *str = "Hello World!";
 
-	printf("global_bss: 0x%p, global_data: 0x%p\n", &global_bss, &global_data);
-	memset(global_bss, 0x55, PAGE_SIZE*4);
-	memset(global_data, 0x55, PAGE_SIZE*4);
+    unsigned long phy = 0;//物理地址
 
-	fd = open("/dev/remap_pfn", O_RDWR);
-	if (fd < 0) {
-		perror("open failed\n");
-		exit(-1);
-	}
+    char *p = (char*)malloc(100);//动态内存
 
-	addr = mmap(NULL, BUF_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_LOCKED, fd, 0);
-	if (!addr) {
-		perror("mmap failed\n");
-		exit(-1);
-	}
-	memset(addr, 0x0, BUF_SIZE);
+    int pid = fork();//创建子进程
+    if(pid == 0)
+    {
+        //p[0] = '1';//子进程中修改动态内存
+        mem_addr((unsigned long)&a, &phy);
+        printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
+    }
+    else
+    { 
+        mem_addr((unsigned long)&a, &phy);
+        printf("pid = %d, virtual addr = %x , physical addr = %x\n", getpid(), &a, phy);
+    }
 
-	printf("Clear Finished\n");
-
-	/*brk = malloc(1024*PAGE_SIZE);*/
-	/*memset(brk, 0x0, 1024*PAGE_SIZE);*/
-
-	addr2 = func2();
-
-	//func(0);
-	while(1) {
-		sleep(1);
-	}
-
-	return 0;
+    sleep(100);
+    free(p);
+    waitpid();
+    return 0;
 }

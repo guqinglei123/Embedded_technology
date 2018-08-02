@@ -1,0 +1,9 @@
+参看书籍:
+<linux设备驱动程序>　第11章
+
+
+主要内容:
+1.链表的分类：单向list、双向list、双向循环list(内核list为双向循环list)。
+2.内核list的特殊之处（即如何实现使用一个list_head实现对不同类型节点的链接）：
+3.创建和操作内核list的函数
+4.分析内核中与内核list相关的函数的具体实现(宏定义offsetof container_of)

@@ -5,6 +5,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #define PAGE_SIZE (4*1024)
 #define BUF_SIZE (16*PAGE_SIZE)
@@ -26,9 +27,10 @@ int main(int argc, const char *argv[])
 		perror("mmap failed\n");
 		exit(-1);
 	}
-
+	
+	printf("%s\n","the ouput of user program:");
 	printf("%s", addr);
-
+	
 	while(1)
 		sleep(1);
 

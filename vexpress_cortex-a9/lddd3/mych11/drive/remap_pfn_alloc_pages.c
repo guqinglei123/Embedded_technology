@@ -13,7 +13,7 @@ static struct page *start_page;
 static int remap_pfn_open(struct inode *inode, struct file *file)
 {
 	struct mm_struct *mm = current->mm;
-
+	printk("the output of opening remap_pfn drive:\n");
 	printk("client: %s (%d)\n", current->comm, current->pid);
 	printk("code  section: [0x%lx   0x%lx]\n", mm->start_code, mm->end_code);
 	printk("data  section: [0x%lx   0x%lx]\n", mm->start_data, mm->end_data);
@@ -25,7 +25,11 @@ static int remap_pfn_open(struct inode *inode, struct file *file)
 
 	return 0;
 }
-
+static int remap_pfn_close(struct inode *inode, struct file *file)
+{
+	printk("close remap_pfn drive\n");
+	return 0;
+}
 static int remap_pfn_mmap(struct file *file, struct vm_area_struct *vma)
 {
 	unsigned long offset = vma->vm_pgoff << PAGE_SHIFT;
@@ -33,7 +37,7 @@ static int remap_pfn_mmap(struct file *file, struct vm_area_struct *vma)
 	unsigned long virt_start = (unsigned long)page_address(start_page);
 	unsigned long size = vma->vm_end - vma->vm_start;
 	int ret = 0;
-
+	printk("the output of mmaping remap_pfn drive:\n");
 	printk("phy: 0x%lx, offset: 0x%lx, size: 0x%lx\n", pfn_start << PAGE_SHIFT, offset, size);
 
 	ret = remap_pfn_range(vma, vma->vm_start, pfn_start, size, vma->vm_page_prot);
@@ -51,6 +55,7 @@ static const struct file_operations remap_pfn_fops = {
 	.owner = THIS_MODULE,
 	.open = remap_pfn_open,
 	.mmap = remap_pfn_mmap,
+	.release = remap_pfn_close,
 };
 
 static struct miscdevice remap_pfn_misc = {
