@@ -1,7 +1,11 @@
 obj-m := memdev.o
-KDIR := /home/S5-driver/lesson7/linux-tiny6410/
+
+KDIR := /home/guqinglei/Writing_code/TQ2440/linux-tq2440
+ROOTFSDIR := /home/guqinglei/Writing_code/TQ2440/rootfs
+
 all:
 	make -C $(KDIR) M=$(PWD) modules CROSS_COMPILE=arm-linux- ARCH=arm
+	cp *.ko $(ROOTFSDIR)
+	
 clean:
-	rm -f *.ko *.o *.mod.o *.mod.c *.symvers *.bak *.order
-
+	rm -f *.o *.ko *.order *.symvers

@@ -1,0 +1,1 @@
+cmd_/home/guqinglei/Writing_code/TQ2440/Part_4/chapter_10/tq2440_arm9/drive/memdev.ko := arm-linux-ld -EL -r   --build-id -o /home/guqinglei/Writing_code/TQ2440/Part_4/chapter_10/tq2440_arm9/drive/memdev.ko /home/guqinglei/Writing_code/TQ2440/Part_4/chapter_10/tq2440_arm9/drive/memdev.o /home/guqinglei/Writing_code/TQ2440/Part_4/chapter_10/tq2440_arm9/drive/memdev.mod.o

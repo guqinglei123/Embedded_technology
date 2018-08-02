@@ -1,1 +1,0 @@
-cmd_../LKDemo/exp.d/globalmem/globalmem.ko := arm-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o ../LKDemo/exp.d/globalmem/globalmem.ko ../LKDemo/exp.d/globalmem/globalmem.o ../LKDemo/exp.d/globalmem/globalmem.mod.o

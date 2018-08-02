@@ -1,2 +1,2 @@
-/home/guqinglei/Study_code/Linux_Kernel/21cnbao/kernel/drivers/globalmem/ch6/globalmem.ko
-/home/guqinglei/Study_code/Linux_Kernel/21cnbao/kernel/drivers/globalmem/ch6/globalmem.o
+/home/guqinglei/Writing_code/x86_64/globalmem/ch6/globalmem.ko
+/home/guqinglei/Writing_code/x86_64/globalmem/ch6/globalmem.o

@@ -33,9 +33,15 @@
         b)release操作：不是每一次用户空间close操作都会调用release操作，只有到file中计数为0时，才会调用release。
             （1）释放由open分配的、保存在file->private_data中的所有内容；
             （2）在最后一次关闭操作时关闭设备。
-        c)read操作：使用函数copy_to_user拷贝数据到应用空间
-        d)write操作：使用函数copy_from_user从应用空间拷贝数据
-            使用copy_to_user和copy_from_user的原因：虽然内核空间可以访问用户空间(用户空间不能访问内核空间)，但是内核代码不能直接引用用户内容，需要进行access_ok()检查。其原因见<linux设备驱动程序>第67页。
+        c)read操作：
+            （1）判断读的位置是否有效
+            （2）分析和获取有效的读长度
+            （3）使用函数copy_to_user拷贝数据到应用空间
+        d)write操作：
+            （1）/*判断写的位置是否有效*/
+            （2）/*分析和获取有效的写长度*/
+            （3）使用函数copy_from_user从应用空间拷贝数据
+            注意：使用copy_to_user和copy_from_user的原因为虽然内核空间可以访问用户空间(用户空间不能访问内核空间)，但是内核代码不能直接引用用户内容，需要进行access_ok()检查。其原因见<linux设备驱动程序>第67页。
          e)llseek操作：
 3.VFS系统调用的实现：  
 
