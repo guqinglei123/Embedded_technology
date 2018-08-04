@@ -27,6 +27,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}",
+                "/home/guqinglei/Writing_code/TQ2440/linux-tq2440/include",
                 "/home/guqinglei/catkin_ws/devel/include",
                 "/opt/ros/indigo/include",
                 "/usr/include/c++/4.8",
@@ -43,6 +44,7 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}",
+                    "/home/guqinglei/Writing_code/TQ2440/linux-tq2440/include",
                     "/home/guqinglei/catkin_ws/devel/include",
                     "/opt/ros/indigo/include",
                     "/usr/include/c++/4.8",

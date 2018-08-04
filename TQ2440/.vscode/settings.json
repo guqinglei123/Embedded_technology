@@ -40,6 +40,8 @@
         "stack": "cpp",
         "iostream": "cpp",
         "queue": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "uaccess.h": "c",
+        "current.h": "c"
     }
 }

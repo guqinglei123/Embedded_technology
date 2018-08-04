@@ -1,0 +1,1 @@
+cmd_/home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/ch04/hello.ko := arm-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/ch04/hello.ko /home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/ch04/hello.o /home/guqinglei/Writing_code/vexpress_cortex-a9/lddd3/ch04/hello.mod.o

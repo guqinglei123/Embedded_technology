@@ -9,7 +9,7 @@
 
 #define MEN_MAJOR 230
 #define MEN_NR_DEVS 2
-#define MEN_SIZE 5
+#define MEN_SIZE 0x1000
 
 int memdev_major = MEN_MAJOR;
 int memdev_minor = 0;
@@ -30,7 +30,7 @@ struct mem_dev *mem_devp;
 int mem_open(struct inode *inode, struct file *filp)
 {
   /*获取次设备号*/
-  struct mem_dev *dev = container_of(inode->i_rdev,struct mem_dev,cdev);
+  struct mem_dev *dev = container_of(inode->i_cdev,struct mem_dev,cdev);//写程序的时候，这里写成了i_rdev，导致这里得到数据一直出错
   filp->private_data = dev;
   return 0;
 }
@@ -148,7 +148,7 @@ static int memdev_init(void)
   if (memdev_major)
   {
     devno = MKDEV(memdev_major, memdev_minor);
-    ret = register_chrdev_region(devno, memdev_nr_devs, "scull");
+    ret = register_chrdev_region(devno, memdev_nr_devs, "memdev");
   }
   else
   {

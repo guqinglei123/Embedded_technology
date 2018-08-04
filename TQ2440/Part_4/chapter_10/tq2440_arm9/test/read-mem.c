@@ -6,7 +6,7 @@
 int main()
 {
 	int fd = 0;
-	int dst = 0;
+	int dst = 2000;
 	
 	/*打开设备文件*/
 	fd = open("/dev/memdev0",O_RDWR);

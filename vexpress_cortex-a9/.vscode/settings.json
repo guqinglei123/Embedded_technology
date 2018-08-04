@@ -41,6 +41,8 @@
         "iostream": "cpp",
         "queue": "cpp",
         "set": "cpp",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "hash_map": "c",
+        "hash_set": "c"
     }
 }

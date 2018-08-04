@@ -1,0 +1,14 @@
+启动脚本：
+注意一点：宋宝华给的文件系统(vexpress.img)使用nfs会出错，所以在带-network脚本中使用的是虚拟机就是开发板中所带的文件系统(vexpress_nfs.img)
+
+主机的配置：
+sudo tunctl -u root -t tap30
+sudo ifconfig tap30 192.168.111.1 promisc up
+cd /home/guqinglei/Writing_code/vexpress_cortex-a9/vexpress_a9
+sudo ./run-nolcd-network.sh 
+
+开发板nfs的配置：
+ifconfig eth0 192.168.111.2 promisc up
+mount -t nfs -o nolock 192.168.111.1:/home/guqinglei/Writing_code/vexpress_cortex-a9/rootfs   /guqinglei
+
+

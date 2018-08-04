@@ -3,7 +3,7 @@
 #include <linux/cdev.h>
 #include <linux/fs.h>
 #include <linux/io.h>
-#include <mach/gpio-bank-k.h>
+// #include <mach/gpio-bank-k.h>
 #include "led.h"
 
 #define LEDCON 0x7f008800
@@ -67,3 +67,7 @@ static void led_exit()
 
 module_init(led_init);
 module_exit(led_exit);
+
+
+MODULE_AUTHOR("guqinglei962@gmail.com,NI LIU");
+MODULE_LICENSE("GPL");
