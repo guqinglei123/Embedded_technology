@@ -21,7 +21,7 @@
         3)端口映射到内存，支持所有函数。串操作 用C语言实现。端口是 unsigned int 类型。
 
 ３.访问ＩＯ内存
-    驱动程序访问：分配ＩＯ内存(request_mem_region)——>地址映射(ioremap())——>操作ＩＯ内存(8,16,32bit的读写分别为readb,writeb,readw,writew,readl,writel;此外,如果有_relaxed,则代表有内存屏障,此外，还有相应的接口ioread8/iowrite8等)——>解除映射(iounmap())——>归还ＩＯ端口(release_mem_region())
+    驱动程序访问：分配ＩＯ内存(request_mem_region)——>地址映射(ioremap())——>操作ＩＯ内存(8,16,32bit的读写分别为readb,writeb,readw,writew,readl,writel;此外,如果有_relaxed,则代表没有内存屏障,此外，还有相应的接口ioread8/iowrite8等)——>解除映射(iounmap())——>归还ＩＯ端口(release_mem_region())
     用户空间访问：在用户空间访问设备地址是通过驱动中的mmap建立用户空间与设备地址空间的映射。
     如果该驱动没有提供该方法则无法访问。通过系统调用mmap()会给进程分配虚拟地址(得到vma)，在mmap的实现中会根据文件标识符会调用驱动对应的mmap()方法(在哪里实现的？)，驱动中实现mmap方法有两种：
         1)在驱动的mmap方法中调用remap_pfn_range分配页框，并且建立页表项(实现物理地址和虚拟地址的对应)——>并为VAM添加相应操作——>当发生缺页异常(该物理内存的数据没有写入内存中)——>首先找到缺页的虚拟地址所在VMA，并分析页目录项，页表——>发起写时复制，并将数据读入内存中       

@@ -24,7 +24,7 @@ class Solution
             return pHead1;
         ListNode *mergerlistnode = nullptr;
         ListNode *res_listnode = nullptr;
-        if (pHead1->val > pHead2->val) //确定首节点
+        if (pHead1->val > pHead2->val) //寰楀埌棣栬妭鐄1�7?
         {
             res_listnode = pHead2;
             mergerlistnode = res_listnode;
@@ -37,9 +37,9 @@ class Solution
             pHead1 = pHead1->next;
         }
 
-        while (((pHead1 != NULL) ||(pHead2 != NULL)))//合并连表
+        while (((pHead1 != NULL) ||(pHead2 != NULL)))//鍚堝苟杩炶��1�7
         {
-            if ((pHead1 != NULL) && (pHead2 == NULL))//处理尾节点
+            if ((pHead1 != NULL) && (pHead2 == NULL))
             {
                 mergerlistnode->next = pHead1;
                 break;
@@ -49,7 +49,7 @@ class Solution
                 mergerlistnode->next = pHead2;
                 break;
             }
-            else if (pHead1->val > pHead2->val)//正常合并节点
+            else if (pHead1->val > pHead2->val)
             {
                 mergerlistnode->next = pHead2;
                 mergerlistnode = pHead2;
@@ -113,7 +113,7 @@ class Test_Solution
         mylist.DestroyList(pMergedHead);
     }
 
-    // Á½¸öÁ´±íÖÐÓÐÖØ¸´µÄÊý×Ö
+    // 脕陆赂枚脕麓卤铆脰脨脫脨脰脴赂麓碌脛脢媒脳脰
     // list1: 1->3->5
     // list2: 1->3->5
     void Test2()
@@ -137,7 +137,7 @@ class Test_Solution
         mylist.DestroyList(pMergedHead);
     }
 
-    // Á½¸öÁ´±í¶¼Ö»ÓÐÒ»¸öÊý×Ö
+    // 脕陆赂枚脕麓卤铆露录脰禄脫脨脪禄赂枚脢媒脳脰
     // list1: 1
     // list2: 2
     void Test3()
@@ -150,9 +150,9 @@ class Test_Solution
         mylist.DestroyList(pMergedHead);
     }
 
-    // Ò»¸öÁ´±íÎª¿ÕÁ´±í
+    // 脪禄赂枚脕麓卤铆脦陋驴脮脕麓卤铆
     // list1: 1->3->5
-    // list2: ¿ÕÁ´±í
+    // list2: 驴脮脕麓卤铆
     void Test4()
     {
         ListNode *pNode1 = mylist.CreateListNode(1);
@@ -167,9 +167,9 @@ class Test_Solution
         mylist.DestroyList(pMergedHead);
     }
 
-    // Á½¸öÁ´±í¶¼Îª¿ÕÁ´±í
-    // list1: ¿ÕÁ´±í
-    // list2: ¿ÕÁ´±í
+    // 脕陆赂枚脕麓卤铆露录脦陋驴脮脕麓卤铆
+    // list1: 驴脮脕麓卤铆
+    // list2: 驴脮脕麓卤铆
     void Test5()
     {
         ListNode *pMergedHead = Test("Test5", nullptr, nullptr);

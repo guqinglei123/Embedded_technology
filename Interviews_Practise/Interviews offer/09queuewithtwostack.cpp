@@ -25,12 +25,12 @@ class Solution
             stack2.push(stack1.top());
             stack1.pop();
         }
-        int res=stack2.top();//注意一下，删除的是那个顶点
+        int res=stack2.top();
         stack2.pop();
         int stack2_size=stack2.size();
-        for (int i = 0; i < stack2_size; i++)//两个栈的数据应该交换回去,也可以不交换。只需要判断一下stack2是不是空
+        for (int i = 0; i < stack2_size; i++)
         {
-            stack1.push(stack2.top());      //，如果为空则将stack1的数据如上面交换。不为空着继续弹出stack2数据。
+            stack1.push(stack2.top());
             stack2.pop();
         }
         return res;

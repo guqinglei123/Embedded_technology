@@ -1,28 +1,73 @@
+/***************************************************************************************************
+问题一：（数组的度）给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。
+你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。
+说明：
+    输入: [1, 2, 2, 3, 1]
+    输出: 2
+    解释: 
+    输入数组的度是2，因为元素1和2的出现频数最大，均为2.
+    连续子数组里面拥有相同度的有如下所示:
+    [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+    最短连续子数组[2, 2]的长度为2，所以返回2.
+    输入: [1,2,2,3,1,4,2]
+    输出: 6
+相关链接：https://blog.csdn.net/linhuanmars/article/details/21314059
+问题二：(53最大子数组和)给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+说明：
+    输入: [-2,1,-3,4,-1,2,1,-5,4],
+    输出: 6
+    解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+相关链接：https://blog.csdn.net/anlian523/article/details/75244422
+        https://blog.csdn.net/linhuanmars/article/details/21314059
+
+ * ********************************************************************************************/
+
 #include <vector>
 #include <list>
-#include <set>
-#include <stack>
-#include <queue>
 #include <algorithm>
 #include <iostream>
-#include <fstream>
 #include <stdlib.h>
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <cstring>
 using namespace std;
+
 class Solution
 {
   public:
-    bool g_InvalidInput = false;
-    int FindGreatestSumOfSubArray(vector<int> nums)
+        int findShortestSubArray(vector<int>& nums) {
+        
+    }
+    int helper(vector<int> &nums, int left, int right)
     {
-        g_InvalidInput = true;
-        if(nums.empty())
-            return  0;
-        g_InvalidInput = false;
+        if (left >= right)
+            return nums[left];
+        int mid = left + (right - left) / 2;
+        int lmax = helper(nums, left, mid - 1);
+        int rmax = helper(nums, mid + 1, right);
+        int mmax = nums[mid], t = mmax;
+        for (int i = mid - 1; i >= left; --i)
+        {
+            t += nums[i];
+            mmax = max(mmax, t);
+        }
+        t = mmax;
+        for (int i = mid + 1; i <= right; ++i)
+        {
+            t += nums[i];
+            mmax = max(mmax, t);
+        }
+        return max(mmax, max(lmax, rmax));
+    }
+    int maxSubArray(vector<int> &nums) //分治
+    {
+        if (nums.empty())
+            return 0;
+        return helper(nums, 0, (int)nums.size() - 1);
+    }
+
+    int maxSubArray_dp(vector<int> &nums)
+    {
         if (nums.size() <= 1)
             return nums[0];
 
@@ -35,64 +80,22 @@ class Solution
         }
         return g;
     }
-};
 
-class Test_Solution
-{
-  public:
-    Solution Sol;
-    void Test(char *testName, int *pData, int nLength, int expected, bool expectedFlag)
-    {
-        if (testName != nullptr)
-            printf("%s begins: \n", testName);
-        vector<int> pData_vec;
-        for (int i = 0; i < nLength; i++)
-            pData_vec.push_back(pData[i]);
-
-        int result = Sol.FindGreatestSumOfSubArray(pData_vec);
-        if (result == expected && expectedFlag == Sol.g_InvalidInput)
-            printf("Passed.\n");
-        else
-            printf("Failed.\n");
-    }
-
-    // 1, -2, 3, 10, -4, 7, 2, -5
-    void Test1()
-    {
-        int data[] = {1, -2, 3, 10, -4, 7, 2, -5};
-        Test("Test1", data, sizeof(data) / sizeof(int), 18, false);
-    }
-
-    // ËùÓÐÊý×Ö¶¼ÊÇ¸ºÊý
-    // -2, -8, -1, -5, -9
-    void Test2()
-    {
-        int data[] = {-2, -8, -1, -5, -9};
-        Test("Test2", data, sizeof(data) / sizeof(int), -1, false);
-    }
-
-    // ËùÓÐÊý×Ö¶¼ÊÇÕýÊý
-    // 2, 8, 1, 5, 9
-    void Test3()
-    {
-        int data[] = {2, 8, 1, 5, 9};
-        Test("Test3", data, sizeof(data) / sizeof(int), 25, false);
-    }
-
-    // ÎÞÐ§ÊäÈë
-    void Test4()
-    {
-        Test("Test4", nullptr, 0, 0, true);
-    }
+    
 };
 
 int main(int argc, char const *argv[])
 {
     /* code */
-    Test_Solution test;
-    test.Test1();
-    test.Test2();
-    test.Test3();
-    test.Test4();
+    Solution Sol;
+    
+    //问题二
+    vector<int> nums;
+    nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    int res = Sol.maxSubArray(nums);
+    cout << "问题的二分解法：" << res << endl;//???
+    int res = Sol.maxSubArray_dp(nums);
+    cout << "问题的动态规划解法：" << res << endl;
+  
     return 0;
 }

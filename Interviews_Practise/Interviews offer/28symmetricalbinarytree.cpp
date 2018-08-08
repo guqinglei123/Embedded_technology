@@ -32,7 +32,7 @@ class Solution
             {
                 if (pRoot1->left->val != pRoot2->right->val)
                     return false;
-                tree_stack1.push(pRoot1->left);//两个树的遍历方式度是前序。但一个先遍历左，一个先遍历右。
+                tree_stack1.push(pRoot1->left);
                 tree_stack2.push(pRoot2->right);
                 pRoot1 = pRoot1->left;
                 pRoot2 = pRoot2->right;

@@ -36,9 +36,9 @@ class Solution
             int nsum = number[i] - '0' + ntakeover;
             if (i == nlength - 1)
                 nsum++;
-            if (nsum >= 10)//产生进位
+            if (nsum >= 10)
             {
-                if (i == 0)//最高位产生进位，结束增加过程。
+                if (i == 0)
                     isoverflow = true;
                 else
                 {
@@ -56,7 +56,7 @@ class Solution
 
         return isoverflow;
     }
-    void PrintNumber(char *number)//第一个非0的数字开始打印
+    void PrintNumber(char *number)
     {
         bool isbeginning0 = true;
         int nlength = strlen(number);
@@ -79,7 +79,7 @@ class Solution
         char *number = new char[n + 1];
         memset(number, '0', n); //把每一个数字都初始化为0
         number[n] = '\0';
-        for(int i = 0; i < 10; ++i)//对第0位，循环到0~9。
+        for(int i = 0; i < 10; ++i)
         {
             number[0] = i + '0';
             recursive_help(number, n,0);
@@ -88,12 +88,12 @@ class Solution
     }
     void recursive_help(char * number, int length, int index)
     {
-        if(index == length -1)  //每一位度循环完毕。
+        if(index == length -1)
         {
             PrintNumber(number);
             return;
         }
-        for(int i=0; i <10; ++i)//对第idnex+1位，循环到0~9。
+        for(int i=0; i <10; ++i)
         {
             number[index+1]= i+'0';
             recursive_help(number,length,index+1);

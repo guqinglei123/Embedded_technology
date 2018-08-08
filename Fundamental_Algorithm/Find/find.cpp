@@ -1,5 +1,5 @@
 /*****************************************************************************************************
-²Î¿¼Á´½Ó£ºhttp://www.cnblogs.com/maybe2030/p/4715035.html
+å‚è€ƒé“¾æ¥ï¼šhttp://www.cnblogs.com/maybe2030/p/4715035.html
 https://blog.csdn.net/chenyukuai6625/article/details/76889375
 https://blog.csdn.net/chenyukuai6625/article/details/77165144
  * *******************************************************************************************/
@@ -18,7 +18,7 @@ using namespace std;
 class Find
 {
   public:
-    //Ë³Ğò²éÕÒ,ÊÊºÏÓÚ´æ´¢½á¹¹ÎªË³Ğò´æ´¢»òÁ´½Ó´æ´¢µÄÏßĞÔ±í¡£ÊôÓÚÎŞĞò²éÕÒ¡£
+    //é¡ºåºæŸ¥æ‰¾,é€‚åˆäºå­˜å‚¨ç»“æ„ä¸ºé¡ºåºå­˜å‚¨æˆ–é“¾æ¥å­˜å‚¨çš„çº¿æ€§è¡¨ã€‚å±äºæ— åºæŸ¥æ‰¾ã€‚
     int sequenceFind(int target, vector<int> &vect, int index_begin, int index_end)
     {
         for (int i = index_end - 1; i >= index_begin; i--)
@@ -28,7 +28,7 @@ class Find
         }
         return -1;
     }
-    //¶ş·Ö²éÕÒ,ÔªËØ±ØĞëÊÇÓĞĞòµÄ£¬Èç¹ûÊÇÎŞĞòµÄÔòÒªÏÈ½øĞĞÅÅĞò²Ù×÷¡£
+    //äºŒåˆ†æŸ¥æ‰¾,å…ƒç´ å¿…é¡»æ˜¯æœ‰åºçš„ï¼Œå¦‚æœæ˜¯æ— åºçš„åˆ™è¦å…ˆè¿›è¡Œæ’åºæ“ä½œã€‚
     int binaryFind(int target, vector<int> &vect, int index_begin, int index_end)
     {
         int index_mid = 0;
@@ -57,7 +57,7 @@ class Find
             return -1;
         }
     }
-    //²åÖµ²éÕÒ
+    //æ’å€¼æŸ¥æ‰¾
     int insertionFind(int target, vector<int> &vect, int index_begin, int index_end)
     {
         int index_mid = index_begin + ((target - vect[index_begin]) / (vect[index_end] - vect[index_begin])) * (index_end - index_begin);
@@ -75,7 +75,7 @@ class Find
             return -1;
         }
     }
-    //ì³²¨ÄÇÆõ²éÕÒ
+    //æ–æ³¢é‚£å¥‘æŸ¥æ‰¾
     int fibonacci(int n)
     {
         // vector<int> F(n+1);
@@ -126,34 +126,34 @@ class Find
 int main(int argc, char const *argv[])
 {
     /* code */
-    //Éú³ÉËæ»úÊı
+    //ç”Ÿæˆéšæœºæ•°
     Find Sol;
     int N = 35;
     vector<int> vect;
     int target = 1, target_sort = 1;
     int res;
-    //Éú³ÉËæ»úÊı
+    //ç”Ÿæˆéšæœºæ•°
     int pos, value;
     vector<int>::iterator it;
-    srand((unsigned int)time(NULL)); //ÉèÖÃËæ»úÖÖ×Ó
-    for (int i = 0; i < N; i++)      //ÔÚ[0, 3n)ÖĞÑ¡Ôñn¸öÊı£¬Ëæ»ú²åÈëÏòÁ¿
+    srand((unsigned int)time(NULL)); //è®¾ç½®éšæœºç§å­
+    for (int i = 0; i < N; i++)      //åœ¨[0, 3n)ä¸­é€‰æ‹©nä¸ªæ•°ï¼Œéšæœºæ’å…¥å‘é‡
     {
         pos = rand() % (i + 1);
         it = vect.begin() + pos;
         value = rand() % (3 * N);
         vect.insert(it, value);
     }
-    cout << "³õÊ¼Êı¾İ£º"; //ÎªÊ²Ã´µÚÒ»¸öÊä³öÓĞÎÊÌâ
+    cout << "åˆå§‹æ•°æ®ï¼š"; //ä¸ºä»€ä¹ˆç¬¬ä¸€ä¸ªè¾“å‡ºæœ‰é—®é¢˜
     for (int i = 0; i < vect.size(); i++)
     {
 
         cout << vect[i] << ' ';
     }
     cout << endl;
-    //ÓĞĞòÊı¾İ
+    //æœ‰åºæ•°æ®
     vector<int> vect_sort(vect);
     sort(vect_sort.begin(), vect_sort.end());
-    cout << "ÓĞĞòÊı¾İ£º";
+    cout << "æœ‰åºæ•°æ®ï¼š";
     for (int i = 0; i < vect_sort.size(); i++)
     {
         cout << vect_sort[i] << ' ';
@@ -165,20 +165,20 @@ int main(int argc, char const *argv[])
     // target_sort = vect_sort[1];
     target_sort = target;
 
-    //ÎŞĞò¶ÓÁĞ²éÕÒ
-    res = Sol.sequenceFind(target, vect, 0, vect.size()); //Çø¼ä¶¼ÊÇ×ó±ÕÓÒ¿ª,·µ»ØµÄ²éÕÒÔªËØµÄÏÂ±ê£¬Ê§°ÜÎª-1
-    cout << "ÔªËØÎ»ÖÃ(Ë³ĞòÅÅĞò)£º" << res << endl;
+    //æ— åºé˜Ÿåˆ—æŸ¥æ‰¾
+    res = Sol.sequenceFind(target, vect, 0, vect.size()); //åŒºé—´éƒ½æ˜¯å·¦é—­å³å¼€,è¿”å›çš„æŸ¥æ‰¾å…ƒç´ çš„ä¸‹æ ‡ï¼Œå¤±è´¥ä¸º-1
+    cout << "å…ƒç´ ä½ç½®(é¡ºåºæ’åº)ï¼š" << res << endl;
 
-    //ÓĞĞò¶ÓÁĞ²éÕÒ£¨Èç¹ûÓĞÖØ¸´Êı¾İ£¬ÏÂÃæÈıÕß¿ÉÄÜ¸øµÄ²»Ò»Ñù£©
-    res = Sol.binaryFind(target_sort, vect_sort, 0, vect.size()); //ÓĞĞòÇø¼ä¶¼ÊÇ×ó±ÕÓÒ¿ª,·µ»ØµÄ²éÕÒÔªËØµÄÏÂ±ê£¬Ê§°ÜÎª²éÕÒµÄÊ§°ÜÎ»ÖÃ
-    cout << "ÔªËØÎ»ÖÃ(¶ş·Ö²éÕÒ)£º" << res << endl;
+    //æœ‰åºé˜Ÿåˆ—æŸ¥æ‰¾ï¼ˆå¦‚æœæœ‰é‡å¤æ•°æ®ï¼Œä¸‹é¢ä¸‰è€…å¯èƒ½ç»™çš„ä¸ä¸€æ ·ï¼‰
+    res = Sol.binaryFind(target_sort, vect_sort, 0, vect.size()); //æœ‰åºåŒºé—´éƒ½æ˜¯å·¦é—­å³å¼€,è¿”å›çš„æŸ¥æ‰¾å…ƒç´ çš„ä¸‹æ ‡ï¼Œå¤±è´¥ä¸ºæŸ¥æ‰¾çš„å¤±è´¥ä½ç½®
+    cout << "å…ƒç´ ä½ç½®(äºŒåˆ†æŸ¥æ‰¾)ï¼š" << res << endl;
     res = Sol.binaryFind_recursion(target_sort, vect_sort, 0, vect.size());
-    cout << "ÔªËØÎ»ÖÃ(¶ş·Ö²éÕÒ(µü´ú·¨))£º" << res << endl;
+    cout << "å…ƒç´ ä½ç½®(äºŒåˆ†æŸ¥æ‰¾(è¿­ä»£æ³•))ï¼š" << res << endl;
 
-    res = Sol.insertionFind(target_sort, vect_sort, 0, vect.size()); //ÓĞĞòÇø¼ä¶¼ÊÇ×ó±ÕÓÒ¿ª,·µ»ØµÄ²éÕÒÔªËØµÄÏÂ±ê£¬Ê§°ÜÎª²éÕÒµÄÊ§°ÜÎ»ÖÃ
-    cout << "ÔªËØÎ»ÖÃ(²åÖµ²éÕÒ)£º" << res << endl;
+    res = Sol.insertionFind(target_sort, vect_sort, 0, vect.size()); //æœ‰åºåŒºé—´éƒ½æ˜¯å·¦é—­å³å¼€,è¿”å›çš„æŸ¥æ‰¾å…ƒç´ çš„ä¸‹æ ‡ï¼Œå¤±è´¥ä¸ºæŸ¥æ‰¾çš„å¤±è´¥ä½ç½®
+    cout << "å…ƒç´ ä½ç½®(æ’å€¼æŸ¥æ‰¾)ï¼š" << res << endl;
 
-    res = Sol.fibonacciFind(target_sort, vect_sort, 0, vect.size()); //ÓĞĞòÇø¼ä¶¼ÊÇ×ó±ÕÓÒ¿ª,·µ»ØµÄ²éÕÒÔªËØµÄÏÂ±ê£¬Ê§°ÜÎª²éÕÒµÄÊ§°ÜÎ»ÖÃ
-    cout << "ÔªËØÎ»ÖÃ(ì³²¨ÄÇÆõ²éÕÒ)£º" << res << endl;
+    res = Sol.fibonacciFind(target_sort, vect_sort, 0, vect.size()); //æœ‰åºåŒºé—´éƒ½æ˜¯å·¦é—­å³å¼€,è¿”å›çš„æŸ¥æ‰¾å…ƒç´ çš„ä¸‹æ ‡ï¼Œå¤±è´¥ä¸ºæŸ¥æ‰¾çš„å¤±è´¥ä½ç½®
+    cout << "å…ƒç´ ä½ç½®(æ–æ³¢é‚£å¥‘æŸ¥æ‰¾)ï¼š" << res << endl;
     return 0;
 }

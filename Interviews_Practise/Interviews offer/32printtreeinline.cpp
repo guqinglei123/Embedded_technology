@@ -22,7 +22,7 @@ class Solution
         if (root == NULL)
             return res_vect;
         queue<TreeNode *> deque_tree;
-        int curren_level,next_level;//分别显示当前层没有打印的节点以及下一层的节点数
+        int curren_level,next_level;
         deque_tree.push(root);
         curren_level = 1;
         next_level = 0;

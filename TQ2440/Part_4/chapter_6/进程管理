@@ -4,3 +4,11 @@
 
 
 主要内容：
+    进程通信：管道(pipe，半双工管道)，命名管道(FIFO),信号，XSI IPC(System V消息队列，System V信号量，System V共享内存)，POSIX IPC(POSIX消息队列，POSIX信号量，POSIX共享内存)，socket
+ 
+    线程通信(因为不同线程之间共享数据，所以线程通信主要是线程同步)：锁机制机制（互斥量，读写锁，条件变量，自旋锁），屏障，信号量机制(Semaphore)：包括无名线程信号量，信号机制(Signal)：类似进程间的信号处理
+
+    linux下的信号量：
+        Posix有名信号量（使用Posix IPC名字标，也称为命名）、
+        Posix基于内存的信号量（存放在共享内存区中，即无名）、
+        System V信号量（在内核中维护）
