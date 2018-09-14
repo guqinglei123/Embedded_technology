@@ -1,0 +1,12 @@
+参看书籍:
+<linux设备驱动程序>　第6章
+<linux设备驱动发——基于最新的linux 4.0内核＞　 第8章
+<深入理解linux内核>　第13章
+主要内容：
+１．输入子系统模型(linux-2.6.39/drivers/input/keyboard/gpio_keys.c)
+２．触摸屏模型（linux-2.6.39/drivers/input/touchscreen/s3c2410_ts.c）
+
+
+实验过程:
+１.将原始的按键程序中的msci设备模型改为输入子系统模型
+２．触摸屏程序设计

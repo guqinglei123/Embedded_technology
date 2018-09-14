@@ -1,0 +1,80 @@
+参看书籍:
+<linux设备驱动程序>　第6章
+<linux设备驱动发——基于最新的linux 4.0内核＞　 第8章
+<深入理解linux内核>　第13章
+主要内容：
+1.网络子系统
+	网络ISO模型：
+		ISO七层模型：物理层———>数据链路层———>网络层———>传输层———>会话层———>表示层———>应用层
+		TCP/IP四层模型：网络接口层—————————>网络层———>传输层———>应用层
+	各层协议：
+		（1）应用层：TELNET、FTP、TFTP、SMTP、SNMP、HTTP、BOOTP、DHCP、DNS
+		（2）表示层：文本：ASCII，EBCDIC
+					图形：TIFF，JPEG，GIF，PICT
+					声音：MIDI，MPEG，QUICKTIME
+		（3）会话层：NFS、SQL、RPC 、X-WINDOWS、ASP（APPTALK会话协议）、SCP 
+		（4）传输层：TCP、UDP、SPX 
+		（5）网络层：IP、IPX、ICMP、RIP、OSPF(Open Shortest Path First开放式最短路径优先)
+		（6）数据链路层：SDLC、HDLC、PPP、STP（Spanning Tree Protocol）、帧中继
+		（7）物理层：EIA/TIA RS-232、EIA/TIA RS-449、V.35、RJ-45    
+    系统模型:
+        系统调用接口(读写操作))
+        协议无关接口(套接字)
+        协议实现接口(网络设备接口层)
+        设备无关接口(网络设备接口层)
+        网络驱动接口(设备驱动功能层)
+        网络物理设备
+
+
+2.网卡驱动的设计
+    分析：linux-2.6.39/drivers/net/cs89x0.c和linux-2.6.39/drivers/net/loopback.c
+    相关结构体
+        数据包:sk_buff结构体(起始地址head,有效数据的起始地址data,有效数据的结束地址tail,结束地址end)
+        net_devices结构体:名字,网卡基地址/中断号等硬件信息,MAC地址,net_device_ops结构体,mtu/flags/header_ops等接口信息
+        net_device_ops结构体
+
+    初始化(init_module)
+        分配net_devices结构:alloc_etherdev()
+        初始化net_devices结构:中断号,网卡基地址,MAC地址,初始化net_device_ops,mtu,flags,header_ops)
+        初始化硬件
+        注册网卡驱动:register_netdev()
+    发送数据(通过net_device_ops中ndo_start_xmit指定的net_send_packet)
+        通知上层协议,暂停上层协议发送数据netix_stop_queue()
+        硬件操作:将skb_buff中数据写入网卡的硬件寄存器
+        释放skb_buff空间
+        网卡中断函数net_interrupt调用netix_wait_queue(),通知上层协议可以继续传输数据
+    数据接受(在网卡中断函数中调用net_rx)
+        读取接受接受数据的状态与长度
+        分配skb_buff:dev_alloc_skb()
+        从网卡寄存器中读取数据
+        通过netif_rf将数据包交给netif_rx
+    卸载网卡:
+        卸载网卡驱动:register_netdev()
+
+3.网络应用程序
+    Socket通信过程：
+		服务器：socket()———>bind()———>listen()———>accept()——阻塞等待至连接成功——>write()————————————————————————>read()———>close();
+		客户端:									 socket()—————————>connect()—————————————>read()———>write()—————————————>close();
+	TCP/IP三次握手，四次挥手过程：
+		三次握手：客户端发送请求报文———>服务器接受并允许连接，回复ACK报文（服务器分配资源）———>客户端接受ACK报文，并向服务器发送ACK报文（客户端分配资源）———>服务器接受报文，连接建立。
+		四次挥手：Client端发起中断连接请求，也就是发送FIN报文———>接受到FIN，服务器向客户端发送ACK（但是此时服务器数据未必接受完全），表示接收到请求———>客户端接受ACK，进入FIN_WAIT状态———等待Server端的FIN报文——————>Server端向客户端发送FIN报文，表示数据发送完成，将关闭连接——————>客户端接受到FIN报文后，发送ACK报文给服务器，确定关闭——————>2ms内，没有回复，则关闭成功
+
+4.网络通讯过程(以UPD/IP为):
+    发送数据:  
+        系统调用: write()/[send()/writev()/sendmsg()/sendto()]———>sys_write()或者 [sys_sendmsg()等]
+        协议无关接口(socket):[sock_aio_write()———>do_sock_write()]或者[sock_sendmsg()等]———>__sock_sendmsg()———>sock->(proto_ops *)ops->sendmsg() 
+        协议实现接口(传输层udp):udp_sendmsg()———>ip_route_output_flow()(选择路由)和udp_push_pending_frames()———>ip_finish_skb()和[udp_send_skb()———>ip_send_skb()]
+        协议实现接口(网际层IP):ip_push_pending_frames()(ip_finish_skb()和ip_send_skb())———>ip_send_skb()———>ip_local_out()———>dst_output()———>skb_dst(skb)->output(skb)———>  ip_mc_output()/ip_output()———>ip_finish_output()———>ip_finish_output2()———>［如果没有邻居信息(邻居子系统)则建立,调用dst->neighbour->output(skb)———>arp_generic_ops中.output＝neigh_resolve_output()———>queue_xmit()］或［如果有则直接调用arp_generic_ops中的．hh_output＝dev_queue_xmit()］
+        设备无关接口(网络设备接口层):queue_xmit()———>dev_queue_xmit()  dev_hard_start_xmit 
+        网络驱动接口(设备驱动功能层):net_device_ops结构体中ndo_start_xmit()
+    接受数据(见图片):
+        网络驱动接口(设备驱动功能层):xxx_interrupt(通过net_device_ops结构体中ndo_open()申请中断号时指定的中断函数)———>xxx_rx———>netif_rx()（会提交一次软中断）———>
+ 
+
+实验设计:        
+1.回环网卡(将网卡的TX与RX直接链接)的设计（linux-2.6.39/drivers/net/loopback.c）:
+    初始化:
+        分配并初始化net_devices结构:alloc_netdev()
+        dev有一行赋值  
+    发送函数的
+2.DM9000的移植

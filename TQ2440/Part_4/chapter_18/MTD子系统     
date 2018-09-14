@@ -1,0 +1,15 @@
+参看书籍:
+<linux设备驱动程序>　第6章
+<linux设备驱动发——基于最新的linux 4.0内核＞　 第8章
+<深入理解linux内核>　第13章
+主要内容
+１.MTD子系统架构
+２.MTD的使用
+    linux配置中要设置MTD的选项
+３.nandflash程序设计    
+
+
+
+实验过程：
+
+nandflash程序设计
