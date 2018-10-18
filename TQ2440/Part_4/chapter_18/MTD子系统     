@@ -12,4 +12,4 @@
 
 实验过程：
 
-nandflash程序设计
+nandflash程序设计(linux-2.6.39/drivers/mtd/nand/s3c2410.c)
