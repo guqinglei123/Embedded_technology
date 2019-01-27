@@ -1,3 +1,163 @@
-字符设备
-块设备
-网络设备
+
+
+
+参看书籍:
+
+    <linux设备驱动程序>　第3章
+    <linux设备驱动开发——基于最新的linux 4.0内核＞　 第6章
+    <深入理解linux内核>　第12章
+一：字符设备
+
+    主要内容：
+    1.几种重要的数据结构
+        1).与虚拟文件系统相关
+            file结构体：
+            dentry结构体：
+            inode结构体：
+            super_block结构体：
+        2）.与字符设备相关：cdev结构体（设备号：dev_t）
+        3）.file_opertion结构体：建立文件操作与设备的连接
+    2.软件框架
+        1）定义相关结构体：
+            a）定义设备结构体：若是字符设备，则里面肯定包含cdev结构体——为cdev分配了空间；也可以不定义该结构体，直接通过cdev_alloc()为cdev分配空间
+            b）定义文件操作结构体file_opertion.
+        2)模块加载与卸载
+            a）加载函数            
+                (1)获取字符设备号：静态分配:register_chrdev_region()；动态分配:alloc_chrdev_region();用函数获取设备编号后，其中的参数name是和该编号范围关联的设备名称，它将出现在/proc/devices和sysfs中。
+                (2)分配和初始化cdev(cdev_init()——关联cdev与file_opertion);
+                (3)注册设备 cdev_add()——通知内核struct cdev的信息;
+            b)模块卸载函数
+                (1)释放字符设备号(unregister_chrdev_region());
+                (2)注销设备 cdev_del();  
+        3）实现文件操作结构体中基本操作
+            a) open操作：如果不实现，则打开必定成功
+                (1)检查设备特定的错误（如设备未就绪或硬件问题）；
+                (2)如果设备是首次打开，则对其进行初始化；
+                (3)如有必要，更新f_op指针；
+                (4)将自己定义的设备结构体的地址填写置于filp->private_data里的数据结构。值得注意的是函数的传入参数只有inode结构体，这时候通过container_of得到自己定义的设备结构体的地址。
+            b)release操作：不是每一次用户空间close操作都会调用release操作，只有到file中计数为0时，才会调用release。
+                （1）释放由open分配的、保存在file->private_data中的所有内容；
+                （2）在最后一次关闭操作时关闭设备。
+            c)read操作：
+                （1）判断读的位置是否有效
+                （2）分析和获取有效的读长度
+                （3）使用函数copy_to_user拷贝数据到应用空间
+            d)write操作：
+                （1）/*判断写的位置是否有效*/
+                （2）/*分析和获取有效的写长度*/
+                （3）使用函数copy_from_user从应用空间拷贝数据
+                注意：使用copy_to_user和copy_from_user的原因为虽然内核空间可以访问用户空间(用户空间不能访问内核空间)，但是内核代码不能直接引用用户内容，需要进行access_ok()检查。其原因见<linux设备驱动程序>第67页。
+            e)llseek操作：
+    3.VFS系统调用的实现：  
+
+
+    实验过程：
+    书写一个简单的memdev字符驱动
+    应用程序中read如何找到驱动程序中的××_read的
+二：块设备
+
+    主要内容: 
+    1.块设备驱动系统架构
+        虚拟文件系统
+        文件系统层(磁盘文件系统,块设备文件系统，nfs)
+        通用块层
+        Ｉ/O调度层(电梯调度算法)
+        块设备驱动 
+    ２.块设备驱动分析
+        linux-2.6.39/drivers/memstick/core/mspro_block.c
+        linux-2.6.39/drivers/staging/zram/zram_drv.c
+        初始化
+            注册块设备驱动
+            初始化请求队列
+            指明扇区大小
+            分配gendisk结构
+            初始化gendisk结构(主，次磁盘号，函数操作集，请求队列，私有数据，扇区数)
+            增加gendisk结构
+        读写请求的处理函数（每一次只能处理一个请求）
+            取出一个要处理的请求
+            根据请求信息访问硬件，获得数据
+            判断请求队列是否为空，如果有则按照继续处理，如果没有则为空
+
+
+
+
+    实验过程：
+    vmem＿disk的设计
+三：网络设备
+
+    主要内容：
+    1.网络子系统
+        网络ISO模型：
+            ISO七层模型：物理层———>数据链路层———>网络层———>传输层———>会话层———>表示层———>应用层
+            TCP/IP四层模型：网络接口层—————————>网络层———>传输层———>应用层
+        各层协议：
+            （1）应用层：TELNET、FTP、TFTP、SMTP、SNMP、HTTP、BOOTP、DHCP、DNS
+            （2）表示层：文本：ASCII，EBCDIC
+                        图形：TIFF，JPEG，GIF，PICT
+                        声音：MIDI，MPEG，QUICKTIME
+            （3）会话层：NFS、SQL、RPC 、X-WINDOWS、ASP（APPTALK会话协议）、SCP 
+            （4）传输层：TCP、UDP、SPX 
+            （5）网络层：IP、IPX、ICMP、RIP、OSPF(Open Shortest Path First开放式最短路径优先)
+            （6）数据链路层：SDLC、HDLC、PPP、STP（Spanning Tree Protocol）、帧中继
+            （7）物理层：EIA/TIA RS-232、EIA/TIA RS-449、V.35、RJ-45    
+        系统模型:
+            系统调用接口(读写操作))
+            协议无关接口(套接字)
+            协议实现接口(网络设备接口层)
+            设备无关接口(网络设备接口层)
+            网络驱动接口(设备驱动功能层)
+            网络物理设备
+
+
+    2.网卡驱动的设计
+        分析：linux-2.6.39/drivers/net/cs89x0.c和linux-2.6.39/drivers/net/loopback.c
+        相关结构体
+            数据包:sk_buff结构体(起始地址head,有效数据的起始地址data,有效数据的结束地址tail,结束地址end)
+            net_devices结构体:名字,网卡基地址/中断号等硬件信息,MAC地址,net_device_ops结构体,mtu/flags/header_ops等接口信息
+            net_device_ops结构体
+
+        初始化(init_module)
+            分配net_devices结构:alloc_etherdev()
+            初始化net_devices结构:中断号,网卡基地址,MAC地址,初始化net_device_ops,mtu,flags,header_ops)
+            初始化硬件
+            注册网卡驱动:register_netdev()
+        发送数据(通过net_device_ops中ndo_start_xmit指定的net_send_packet)
+            通知上层协议,暂停上层协议发送数据netix_stop_queue()
+            硬件操作:将skb_buff中数据写入网卡的硬件寄存器
+            释放skb_buff空间
+            网卡中断函数net_interrupt调用netix_wait_queue(),通知上层协议可以继续传输数据
+        数据接受(在网卡中断函数中调用net_rx)
+            读取接受接受数据的状态与长度
+            分配skb_buff:dev_alloc_skb()
+            从网卡寄存器中读取数据
+            通过netif_rf将数据包交给netif_rx
+        卸载网卡:
+            卸载网卡驱动:register_netdev()
+
+    3.网络应用程序
+        Socket通信过程：
+            服务器：socket()———>bind()———>listen()———>accept()——阻塞等待至连接成功——>write()————————————————————————>read()———>close();
+            客户端:									 socket()—————————>connect()—————————————>read()———>write()—————————————>close();
+        TCP/IP三次握手，四次挥手过程：
+            三次握手：客户端发送请求报文———>服务器接受并允许连接，回复ACK报文（服务器分配资源）———>客户端接受ACK报文，并向服务器发送ACK报文（客户端分配资源）———>服务器接受报文，连接建立。
+            四次挥手：Client端发起中断连接请求，也就是发送FIN报文———>接受到FIN，服务器向客户端发送ACK（但是此时服务器数据未必接受完全），表示接收到请求———>客户端接受ACK，进入FIN_WAIT状态———等待Server端的FIN报文——————>Server端向客户端发送FIN报文，表示数据发送完成，将关闭连接——————>客户端接受到FIN报文后，发送ACK报文给服务器，确定关闭——————>2ms内，没有回复，则关闭成功
+
+    4.网络通讯过程(以UPD/IP为):
+        发送数据:  
+            系统调用: write()/[send()/writev()/sendmsg()/sendto()]———>sys_write()或者 [sys_sendmsg()等]
+            协议无关接口(socket):[sock_aio_write()———>do_sock_write()]或者[sock_sendmsg()等]———>__sock_sendmsg()———>sock->(proto_ops *)ops->sendmsg() 
+            协议实现接口(传输层udp):udp_sendmsg()———>ip_route_output_flow()(选择路由)和udp_push_pending_frames()———>ip_finish_skb()和[udp_send_skb()———>ip_send_skb()]
+            协议实现接口(网际层IP):ip_push_pending_frames()(ip_finish_skb()和ip_send_skb())———>ip_send_skb()———>ip_local_out()———>dst_output()———>skb_dst(skb)->output(skb)———>  ip_mc_output()/ip_output()———>ip_finish_output()———>ip_finish_output2()———>［如果没有邻居信息(邻居子系统)则建立,调用dst->neighbour->output(skb)———>arp_generic_ops中.output＝neigh_resolve_output()———>queue_xmit()］或［如果有则直接调用arp_generic_ops中的．hh_output＝dev_queue_xmit()］
+            设备无关接口(网络设备接口层):queue_xmit()———>dev_queue_xmit()  dev_hard_start_xmit 
+            网络驱动接口(设备驱动功能层):net_device_ops结构体中ndo_start_xmit()
+        接受数据(见图片):
+            网络驱动接口(设备驱动功能层):xxx_interrupt(通过net_device_ops结构体中ndo_open()申请中断号时指定的中断函数)———>xxx_rx———>netif_rx()（会提交一次软中断）———>
+    
+
+    实验设计:        
+    1.回环网卡(将网卡的TX与RX直接链接)的设计（linux-2.6.39/drivers/net/loopback.c）:
+        初始化:
+            分配并初始化net_devices结构:alloc_netdev()
+            dev有一行赋值  
+        发送函数的
+    2.DM9000的移植

@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "unused-ignores": [
-      "to-markdown",
-      "markdown-it-sub",
-      "markdown-it-sup"
-    ]
-  }
-}

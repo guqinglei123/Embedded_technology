@@ -1,0 +1,80 @@
+参看书籍:
+
+	<linux设备驱动程序>　第6章
+	<linux设备驱动开发——基于最新的linux 4.0内核＞　 第8章
+	<深入理解linux内核>　第13章
+主要内容：
+
+	1.中断调用执行过程：
+	    _irq_svc(统一的中断入口)——>irq_handler——>arch_irq_hander_defalut(获得中断号)——>ams_do_irq——>generic_handle_irq_desc(根据获得中断号得到起对应的结构指针irq_desc *)——>rq_desc *des->handle_irq(到得到注册好的中断处理函数)
+	2.中断类型:
+	    快速中断:
+	    普通中断:
+	    共享中断：
+	3.中断分层:
+	    问题:普通中断对同类型中断会忽略,快速中断对其他中断都会忽略.为减少中断处理时间,linux将中断处理函数中处理分为两个部分,分别为负责硬件操作的中断顶半部分和负责数据处理的中断底半部分. 
+	    进程上下文与中断上下文:
+	4.底半部分机制:
+	    软中断:使用softirq_action结构体来表征.
+	        使能或者禁止软中断:local_bh_enable()和local_bh_disable();
+	        注册软中断:open_softirq();
+	        触犯软中断:raise_softirq();
+	    tasklet:执行上下文是软中断上下文(属于原子上下文);不允许睡眠
+	        定义tasklet与tasklet处理函数:DECLARE_TASKLET();
+	        调度工作:tasklet_schedule();
+	    工作队列:通过形成worker队列list和使用worker线程(内核线程)调度来实现;运行与进程上下文并允许睡眠
+	        定义并创建工作队列:creat_workqueue()创建,或使用默认工作队列keventd_wq(什么都不用做)
+	        定义工作及处理函数并创建工作:INIT_WORK()
+	        调度工作:queue_work()或schedule_work()将工作挂载到keventd_wq 
+	5.中断程序实现：   
+	    注册中断处理函数:
+	        确定中断号:16(系统软中断数)+实际中断号(中断类型,INTOFFSET寄存器)
+	        定义中断处理函数
+	        调用request_iqr将中断处理函数与设备号，中断号绑定
+	    创建并且进行初始化底半部分机制:INIT_WORK()或者DECLARE_TASKLET();
+	    实现中断处理函数-中断顶半部分:
+	        检查设备是否产生中断
+	        清除中断标志(不是清除CPU内部的中断寄存器,而是外设中的中断基础器)
+	        进行相应的硬件操作
+	        提交底半部分:schedule_work或者tasklet_schedule
+	    实现中断处理函数-中断底部分:
+	        处理非硬件部分操作
+	    卸载中断处理函数，释放中断号:
+	    备注：中断处理函数使用在中断上下文中。故不能使用引起阻塞的函数，也不能使用引起调度的函数
+	6.定时程序的实现:
+	    定义定时器变量:time_list
+	    初始化定时器:init_time,设置定时函数 
+	    注册定时器:add_timer
+	    修改定时器:mod_timer
+	    实现定时器函数:完成定时任务,如果需要循环定时则再次调用mod_timer
+	    备注:jiffies为全局变量,代表当前系统的滴答数,在linux中每0.1ms会增加1滴答;HZ代表1s延迟,该值等于1s中jiffies的大小
+	7.内核延时:
+	    短延时:ndelay();udelay();mdelay();
+	    长延时:time_before();
+	    睡着延时:schedule_timeout();msleep();msleep_interuptible();
+
+
+实验过程:实现一个去抖的按键中断程序(阻塞型)
+
+	驱动程序:
+	    1.定义miscdevice和file_operations结构体
+	    2.注册混杂驱动:misc_register
+	    3.确定中断号与中断处理函数(上半部分)并且注册中断处理函数:request_irq
+	    4.按键的初始化(module_init或者open中实现都可以):通过ioremap等方式将硬件地址映射到内存中，然后配置GPIO的功能。
+	    5.定义并且进行初始化一个工作:INIT_WORK
+	    6.定义并初始化定时器:init_timer
+	    7.设置定时函数与时间 
+	    8.注册定时器:add_timer
+	    9.定义并且初始化等待队列头部:init_waitqueue_head(); 
+	    10.实现中断处理函数上半部分:
+	        检查设备是否产生中断
+	        清除中断标志(不是清除CPU内部的中断寄存器,而是外设中的中断基础器)
+	        进行相应的硬件操作
+	        提交下半部分
+	    11.实现中断处理函数下半部分:
+	        修改定时器时间:mod_timer
+	    12.实现定时器函数:读取按键操作是否仍然保持不变.并且唤醒等待队列
+	    13.实现read方法(open,close):等待事件
+	    备注:按键中断响应过程：按键后，系统接受到中断——>进入中断上半部(中断处理函数)，启动调度执行队列——>中断下半部响应(执行队列执行函数)，修改定时器中定时时间——>定时器定时到，定时处理函数响应——>处理按键，增加变量数值K
+
+	应用程序:调用在应用程序的read方法中——>调用驱动read方法，从buffer中得到数据——>在驱动的read方法中读取这个K值到buffer中。

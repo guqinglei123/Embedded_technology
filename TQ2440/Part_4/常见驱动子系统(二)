@@ -1,4 +1,106 @@
-platform
-SPI
-IIC
-USB
+一：platform
+
+二：SPI
+
+    主要内容：
+    1.SPI协议介绍
+        简述：串行，全双工（如果同一时间可以双向同是发送数据，就是全双工），同步，主从，无应答，不需要寻址，位传输,没有流控制
+        接口：
+            SDO/MOSI – 主设备输出，从设备输入    SDI/MISO – 主设备输入，从设备输出
+            SCLK – 时钟信号，由主设备产生;       CS/SS – 从设备使能信号，由主设备控制。
+        数据交换：
+            CS/SS电平由高变低，则产生起始信号；CS/SS电平由低变高，则产生停止信号。从机检测到自己的CS/SS线电平被置低，则开始与主机进行通讯。如果没有CS 信号，则只能存在一个从设备。主设备通过产生移位时钟来发起通讯。SCK开始运行，通讯开始，数据在时钟的上升或下降沿(触发)时，MOSI线通过移位寄存器 把发送缓冲区的数据逐位传输，在紧接着的下降或上升沿(采样)，MISO则把数据一位一位存进接收缓冲区这样经过8/16 次时钟的改变，完成8/16 位数据的传输。当发送缓冲区为空时，开始下一次交换。
+        通讯模式：
+            Mode0：CPOL=0，CPHA=0			Mode1：CPOL=0，CPHA=1
+            Mode2：CPOL=1，CPHA=0			Mode3：CPOL=1，CPHA=1
+            其中时钟极性CPOL是用来配置SCLK的电平出于哪种状态时是空闲态或者有效态，时钟相位CPHA是用来配置数据采样是在第几个边沿：
+                CPOL=0，表示当SCLK=0时处于空闲态，所以有效状态就是SCLK处于高电平时
+                CPOL=1，表示当SCLK=1时处于空闲态，所以有效状态就是SCLK处于低电平时
+                CPHA=0，表示数据采样是在第1个边沿，数据发送在第2个边沿
+                CPHA=1，表示数据采样是在第2个边沿，数据发送在第1个边沿
+                
+    2.SPI子系统模型
+        SPI核心：SPI控制器驱动和设备驱动之间的纽带，它提供了SPI控制器驱动和设备驱动的注册、注销方法等。
+        SPI控制器驱动(主机)：对SPI控制器驱动的实现．产生总线的各种波形
+        SPI设备驱动(从机)：对SPI从设备的驱动实现，如spi flash
+        板级逻辑：主级与从机之间的互联关系
+
+    ３.SPI代码分析
+        核心层(linux-2.6.39/drivers/spi/spi.c和spi-binbang.c)
+            常用数据结构:
+                spi_bus_type：定义的spi总线类型
+                spi_master:是对某一条SPI总线的抽象，是特定总线的相关属性的集合。
+                spi_driver:Driver是为device服务的，SPI_driver注册时会扫描SPI bus上的设备，进行驱动和设备的绑定。
+                spi_device:spi_device对应着SPI总线上某个特定的slave。每个slave都有特定的大小端、速率及传输位宽，各个slave相互之间无干扰。
+                spi_board_info：spi 的板级信息的描述
+                spi_transfer：
+                spi_message：
+                spi_bitbang(binbang GPIO模拟spi)：
+            常用接口:
+                spi_init()：总线注册以及核心层的初始化
+                spi_match_device()：总线的匹配函数
+                spi_alloc_master()：分配一个spi master
+                spi_register_master()/spi_unregister_master():分配一个spi master
+                spi_register_board_info():注册一个主机或从机设备的硬件信息
+                spi_register_driver()：注册spi driver 
+                
+                spi_message_init()/spi_message_add_tail()
+                spi_sync()/spi_async()
+                spi_read()/spi_write()
+                
+        主机设备侧程序(tq2440中没有添加spi的资源，参考linux-2.6.39/arch/arm/mach-at91/at91sam9260_devices.c)
+            定义开发板spi的资源文件:提供寄存器范围，spi中断
+            定义platform_device设备，指定设备的姓名，资源等硬件信息
+            注册platform_device
+            通过调用spi_register_board_info将SPI board info注册进系统SPI设备列表中(at91_add_device_spi(模块注册函数))
+        主机驱动侧程序(linux-2.6.39/drivers/spi/spi_s3c24xx.c)：
+            定义platform_driver的驱动
+            将驱动注册为平台总线驱动模型，直接跳到probe函数
+            分配SPI主机：spi_alloc_master
+            获得设备的资源并设置master
+            获取 spi 时钟，并且使能
+            硬件初始化：s3c24xx_spi_initialsetup
+            注册SPI主机：spi_register_master(在spi_bitbang_start中调用)
+            实现SPI master的setup及cleanup，SPI bitbang的setup_transfer，chipselect，txrx_bufs方法
+        从机设备侧程序(??)   
+            分配一个 spi_board_info 结构体
+            设置 spi_board_info 里的名字、最大频率、控制器编号、模式、片选
+            注册 spi_register_board_info 
+            spi_new_device
+            spi_add_device
+            device_add
+
+            spi_device
+
+
+        从机驱动侧程序(linux-2.6.39/drivers/mtd/devices/m25p80.c（spi flash）) ：   
+            定义一个 spi_driver 结构，并设置名字、probe等函数
+            注册 spi_register_driver，将bus设置为spi
+            配置并注册为一个ＭTD子系统(不同的外设可能不一样)
+            实现spi_write等系统调用，通过spi_transfer spi_message数据结构完成数据收发 
+
+三：IIC
+
+    主要内容：
+    １．IIＣ协议介绍
+        简述：串行，同步(同步通信是一种连续串行传送数据的通信方式，一次通信只传送一帧信息,这里一帧信息中包含若干字节.要求接受端和发送端的时钟频率一样， 可使用于点对多点)，多主机，8位传输，半双工（如果一个时间可以从A到B，然后下一时间从B到A，但是不能同时双向）。
+        接口：SDA – 数据传输     SCL-时钟线
+        主机(初始化发送，产生时钟信号和终止发送的器件)发送：
+            （1）主机在检测到总线为“空闲状态”（即 SDA、SCL 线均为高电平）时，发送一个启动信号“S”，开始一次通信的开始
+            （2）主机接着发送一个命令字节。该字节由 7 位的外围器件地址和 1 位读写控制位 R/W组成（此时 R/W=0）
+            （3）相对应的从机收到命令字节后向主机回馈应答信号 ACK（ACK=0）
+            （4）主机收到从机的应答信号后开始发送第一个字节的数据
+            （5）从机收到数据后返回一个应答信号 ACK
+            （6）主机收到应答信号后再发送下一个数据字节
+            （7）当主机发送最后一个数据字节并收到从机的 ACK 后，通过向从机发送一个停止信号P结束本次通信并释放总线。从机收到P信号后也退出与主机之间的通信
+        主机接收:
+            （1）主机发送启动信号后，接着发送命令字节（其中 R/W=1）
+            （2）对应的从机收到地址字节后，返回一个应答信号并向主机发送数据
+            （3）主机收到数据后向从机反馈一个应答信号
+            （4）从机收到应答信号后再向主机发送下一个数据 
+            （5）当主机完成接收数据后，向从机发送一个“非应答信号（ACK=1）”，从机收到ASK=1 的非应答信号后便停止发送
+            （6）主机发送非应答信号后，再发送一个停止信号，释放总线结束通信	
+        主机仲裁：低电平优先		
+    2.IIＣ子系统模型
+
+四：USB
