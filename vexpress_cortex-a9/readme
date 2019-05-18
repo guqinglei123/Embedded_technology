@@ -1,5 +1,38 @@
-linux-vexpress_a9  是直接负责宋宝化老师虚拟机中的linux文件。
-uboot-vexpress_a9和LKDemo-master 是按照虚拟机就是开发板中的内容进行搭建的.
+这里是按照uboot-vexpress_a9和LKDemo-master搭建的vexpress-a9的开发环境;
+
+文件说明：
+uboot-vexpress_a9:uboot源文件,编译生成uboot文件，可以用
+研究uboot
+
+linux-4.0.rc1-vexpress_a9:内核文件，配置在vexpress_a9平台下，编译生成zImage和vexpress-v2p-ca9.dtb(直接复制宋宝化老师虚拟机中的linux内核文件)
+
+busybox:精简的Unix工具集,版本为2015.01-rc123，使用于生成bin linuxrc sbin usr 文件,然后将起复制到rootfs目录下
+
+lddd3:一些驱动模块
+
+rootfs:根目录文件挂载目录
+
+vexpress：一些运行脚本和前面所生成一些镜像,有如下文件
+运行脚本：××.sh
+虚拟磁盘文件vexpress.img和vexpress_nfs.img
+zImage
+vexpress-v2p-ca9.dtb
+
 注意：这里如果使用编译TQ2440的arm-linux-gcc会出问题，应该高版本的内核需要编译器更高，这里在安装一个4.7的编译器。
+
+
+使用说明：
+1.启动脚本
+注意一点：宋宝华给的文件系统(vexpress.img)使用nfs会出错，所以在带-network脚本中使用的是虚拟机就是开发板中所带的文件系统(vexpress_nfs.img)
+
+2.主机的配置：
+sudo tunctl -u root -t tap30
+sudo ifconfig tap30 192.168.111.1 promisc up
+cd /home/guqinglei/Writing_code/vexpress_cortex-a9/vexpress_a9
+sudo ./run-nolcd-network.sh 
+
+3.开发板nfs的配置：
+ifconfig eth0 192.168.111.2 promisc up
+mount -t nfs -o nolock 192.168.111.1:/home/guqinglei/Writing_code/vexpress_cortex-a9/rootfs   /guqinglei
 
 

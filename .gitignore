@@ -3,8 +3,12 @@
 /TQ2440/rootfs
 /TQ2440/tftpboot
 /TQ2440/tools
-/vexpress_cortex-a9/linux-vexpress_a9
+/TQ2440/linux-tq2440
+/vexpress_cortex-a9/linux-2.6.30.4_vexpress-a9
 /vexpress_cortex-a9/rootfs
+/vexpress_cortex-a9/busybox
+/vexpress_cortex-a9/uboot-vexpress_a9
+/vexpress_cortex-a9/linux-4.0.rc1_vexpress-a9
 
 .classpath
 .project
