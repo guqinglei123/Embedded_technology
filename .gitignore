@@ -4,6 +4,7 @@
 /TQ2440/tftpboot
 /TQ2440/tools
 /TQ2440/linux-tq2440
+/TQ2440/linux-tq2441
 /vexpress_cortex-a9/linux-2.6.30.4_vexpress-a9
 /vexpress_cortex-a9/rootfs
 /vexpress_cortex-a9/busybox
